@@ -1,0 +1,1035 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AIFU qabul hisoboti 2026–2027</title>
+<style>
+/* Layout: fixed 1920×1080 stage, 12-column Swiss grid (120px margins, 118px columns, 24px gutters), scaled to fit the window. */
+:root {
+  --navy: #002E60;
+  --red: #FF0158;
+  --white: #FFFFFF;
+  --grey: #A6A6A6;           /* only for last year's figures */
+  --ink-2: rgba(255,255,255,.74);
+  --ink-3: rgba(255,255,255,.58);
+  --hair: rgba(255,255,255,.22);
+  --letterbox: #000000;
+  --font: "AIFU Sans", "AIFU Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --ui-font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color-scheme: dark;
+}
+
+/* Helvetica first (as the brand guide says), then Helvetica Neue, then the bundled Inter. */
+@font-face { font-family: "AIFU Sans"; font-weight: 300; font-display: block;
+  src: local("Helvetica Light"), local("Helvetica-Light"), local("Helvetica Neue Light"), local("HelveticaNeue-Light"), url(assets/fonts/inter-latin-300-normal.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "AIFU Sans"; font-weight: 300; font-display: block;
+  src: local("Helvetica Light"), local("Helvetica-Light"), local("Helvetica Neue Light"), local("HelveticaNeue-Light"), url(assets/fonts/inter-latin-ext-300-normal.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+20A0-20AB, U+20AD-20C0, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "AIFU Sans"; font-weight: 400; font-display: block;
+  src: local("Helvetica"), local("Helvetica Neue"), local("HelveticaNeue"), url(assets/fonts/inter-latin-400-normal.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "AIFU Sans"; font-weight: 400; font-display: block;
+  src: local("Helvetica"), local("Helvetica Neue"), local("HelveticaNeue"), url(assets/fonts/inter-latin-ext-400-normal.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+20A0-20AB, U+20AD-20C0, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "AIFU Sans"; font-weight: 500; font-display: block;
+  src: local("Helvetica Neue Medium"), local("HelveticaNeue-Medium"), url(assets/fonts/inter-latin-500-normal.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "AIFU Sans"; font-weight: 500; font-display: block;
+  src: local("Helvetica Neue Medium"), local("HelveticaNeue-Medium"), url(assets/fonts/inter-latin-ext-500-normal.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+20A0-20AB, U+20AD-20C0, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "AIFU Sans"; font-weight: 700; font-display: block;
+  src: local("Helvetica Bold"), local("Helvetica-Bold"), local("Helvetica Neue Bold"), local("HelveticaNeue-Bold"), url(assets/fonts/inter-latin-700-normal.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "AIFU Sans"; font-weight: 700; font-display: block;
+  src: local("Helvetica Bold"), local("Helvetica-Bold"), local("Helvetica Neue Bold"), local("HelveticaNeue-Bold"), url(assets/fonts/inter-latin-ext-700-normal.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+20A0-20AB, U+20AD-20C0, U+2C60-2C7F, U+A720-A7FF; }
+/* Glyph-level fallback (e.g. ʻ U+02BB) if a local Helvetica lacks it. */
+@font-face { font-family: "AIFU Inter"; font-weight: 300; font-display: block; src: url(assets/fonts/inter-latin-300-normal.woff2) format("woff2"); }
+@font-face { font-family: "AIFU Inter"; font-weight: 400; font-display: block; src: url(assets/fonts/inter-latin-400-normal.woff2) format("woff2"); }
+@font-face { font-family: "AIFU Inter"; font-weight: 500; font-display: block; src: url(assets/fonts/inter-latin-500-normal.woff2) format("woff2"); }
+@font-face { font-family: "AIFU Inter"; font-weight: 700; font-display: block; src: url(assets/fonts/inter-latin-700-normal.woff2) format("woff2"); }
+
+html, body { height: 100%; }
+body { margin: 0; background: var(--letterbox); color: var(--white); overflow: hidden; font-family: var(--ui-font); }
+body.idle { cursor: none; }
+
+#viewport { position: fixed; inset: 0; overflow: hidden; background: var(--letterbox); }
+#stage {
+  position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px;
+  transform-origin: 50% 50%; overflow: hidden; background: var(--navy);
+  font-family: var(--font); color: var(--white);
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision; font-kerning: normal;
+}
+#stage * { box-sizing: border-box; }
+.abs { position: absolute; }
+.scene { position: absolute; inset: 0; display: none; will-change: opacity; }
+[data-in] { will-change: transform, opacity; }
+
+/* type scale */
+.eyebrow { font-size: 26px; font-weight: 500; line-height: 34px; color: var(--ink-2); letter-spacing: .01em; white-space: nowrap; }
+.h1 { font-size: 96px; font-weight: 700; line-height: 1; letter-spacing: -.028em; white-space: nowrap; }
+.h1x { font-size: 128px; font-weight: 700; line-height: 1; letter-spacing: -.032em; white-space: nowrap; }
+.h2 { font-size: 60px; font-weight: 700; line-height: 1.08; letter-spacing: -.02em; }
+.body { font-size: 38px; font-weight: 400; line-height: 1.3; color: var(--ink-2); letter-spacing: -.005em; }
+.body b, .body strong { color: var(--white); font-weight: 700; }
+.label { font-size: 30px; font-weight: 400; line-height: 1.25; color: var(--ink-2); white-space: nowrap; }
+.small { font-size: 22px; font-weight: 400; line-height: 1.35; color: var(--ink-3); }
+.num { font-weight: 700; font-variant-numeric: proportional-nums lining-nums; letter-spacing: -.035em; line-height: 1; white-space: nowrap; }
+.tab { font-variant-numeric: tabular-nums lining-nums; }
+.red { color: var(--red); }
+.grey { color: var(--grey); }
+.white { color: var(--white); }
+.mask { position: absolute; overflow: hidden; padding-bottom: .08em; }
+.mask > * { display: block; }
+.baseline-row { display: flex; align-items: baseline; white-space: nowrap; }
+.hair { position: absolute; height: 2px; background: var(--hair); transform-origin: 0 50%; }
+.box { position: absolute; border: 2px solid var(--hair); }
+.foot { position: absolute; left: 120px; top: 1000px; font-size: 22px; line-height: 28px; color: var(--ink-3); white-space: nowrap; }
+.arrow { display: inline-block; vertical-align: middle; }
+.icon { position: absolute; width: 72px; height: 72px; fill: none; stroke: var(--white); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.grow-y { transform-origin: 50% 100%; }
+.grow-x { transform-origin: 0 50%; }
+
+/* signature red rule */
+#rule { position: absolute; height: 3px; background: var(--red); z-index: 3; }
+
+/* stepper (scenes 5–8) */
+#stepper { position: absolute; inset: 0; z-index: 4; pointer-events: none; }
+#stepper .sc { position: absolute; left: 0; top: 0; width: 28px; height: 28px; border-radius: 50%; border: 3px solid #fff; background: var(--navy); transform-origin: 0 0; }
+#stepper .sl { position: absolute; left: 0; top: 0; font-size: 72px; font-weight: 700; line-height: 1; letter-spacing: -.025em; white-space: nowrap; transform-origin: 0 0; }
+#stepper .ss { position: absolute; left: 0; top: 0; font-size: 26px; font-weight: 500; line-height: 1; color: var(--ink-3); white-space: nowrap; }
+#stepper .scn { position: absolute; height: 2px; top: 71px; background: rgba(255,255,255,.35); }
+#sarr { position: absolute; left: 1778px; top: 547px; width: 26px; height: 26px; }
+
+/* chrome */
+#chrome { z-index: 5; }
+#logotab { position: absolute; left: 120px; top: 0; width: 128px; height: 146px; background: #fff; }
+#logotab img { position: absolute; left: 20px; top: 32px; width: 88px; height: auto; }
+#runfoot { position: absolute; right: 120px; top: 1000px; font-size: 22px; line-height: 28px; color: var(--ink-3); white-space: nowrap; }
+
+/* brand module (opening / wipes / final) */
+#mod { position: absolute; inset: 0; background: var(--red); z-index: 8; display: none; }
+.seal { position: absolute; left: 740px; top: 230px; width: 440px; height: 440px; border-radius: 50%; background: #fff; }
+.seal img { position: absolute; left: 70px; top: 66px; width: 300px; height: auto; }
+#seal0 { z-index: 9; }
+#s12 { z-index: 9; }
+
+/* start screen */
+#start { position: absolute; inset: 0; z-index: 20; transition: opacity .35s ease-out; }
+#start.gone { opacity: 0; pointer-events: none; }
+#start .title { position: absolute; left: 0; right: 0; top: 712px; text-align: center; font-size: 36px; font-weight: 500; line-height: 1.3; }
+#startBtn {
+  position: absolute; left: 50%; top: 790px; transform: translateX(-50%);
+  display: inline-flex; align-items: center; gap: 18px; height: 88px; padding: 0 44px 0 36px;
+  border: 0; border-radius: 0; background: #fff; color: var(--navy); cursor: pointer;
+  font-family: var(--font); font-size: 34px; font-weight: 700; letter-spacing: -.01em;
+}
+#startBtn svg { width: 26px; height: 26px; fill: var(--navy); }
+#startBtn:disabled { cursor: progress; color: rgba(0,46,96,.55); }
+#startBtn:disabled svg { fill: rgba(0,46,96,.4); }
+#startBtn:focus-visible { outline: 4px solid var(--white); outline-offset: 6px; }
+#start .hint { position: absolute; left: 0; right: 0; top: 1004px; text-align: center; font-size: 20px; color: rgba(255,255,255,.75); }
+
+/* hidden control panel */
+#ui {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+  padding: 14px 24px calc(14px + env(safe-area-inset-bottom, 0px));
+  background: rgba(0, 22, 48, .94); color: #fff; font: 14px/1.2 var(--ui-font);
+  transform: translateY(100%); transition: transform .28s cubic-bezier(.22,.61,.36,1);
+}
+#ui.show { transform: translateY(0); }
+#ui .row { display: flex; align-items: center; gap: 16px; }
+#ui button {
+  font: inherit; color: #fff; background: transparent; border: 1px solid rgba(255,255,255,.28);
+  height: 34px; min-width: 34px; padding: 0 10px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+}
+#ui button:hover { border-color: #fff; }
+#ui button:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+#ui button.on { background: var(--red); border-color: var(--red); }
+#ui svg { width: 14px; height: 14px; fill: currentColor; }
+#uiTime { font-variant-numeric: tabular-nums; min-width: 98px; color: rgba(255,255,255,.85); }
+#scrub { position: relative; flex: 1; height: 34px; cursor: pointer; touch-action: none; min-width: 120px; }
+#scrub .track { position: absolute; left: 0; right: 0; top: 15px; height: 4px; background: rgba(255,255,255,.22); }
+#scrub .fill { position: absolute; left: 0; top: 15px; height: 4px; background: var(--red); width: 0; }
+#scrub .tick { position: absolute; top: 9px; width: 1px; height: 16px; background: rgba(255,255,255,.45); }
+#scrub .knob { position: absolute; top: 9px; width: 4px; height: 16px; margin-left: -2px; background: #fff; }
+#scrub .tip { position: absolute; bottom: 34px; transform: translateX(-50%); background: #fff; color: var(--navy); padding: 4px 8px; white-space: nowrap; font-weight: 600; display: none; }
+#scenesRow { margin-top: 10px; flex-wrap: wrap; gap: 6px; }
+#scenesRow button { height: 28px; font-size: 12px; padding: 0 8px; }
+#uiHint { color: rgba(255,255,255,.55); font-size: 12px; margin-left: auto; }
+@media (max-width: 1700px) { #scenesRow button span { display: none; } }
+@media (max-width: 760px) { #uiHint { display: none; } }
+body.render #start, body.render #ui { display: none !important; }
+</style>
+</head>
+<body>
+<div id="viewport">
+<div id="stage" aria-label="Aniq va ijtimoiy fanlar universiteti — 2026–2027 qabul mavsumi. Marketing boʻlimi hisoboti">
+
+  <!-- 1 · Ochilish -->
+  <section class="scene" id="s1" data-start="0" data-end="9.55" data-name="Ochilish">
+    <div class="abs eyebrow" style="left:120px;top:430px;font-size:30px;" data-in="1.1">Aniq va ijtimoiy fanlar universiteti</div>
+    <div class="mask" style="left:112px;top:478px;width:1720px;height:276px;">
+      <div class="num" style="font-size:280px;letter-spacing:-.04em;" data-in="3.9" data-fx="rise" data-d=".75">2026<span style="padding:0 .05em">–</span>2027</div>
+    </div>
+    <div class="abs" style="left:120px;top:792px;font-size:46px;line-height:1.2;white-space:nowrap;" data-in="6.3">Qabul mavsumi · Marketing boʻlimi hisoboti</div>
+    <div class="foot" data-in="8.0">04.10.2026 holatiga</div>
+  </section>
+
+  <!-- 2 · Mavsum natijasi -->
+  <section class="scene" id="s2" data-start="9.55" data-end="23.45" data-name="Mavsum natijasi">
+    <div class="mask" style="left:120px;top:186px;height:42px;width:900px;"><div class="eyebrow" data-in="10.15" data-fx="rise">Mavsum natijasi</div></div>
+
+    <div class="abs baseline-row" style="left:120px;top:300px;height:170px;width:402px;align-items:flex-end;" data-in="10.8"><span class="num" style="font-size:104px;" data-count="36003" data-at="10.9">36 003</span></div>
+    <div class="abs baseline-row" style="left:546px;top:300px;height:170px;width:402px;align-items:flex-end;" data-in="13.55"><span class="num" style="font-size:104px;" data-count="17218" data-at="13.65">17 218</span></div>
+    <div class="abs baseline-row" style="left:972px;top:300px;height:170px;width:402px;align-items:flex-end;" data-in="16.2"><span class="num" style="font-size:104px;" data-count="8336" data-at="16.3">8 336</span></div>
+    <div class="abs baseline-row" style="left:1398px;top:300px;height:170px;width:440px;align-items:flex-end;" data-in="19.4"><span class="num red" style="font-size:150px;" data-count="1631" data-at="19.5" data-cd="1.5" data-hit="1">1 631</span></div>
+
+    <div class="abs label" style="left:120px;top:488px;" data-in="11.0">lid</div>
+    <div class="abs label" style="left:546px;top:488px;" data-in="13.75">ariza</div>
+    <div class="abs label" style="left:972px;top:488px;" data-in="16.4">shartnoma</div>
+    <div class="abs label white" style="left:1398px;top:488px;" data-in="19.6">toʻlov qilgan talaba</div>
+
+    <!-- funnel: band height ∝ value (36 003 → 300px) -->
+    <div class="abs" style="left:120px;top:600px;width:426px;height:340px;" data-in="10.9" data-fx="wipe" data-d=".9">
+      <svg width="426" height="340" viewBox="120 600 426 340"><polygon points="120,620 380,620 546,698.27 546,841.73 380,920 120,920" fill="rgba(255,255,255,.17)"/></svg>
+    </div>
+    <div class="abs" style="left:546px;top:600px;width:426px;height:340px;" data-in="13.65" data-fx="wipe" data-d=".9">
+      <svg width="426" height="340" viewBox="546 600 426 340"><polygon points="546,698.27 806,698.27 972,735.27 972,804.73 806,841.73 546,841.73" fill="rgba(255,255,255,.17)"/></svg>
+    </div>
+    <div class="abs" style="left:972px;top:600px;width:426px;height:340px;" data-in="16.3" data-fx="wipe" data-d=".9">
+      <svg width="426" height="340" viewBox="972 600 426 340"><polygon points="972,735.27 1232,735.27 1398,763.2 1398,776.8 1232,804.73 972,804.73" fill="rgba(255,255,255,.17)"/></svg>
+    </div>
+    <div class="abs" style="left:1398px;top:600px;width:402px;height:340px;" data-in="19.5" data-fx="wipe" data-d="1.1">
+      <svg width="402" height="340" viewBox="1398 600 402 340"><polygon points="1398,763.2 1800,763.2 1800,776.8 1398,776.8" fill="#FF0158"/></svg>
+    </div>
+
+    <div class="foot" data-in="10.6">Manba: CRM, 04.10.2026 holatiga</div>
+  </section>
+
+  <!-- 3 · O'tgan yil bilan taqqoslash -->
+  <section class="scene" id="s3" data-start="23.45" data-end="35.5" data-name="Oʻtgan yil bilan taqqoslash">
+    <div class="mask" style="left:120px;top:186px;height:42px;width:900px;"><div class="eyebrow" data-in="24.15" data-fx="rise">Oʻtgan yil bilan taqqoslash</div></div>
+    <div class="abs" style="right:120px;top:190px;display:flex;gap:28px;font-size:24px;line-height:30px;color:var(--ink-2);" data-in="24.3" data-fx="fade">
+      <span style="display:inline-flex;align-items:center;gap:10px;"><i style="width:16px;height:16px;background:var(--grey);display:inline-block"></i>2025</span>
+      <span style="display:inline-flex;align-items:center;gap:10px;"><i style="width:16px;height:16px;background:var(--red);display:inline-block"></i>2026</span>
+    </div>
+
+    <div class="abs" style="inset:0;" data-dim="30.85" data-dimto=".07">
+      <!-- bars to scale within each pair: 2026 = 360px -->
+      <div class="hair grow-x" style="left:120px;top:860px;width:1680px;background:rgba(255,255,255,.35);" data-in="23.9" data-fx="grow-x"></div>
+
+      <div class="abs grow-y" style="left:120px;top:542.9px;width:140px;height:317.1px;background:var(--grey);" data-in="24.1" data-fx="grow-y" data-d=".8"></div>
+      <div class="abs grow-y" style="left:276px;top:500px;width:140px;height:360px;background:var(--red);" data-in="24.18" data-fx="grow-y" data-d=".8"></div>
+      <div class="abs grow-y" style="left:546px;top:535.8px;width:140px;height:324.2px;background:var(--grey);" data-in="24.22" data-fx="grow-y" data-d=".8"></div>
+      <div class="abs grow-y" style="left:702px;top:500px;width:140px;height:360px;background:var(--red);" data-in="24.3" data-fx="grow-y" data-d=".8"></div>
+      <div class="abs grow-y" style="left:972px;top:599.7px;width:140px;height:260.3px;background:var(--grey);" data-in="24.34" data-fx="grow-y" data-d=".8"></div>
+      <div class="abs grow-y" style="left:1128px;top:500px;width:140px;height:360px;background:var(--red);" data-in="24.42" data-fx="grow-y" data-d=".8"></div>
+      <div class="abs grow-y" style="left:1398px;top:595.1px;width:140px;height:264.9px;background:var(--grey);" data-in="24.46" data-fx="grow-y" data-d=".8"></div>
+      <div class="abs grow-y" style="left:1554px;top:500px;width:140px;height:360px;background:var(--red);" data-in="24.54" data-fx="grow-y" data-d=".8"></div>
+
+      <div class="abs num grey" style="left:120px;top:500px;font-size:30px;letter-spacing:-.01em;" data-in="24.85">31 711</div>
+      <div class="abs num" style="left:276px;top:458px;font-size:30px;letter-spacing:-.01em;" data-in="24.95">36 003</div>
+      <div class="abs num grey" style="left:546px;top:493px;font-size:30px;letter-spacing:-.01em;" data-in="24.97">15 506</div>
+      <div class="abs num" style="left:702px;top:458px;font-size:30px;letter-spacing:-.01em;" data-in="25.07">17 218</div>
+      <div class="abs num grey" style="left:972px;top:557px;font-size:30px;letter-spacing:-.01em;" data-in="25.09">6 027</div>
+      <div class="abs num" style="left:1128px;top:458px;font-size:30px;letter-spacing:-.01em;" data-in="25.19">8 336</div>
+      <div class="abs num grey" style="left:1398px;top:553px;font-size:30px;letter-spacing:-.01em;" data-in="25.21">1 200</div>
+      <div class="abs num" style="left:1554px;top:458px;font-size:30px;letter-spacing:-.01em;" data-in="25.31">1 631</div>
+
+      <div class="abs baseline-row red" style="left:120px;top:366px;gap:10px;" data-in="25.9"><svg class="arrow" width="34" height="44" viewBox="0 0 34 44" style="align-self:center"><path d="M17 40V5M5 17L17 5l12 12" fill="none" stroke="#FF0158" stroke-width="4" stroke-linecap="square"/></svg><span class="num" style="font-size:64px;" data-count="13.5" data-dec="1" data-pre="+" data-suf="%">+13,5%</span></div>
+      <div class="abs baseline-row red" style="left:546px;top:366px;gap:10px;" data-in="26.75"><svg class="arrow" width="34" height="44" viewBox="0 0 34 44" style="align-self:center"><path d="M17 40V5M5 17L17 5l12 12" fill="none" stroke="#FF0158" stroke-width="4" stroke-linecap="square"/></svg><span class="num" style="font-size:64px;" data-count="11.0" data-dec="1" data-pre="+" data-suf="%">+11,0%</span></div>
+      <div class="abs baseline-row red" style="left:972px;top:366px;gap:10px;" data-in="27.45"><svg class="arrow" width="34" height="44" viewBox="0 0 34 44" style="align-self:center"><path d="M17 40V5M5 17L17 5l12 12" fill="none" stroke="#FF0158" stroke-width="4" stroke-linecap="square"/></svg><span class="num" style="font-size:64px;" data-count="38.3" data-dec="1" data-pre="+" data-suf="%">+38,3%</span></div>
+      <div class="abs baseline-row red" style="left:1398px;top:366px;gap:10px;" data-in="28.8"><svg class="arrow" width="34" height="44" viewBox="0 0 34 44" style="align-self:center"><path d="M17 40V5M5 17L17 5l12 12" fill="none" stroke="#FF0158" stroke-width="4" stroke-linecap="square"/></svg><span class="num" style="font-size:64px;" data-count="35.9" data-dec="1" data-pre="+" data-suf="%">+35,9%</span></div>
+
+      <div class="abs label white" style="left:120px;top:884px;font-size:32px;" data-in="24.3" data-fx="fade">Lid</div>
+      <div class="abs label white" style="left:546px;top:884px;font-size:32px;" data-in="24.42" data-fx="fade">Ariza</div>
+      <div class="abs label white" style="left:972px;top:884px;font-size:32px;" data-in="24.54" data-fx="fade">Shartnoma</div>
+      <div class="abs label white" style="left:1398px;top:884px;font-size:32px;" data-in="24.66" data-fx="fade">Toʻlov qilganlar</div>
+    </div>
+
+    <div class="abs" style="left:0;right:0;top:404px;text-align:center;font-size:46px;line-height:1.2;" data-in="31.2">Liddan toʻlovgacha konversiya</div>
+    <div class="abs" style="left:0;right:0;top:486px;display:flex;justify-content:center;align-items:center;gap:44px;" data-in="31.45">
+      <span class="num tab grey" style="font-size:210px;" data-count="3.8" data-dec="1" data-suf="%" data-at="31.5" data-cd="1.2">3,8%</span>
+      <svg width="96" height="60" viewBox="0 0 96 60"><path d="M4 30h84M62 6l26 24-26 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="5" stroke-linecap="square"/></svg>
+      <span class="num tab red" style="font-size:210px;" data-count="4.5" data-dec="1" data-suf="%" data-at="32.3" data-cd="1.3" data-hit="1">4,5%</span>
+    </div>
+
+    <div class="foot" data-in="24.0">Manba: CRM, 04.10.2026 holatiga</div>
+  </section>
+
+  <!-- 4 · O'sish drayveri -->
+  <section class="scene" id="s4" data-start="35.5" data-end="43.35" data-name="Oʻsish drayveri">
+    <div class="mask" style="left:120px;top:186px;height:42px;width:900px;"><div class="eyebrow" data-in="36.15" data-fx="rise">Oʻsish drayveri</div></div>
+    <div class="mask" style="left:116px;top:266px;height:112px;width:1700px;"><div class="h1" data-in="36.0" data-fx="rise" data-d=".7">Oʻsishni bakalavriat berdi</div></div>
+
+    <div class="abs num" style="left:112px;top:570px;font-size:220px;" data-in="38.6" data-count="53" data-pre="+" data-suf="%" data-at="38.8">+53%</div>
+    <div class="abs label" style="left:120px;top:806px;font-size:38px;" data-in="38.95">shartnomalar</div>
+
+    <div class="mask" style="left:956px;top:460px;width:760px;height:320px;padding-bottom:0;">
+      <div class="num red" style="font-size:340px;letter-spacing:-.04em;" data-in="41.6" data-fx="rise" data-d=".6">×2</div>
+    </div>
+    <div class="abs label" style="left:972px;top:806px;font-size:38px;" data-in="41.9">toʻlov qilganlar (<span class="white" style="font-weight:700" data-count="104" data-pre="+" data-suf="%" data-at="42.0">+104%</span>)</div>
+
+    <div class="foot" data-in="36.0">Manba: CRM, 04.10.2026 holatiga</div>
+  </section>
+
+  <!-- 5 · Qanday ishladik (path is the shared #stepper) -->
+  <section class="scene" id="s5" data-start="43.35" data-end="46.35" data-name="Qanday ishladik">
+    <div class="mask" style="left:120px;top:186px;height:42px;width:900px;"><div class="eyebrow" data-in="43.85" data-fx="rise">Qanday ishladik</div></div>
+  </section>
+
+  <!-- 6 · 1-bosqich: Tanitish -->
+  <section class="scene" id="s6" data-start="46.35" data-end="59.0" data-name="1-bosqich: Tanitish">
+    <div class="mask" style="left:120px;top:186px;height:42px;width:900px;"><div class="eyebrow" data-in="47.35" data-fx="rise">1-bosqich</div></div>
+    <div class="mask" style="left:114px;top:262px;height:142px;width:1000px;"><div class="h1x" data-in="47.85" data-fx="rise" data-d=".7">Tanitish</div></div>
+
+    <div class="hair" style="left:120px;top:560px;width:402px;" data-in="49.0" data-fx="grow-x"></div>
+    <svg class="icon" style="left:120px;top:598px;" viewBox="0 0 64 64" data-in="49.1"><rect x="7" y="9" width="50" height="30" rx="2"/><path d="M15 17h12M15 24h20M15 31h8"/><path d="M22 39v16M42 39v16M14 55h36"/></svg>
+    <div class="abs body" style="left:120px;top:704px;width:402px;" data-in="49.2"><b>Koʻcha reklamasi</b> — LED va bannerlar</div>
+
+    <div class="hair" style="left:546px;top:560px;width:402px;" data-in="50.0" data-fx="grow-x"></div>
+    <svg class="icon" style="left:546px;top:598px;" viewBox="0 0 64 64" data-in="50.1"><path d="M32 52L8 27M32 52L18 16M32 52V12M32 52L46 16M32 52L56 27"/><path d="M8 27C14 17 23 12 32 12s18 5 24 15"/><path d="M32 52v7"/></svg>
+    <div class="abs body" style="left:546px;top:704px;width:402px;" data-in="50.2"><b>DTM zonasi</b> — yelpigʻich va bannerlar</div>
+
+    <div class="hair" style="left:972px;top:560px;width:402px;" data-in="52.4" data-fx="grow-x"></div>
+    <svg class="icon" style="left:972px;top:598px;" viewBox="0 0 64 64" data-in="52.5"><rect x="6" y="11" width="52" height="34" rx="5"/><path d="M27 21v14l12-7z"/><path d="M22 54h20"/></svg>
+    <div class="abs body" style="left:972px;top:704px;width:402px;" data-in="52.6"><b>Subyektiv</b> — YouTube koʻrsatuvidagi integratsiyalar</div>
+
+    <div class="hair" style="left:1398px;top:560px;width:402px;" data-in="53.7" data-fx="grow-x"></div>
+    <svg class="icon" style="left:1398px;top:598px;" viewBox="0 0 64 64" data-in="53.8"><path d="M57 9L6 29l16 6 5 17 9-12 13 9z"/><path d="M22 35L57 9"/></svg>
+    <div class="abs body" style="left:1398px;top:704px;width:402px;" data-in="53.9"><b>Telegram</b> — taʼlim va abituriyent kanallari</div>
+  </section>
+
+  <!-- 7 · 2-bosqich: Ishonch -->
+  <section class="scene" id="s7" data-start="59.0" data-end="75.3" data-name="2-bosqich: Ishonch">
+    <div class="mask" style="left:120px;top:186px;height:42px;width:900px;"><div class="eyebrow" data-in="59.95" data-fx="rise">2-bosqich</div></div>
+    <div class="mask" style="left:114px;top:262px;height:142px;width:1000px;"><div class="h1x" data-in="60.55" data-fx="rise" data-d=".7">Ishonch</div></div>
+
+    <div class="box" style="left:120px;top:440px;width:828px;height:500px;" data-in="61.8" data-fx="fade"></div>
+    <div class="abs" style="left:160px;top:423px;background:var(--red);color:#fff;font-size:22px;font-weight:700;line-height:34px;padding:0 14px;white-space:nowrap;" data-in="61.9">Kampaniya dalili</div>
+    <div class="abs" style="left:168px;top:488px;font-size:40px;font-weight:700;line-height:1.2;white-space:nowrap;" data-in="63.3">Bitiruvchilar sifati indeksi</div>
+    <div class="abs body" style="left:168px;top:556px;white-space:nowrap;" data-in="66.2"><b class="num" style="font-size:38px;letter-spacing:-.01em" data-count="119" data-at="66.3" data-cd="1.2">119</b> oliygoh ichida</div>
+    <div class="abs num red" style="left:160px;top:604px;font-size:180px;letter-spacing:-.04em;" data-in="67.8"><span data-count="11" data-at="67.9" data-cd="1.3" data-hit="1">11</span>-oʻrin</div>
+    <div class="hair" style="left:168px;top:806px;width:732px;" data-in="69.3" data-fx="grow-x" data-dim="73.35" data-dimto=".3"></div>
+    <div class="abs body" style="left:168px;top:820px;font-size:32px;white-space:nowrap;" data-in="69.35" data-dim="73.35" data-dimto=".3">Bandlik barqarorligi — <b>8-oʻrin</b></div>
+    <div class="hair" style="left:168px;top:872px;width:732px;" data-in="69.45" data-fx="grow-x" data-dim="73.35" data-dimto=".3"></div>
+    <div class="abs body" style="left:168px;top:886px;font-size:32px;white-space:nowrap;" data-in="69.5" data-dim="73.35" data-dimto=".3">Toshkent viloyatida — <b>1-oʻrin</b></div>
+
+    <div class="box" style="left:1114px;top:440px;width:686px;height:240px;" data-in="70.2" data-fx="fade"></div>
+    <svg class="icon" style="left:1154px;top:476px;width:60px;height:60px;" viewBox="0 0 64 64" data-in="70.3"><path d="M12 22h40l-3 34H15z"/><path d="M23 22v-5a9 9 0 0 1 18 0v5"/></svg>
+    <div class="abs body" style="left:1154px;top:556px;width:610px;font-size:36px;" data-in="70.4"><b>Yangi yoʻnalish</b> — E-tijorat va Alibaba</div>
+
+    <div class="box" style="left:1114px;top:700px;width:686px;height:240px;" data-in="73.4" data-fx="fade"></div>
+    <svg class="icon" style="left:1154px;top:736px;width:60px;height:60px;" viewBox="0 0 64 64" data-in="73.5"><circle cx="32" cy="32" r="24"/><ellipse cx="32" cy="32" rx="10" ry="24"/><path d="M8 32h48M12 20h40M12 44h40"/></svg>
+    <div class="abs body" style="left:1154px;top:816px;width:610px;font-size:36px;" data-in="73.6"><b>Xalqaro dasturlar</b> — 1+3 uch diplom, 9 mamlakat</div>
+
+    <div class="foot" data-in="61.9">Manba: Taʼlim sifatini taʼminlash milliy agentligi, bsi.nqaae.uz</div>
+  </section>
+
+  <!-- 8 · 3-bosqich: Qaror -->
+  <section class="scene" id="s8" data-start="75.3" data-end="88.05" data-x="cut" data-name="3-bosqich: Qaror">
+    <div class="mask" style="left:120px;top:186px;height:42px;width:900px;"><div class="eyebrow" data-in="76.2" data-fx="rise">3-bosqich</div></div>
+    <div class="mask" style="left:114px;top:262px;height:142px;width:1000px;"><div class="h1x" data-in="76.75" data-fx="rise" data-d=".7">Qaror</div></div>
+
+    <div class="hair" style="left:120px;top:469px;width:1680px;background:rgba(255,255,255,.4);" data-in="76.3" data-fx="grow-x" data-d=".9"></div>
+    <div class="abs" style="left:120px;top:460px;width:20px;height:20px;border-radius:50%;border:3px solid #fff;background:var(--navy);" data-in="76.5" data-fx="pop" data-d=".45"></div>
+    <div class="abs" style="left:690px;top:460px;width:20px;height:20px;border-radius:50%;border:3px solid #fff;background:var(--navy);" data-in="76.65" data-fx="pop" data-d=".45"></div>
+    <div class="abs" style="left:1260px;top:460px;width:20px;height:20px;border-radius:50%;border:3px solid #fff;background:var(--navy);" data-in="76.8" data-fx="pop" data-d=".45"></div>
+    <div class="abs" style="left:120px;top:460px;width:20px;height:20px;border-radius:50%;background:var(--red);" data-in="83.7" data-fx="pop" data-d=".45"></div>
+    <div class="abs" style="left:690px;top:460px;width:20px;height:20px;border-radius:50%;background:var(--red);" data-in="80.5" data-fx="pop" data-d=".45"></div>
+    <div class="abs" style="left:1260px;top:460px;width:20px;height:20px;border-radius:50%;background:var(--red);" data-in="81.6" data-fx="pop" data-d=".45"></div>
+    <div class="abs num" style="left:120px;top:506px;font-size:46px;letter-spacing:-.02em;" data-in="76.6">15 avgust</div>
+    <div class="abs label" style="left:120px;top:564px;" data-in="76.7">post-mandat kampaniyasi</div>
+    <div class="abs num" style="left:690px;top:506px;font-size:46px;letter-spacing:-.02em;" data-in="76.75">25–26 avgust</div>
+    <div class="abs label" style="left:690px;top:564px;" data-in="76.85">grant suhbati</div>
+    <div class="abs num" style="left:1260px;top:506px;font-size:46px;letter-spacing:-.02em;" data-in="76.9">28 avgust</div>
+    <div class="abs label" style="left:1260px;top:564px;" data-in="77.0">grant imtihoni</div>
+
+    <div class="box" style="left:120px;top:680px;width:1112px;height:260px;" data-in="77.9" data-fx="fade" data-dim="84.95" data-dimto=".35"></div>
+    <div class="abs body" style="left:160px;top:712px;font-size:36px;white-space:nowrap;" data-in="78.0" data-dim="84.95" data-dimto=".35">Grant shartlari reklamada ochiq aytildi:</div>
+    <div class="abs baseline-row" style="left:154px;top:772px;gap:0;" data-in="78.2" data-dim="84.95" data-dimto=".35">
+      <span class="num" style="font-size:118px;" data-count="70" data-at="78.3" data-cd="1.2">70</span>
+      <span class="num" style="font-size:118px;color:var(--ink-3);padding:0 .22em;">·</span>
+      <span class="num" style="font-size:118px;" data-count="100" data-at="78.45" data-cd="1.2">100</span>
+      <span class="num" style="font-size:118px;color:var(--ink-3);padding:0 .22em;">·</span>
+      <span class="num" style="font-size:118px;" data-count="180" data-at="78.6" data-cd="1.2">180</span>
+      <span style="font-size:44px;font-weight:400;color:var(--ink-2);padding-left:.4em;">ball</span>
+    </div>
+
+    <div class="box" style="left:1256px;top:680px;width:544px;height:260px;" data-in="85.0" data-fx="fade"></div>
+    <div class="abs" style="left:1294px;top:712px;font-size:34px;font-weight:700;line-height:1.2;white-space:nowrap;" data-in="85.1">Olimpiada kampaniyasi —</div>
+    <div class="abs baseline-row" style="left:1290px;top:764px;" data-in="85.2"><span class="num" style="font-size:76px;" data-count="254" data-at="85.25" data-cd="1.2">254</span><span style="font-size:34px;color:var(--ink-2);padding-left:.3em;">ariza,</span></div>
+    <div class="abs baseline-row" style="left:1294px;top:848px;" data-in="85.5"><span style="font-size:34px;color:var(--ink-2);padding-right:.3em;">bittasi</span><span class="num" style="font-size:76px;" data-count="2.93" data-dec="2" data-pre="$" data-at="85.55" data-cd="1.2">$2,93</span></div>
+
+    <div class="foot" data-in="76.3">Manba: CRM, 04.10.2026 holatiga</div>
+  </section>
+
+  <!-- 9 · Kanallar va narx -->
+  <section class="scene" id="s9" data-start="88.05" data-end="100.0" data-name="Kanallar va narx">
+    <div class="mask" style="left:120px;top:186px;height:42px;width:900px;"><div class="eyebrow" data-in="88.8" data-fx="rise">Kanallar va narx</div></div>
+
+    <div class="abs" style="inset:0;" data-dim="92.3" data-dimto=".3">
+      <div class="abs label" style="left:120px;top:286px;" data-in="88.5">Meta reklama:</div>
+      <div class="abs num" style="left:114px;top:330px;font-size:120px;" data-in="88.9" data-count="61594" data-pre="$" data-at="89.0">$61 594</div>
+      <div class="abs body baseline-row" style="left:120px;top:468px;gap:14px;" data-in="89.6"><svg width="40" height="26" viewBox="0 0 40 26" style="align-self:center"><path d="M2 13h33M24 2l11 11-11 11" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="3" stroke-linecap="square"/></svg><span>saytdan <b class="num" style="font-size:38px;letter-spacing:-.01em" data-count="25809" data-at="89.7">25 809</b> lid</span></div>
+      <div class="hair" style="left:120px;top:556px;width:828px;" data-in="89.95" data-fx="grow-x"></div>
+      <div class="abs label" style="left:120px;top:580px;" data-in="90.0">Telegram (UTM bilan):</div>
+      <div class="abs baseline-row" style="left:116px;top:622px;" data-in="90.05"><span class="num" style="font-size:84px;" data-count="2782" data-at="90.1">2 782</span><span class="body" style="padding-left:.35em">lid</span></div>
+      <div class="hair" style="left:120px;top:742px;width:828px;" data-in="90.25" data-fx="grow-x"></div>
+      <div class="abs label" style="left:120px;top:766px;" data-in="90.3">Eng samarali kanal — @xushnudbek:</div>
+      <div class="abs baseline-row" style="left:116px;top:808px;" data-in="90.35"><span class="num" style="font-size:84px;" data-count="1614" data-at="90.4">1 614</span><span class="body" style="padding-left:.35em">lid</span></div>
+    </div>
+
+    <!-- cost ladder, bars to scale ($37,76 → 686px), built bottom-up -->
+    <div class="abs baseline-row" style="left:1114px;top:286px;" data-in="95.3"><span class="body" style="font-size:36px;color:var(--white)">1 talaba —</span></div>
+    <div class="abs num red" style="left:1112px;top:330px;font-size:120px;" data-in="97.0" data-count="37.76" data-dec="2" data-pre="$" data-at="97.1" data-cd="1.4" data-hit="1">$37,76</div>
+    <div class="abs grow-x" style="left:1114px;top:462px;width:686px;height:22px;background:var(--red);" data-in="95.45" data-fx="grow-x" data-d="1.1"></div>
+
+    <div class="abs baseline-row" style="left:1114px;top:516px;gap:14px;" data-in="94.6"><span class="label">1 shartnoma —</span><span class="num" style="font-size:56px;" data-count="7.39" data-dec="2" data-pre="$" data-at="94.7" data-cd="1.2">$7,39</span></div>
+    <div class="abs grow-x" style="left:1114px;top:588px;width:134px;height:16px;background:#fff;" data-in="94.7" data-fx="grow-x"></div>
+
+    <div class="abs baseline-row" style="left:1114px;top:628px;gap:14px;" data-in="94.2"><span class="label">1 ariza —</span><span class="num" style="font-size:56px;" data-count="3.58" data-dec="2" data-pre="$" data-at="94.3" data-cd="1.2">$3,58</span></div>
+    <div class="abs grow-x" style="left:1114px;top:700px;width:65px;height:16px;background:#fff;" data-in="94.3" data-fx="grow-x"></div>
+
+    <div class="abs baseline-row" style="left:1114px;top:740px;gap:14px;" data-in="92.5"><span class="label">1 lid —</span><span class="num" style="font-size:56px;" data-count="1.71" data-dec="2" data-pre="$" data-at="92.8" data-cd="1.3">$1,71</span></div>
+    <div class="abs grow-x" style="left:1114px;top:812px;width:31px;height:16px;background:#fff;" data-in="92.6" data-fx="grow-x"></div>
+
+    <div class="abs small" style="left:1114px;top:872px;width:686px;font-size:24px;" data-in="98.7">Faqat Meta xarajati asosida. Telegram, bloger va Subyektiv xarajatlari kiritilmagan.</div>
+
+    <div class="foot" data-in="88.6">Manba: CRM, 04.10.2026 holatiga</div>
+  </section>
+
+  <!-- 10 · Chirchiq -->
+  <section class="scene" id="s10" data-start="100.0" data-end="115.4" data-x="cut" data-name="Chirchiq">
+    <div class="mask" style="left:120px;top:186px;height:42px;width:900px;"><div class="eyebrow" data-in="100.75" data-fx="rise">Chirchiq</div></div>
+
+    <!-- minimal line map: true bearing Toshkent → Chirchiq (≈33° north of east), no invented distances -->
+    <div class="abs" style="left:120px;top:300px;width:686px;height:640px;" data-in="100.25" data-fx="fade" data-d=".9">
+      <svg width="686" height="640" viewBox="0 0 686 640" style="position:absolute;left:0;top:0">
+        <g stroke="rgba(255,255,255,.08)" stroke-width="1">
+          <path d="M0.5 0V640M98.5 0V640M196.5 0V640M294.5 0V640M392.5 0V640M490.5 0V640M588.5 0V640M685.5 0V640"/>
+          <path d="M0 0.5H686M0 80.5H686M0 160.5H686M0 240.5H686M0 320.5H686M0 400.5H686M0 480.5H686M0 560.5H686M0 639.5H686"/>
+        </g>
+      </svg>
+      <div class="abs" style="left:618px;top:16px;font-size:22px;color:var(--ink-3);display:flex;flex-direction:column;align-items:center;gap:4px;">
+        <svg width="18" height="26" viewBox="0 0 18 26"><path d="M9 25V3M2 10l7-7 7 7" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2.5"/></svg>N
+      </div>
+    </div>
+    <div class="abs" style="left:300px;top:768px;width:442px;height:4px;transform-origin:0 50%;transform:rotate(-33.4deg);">
+      <div class="grow-x" style="width:100%;height:100%;background:var(--red);" data-in="100.65" data-fx="grow-x" data-d="1.0"></div>
+    </div>
+    <div class="abs" style="left:286px;top:756px;width:28px;height:28px;border-radius:50%;border:3px solid #fff;background:var(--navy);" data-in="100.3" data-fx="pop" data-d=".5"></div>
+    <div class="abs" style="left:295px;top:765px;width:10px;height:10px;border-radius:50%;background:#fff;" data-in="100.35" data-fx="pop" data-d=".5"></div>
+    <div class="abs label" style="left:196px;top:800px;font-size:32px;" data-in="100.4">Toshkent</div>
+    <div class="abs" style="left:655px;top:516px;width:24px;height:24px;border-radius:50%;background:var(--red);" data-in="100.5" data-fx="pop" data-d=".5"></div>
+    <div class="abs" style="left:698px;top:504px;font-size:34px;font-weight:700;white-space:nowrap;" data-in="100.55" data-fx="left" data-dist="16">Chirchiq</div>
+
+    <div class="abs h2" style="left:972px;top:280px;width:828px;" data-in="100.6">Chirchiq uchun alohida kampaniya</div>
+
+    <div class="abs" style="inset:0;" data-dim="109.8" data-dimto=".3">
+      <div class="abs label" style="left:972px;top:470px;" data-in="103.1">Toʻlov qilganlar:</div>
+      <div class="abs baseline-row" style="left:966px;top:510px;" data-in="103.2">
+        <span class="num grey" style="font-size:76px;">198</span>
+        <svg width="62" height="34" viewBox="0 0 62 34" style="margin:0 22px;"><path d="M2 17h52M40 3l14 14-14 14" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="3.5" stroke-linecap="square"/></svg>
+        <span class="num" style="font-size:124px;" data-count="430" data-at="103.6">430</span>
+        <span class="num" style="font-size:76px;color:var(--ink-3);padding:0 .3em;">·</span>
+        <span class="num red" style="font-size:84px;" data-count="117" data-pre="+" data-suf="%" data-at="104.8" data-hit="1">+117%</span>
+      </div>
+      <div class="abs body baseline-row" style="left:972px;top:694px;" data-in="107.4"><span>Universitet toʻlovlarining&nbsp;</span><b class="num" style="font-size:84px;" data-count="26" data-at="107.7">26</b><span>&nbsp;foizi</span></div>
+    </div>
+
+    <div class="abs label" style="left:972px;top:820px;" data-in="109.85">1 talaba narxi:</div>
+    <div class="abs baseline-row" style="left:972px;top:860px;" data-in="109.95">
+      <span class="body">Chirchiq&nbsp;</span><span class="num" style="font-size:76px;" data-count="39.0" data-dec="1" data-pre="$" data-at="110.0" data-cd="1.2">$39,0</span>
+    </div>
+    <div class="abs baseline-row" style="left:1372px;top:860px;" data-in="111.0">
+      <span class="num" style="font-size:76px;color:var(--ink-3);padding-right:.35em;">·</span><span class="body">Qorasaroy&nbsp;</span><span class="num" style="font-size:76px;" data-count="37.3" data-dec="1" data-pre="$" data-at="111.1" data-cd="1.2">$37,3</span>
+    </div>
+
+    <div class="foot" data-in="100.8">Manba: CRM, 04.10.2026 holatiga</div>
+  </section>
+
+  <!-- 11 · Keyingi mavsum vazifalari -->
+  <section class="scene" id="s11" data-start="115.4" data-end="134.75" data-name="Keyingi mavsum vazifalari">
+    <div class="mask" style="left:116px;top:266px;height:112px;width:1700px;"><div class="h1" data-in="116.2" data-fx="rise" data-d=".7">Keyingi mavsum vazifalari</div></div>
+
+    <div class="hair" style="left:120px;top:440px;width:1680px;" data-in="118.1" data-fx="grow-x"></div>
+    <div class="abs num red" style="left:120px;top:472px;font-size:64px;" data-in="118.2">1.</div>
+    <div class="abs body" style="left:262px;top:476px;width:1538px;font-size:40px;" data-in="118.25"><b>Magistratura</b> — <b class="num" style="letter-spacing:-.01em" data-count="15214" data-at="118.5">15 214</b> lid, lekin arizalarning faqat <b class="num" style="letter-spacing:-.01em" data-count="23" data-at="120.6" data-cd="1.2">23</b> foizi shartnomaga oʻtdi</div>
+
+    <div class="hair" style="left:120px;top:620px;width:1680px;" data-in="123.05" data-fx="grow-x"></div>
+    <div class="abs num red" style="left:120px;top:652px;font-size:64px;" data-in="123.15">2.</div>
+    <div class="abs body" style="left:262px;top:656px;width:1538px;font-size:40px;" data-in="123.2"><b>Ikkinchi mutaxassislik va perevod</b> — oʻtgan yildan orqada</div>
+
+    <div class="hair" style="left:120px;top:800px;width:1680px;" data-in="130.8" data-fx="grow-x"></div>
+    <div class="abs num red" style="left:120px;top:832px;font-size:64px;" data-in="130.9">3.</div>
+    <div class="abs body" style="left:262px;top:836px;width:1538px;font-size:40px;" data-in="130.95"><b>Yagona oʻlchov tizimi</b> — CRMda qabul rejasi, bot lidlari va barcha kanallar xarajati</div>
+
+    <div class="foot" data-in="116.0">Manba: CRM, 04.10.2026 holatiga</div>
+  </section>
+
+  <!-- 12 · Final -->
+  <section class="scene" id="s12" data-start="134.75" data-name="Final">
+    <div class="seal" data-in="135.5" data-d=".75" data-dist="18"><img src="assets/logo.png" alt="AIFU"></div>
+    <div class="abs" style="left:0;right:0;top:722px;text-align:center;font-size:50px;font-weight:500;letter-spacing:-.01em;" data-in="136.05" data-d=".7">2026–2027 qabul mavsumi</div>
+  </section>
+
+  <div id="rule"></div>
+
+  <div id="stepper" aria-hidden="true">
+    <div class="scn" id="scn0"></div><div class="scn" id="scn1"></div>
+    <svg id="sarr" viewBox="0 0 26 26"><path d="M8 3l11 10L8 23" fill="none" stroke="#FF0158" stroke-width="3"/></svg>
+    <div class="sc" id="sc0"></div><div class="sc" id="sc1"></div><div class="sc" id="sc2"></div>
+    <div class="ss" id="ss0">1-bosqich</div><div class="ss" id="ss1">2-bosqich</div><div class="ss" id="ss2">3-bosqich</div>
+    <div class="sl" id="sl0">Tanitish</div><div class="sl" id="sl1">Ishonch</div><div class="sl" id="sl2">Qaror</div>
+  </div>
+
+  <section class="scene" id="chrome" data-start="0" data-name="">
+    <div id="logotab" data-in="0.95" data-fx="down" data-dist="150" data-d=".7" data-out="134.6"><img src="assets/logo.png" alt="AIFU"></div>
+    <div id="runfoot" data-in="1.7" data-fx="fade" data-out="134.6">Marketing boʻlimi hisoboti · 2026–2027</div>
+  </section>
+
+  <div id="mod"></div>
+  <div class="seal" id="seal0"><img src="assets/logo.png" alt="AIFU"></div>
+
+  <div id="start">
+    <div class="title">2026–2027 qabul mavsumi · Marketing boʻlimi hisoboti</div>
+    <button id="startBtn" type="button" disabled><svg viewBox="0 0 26 26"><path d="M5 2l19 11L5 24z"/></svg><span id="startLabel">Yuklanmoqda…</span></button>
+    <div class="hint">Probel — pauza · strelkalar — sahnalar · F — toʻliq ekran · boshqaruv paneli ekran pastida</div>
+  </div>
+</div>
+</div>
+
+<div id="ui" aria-label="Boshqaruv paneli">
+  <div class="row">
+    <button id="uiPlay" type="button" title="Ijro / pauza (probel)"><svg id="icPlay" viewBox="0 0 14 14"><path d="M3 1l10 6-10 6z"/></svg><svg id="icPause" viewBox="0 0 14 14" style="display:none"><path d="M2 1h4v12H2zM8 1h4v12H8z"/></svg></button>
+    <span id="uiTime">0:00 / 0:00</span>
+    <div id="scrub" role="slider" aria-label="Vaqt shkalasi" tabindex="0"><div class="track"></div><div class="fill"></div><div class="knob"></div><div class="tip"></div></div>
+    <button id="uiMute" type="button" title="Ovoz (M)">Ovoz</button>
+    <button id="uiFs" type="button" title="Toʻliq ekran (F)">Toʻliq ekran</button>
+  </div>
+  <div class="row" id="scenesRow"><span id="uiHint">Probel — pauza · strelkalar — sahnalar · F — toʻliq ekran · H — panelni qotirish</span></div>
+</div>
+
+<script>
+/*@ASSETS@*/
+</script>
+<script>
+(() => {
+'use strict';
+
+/* ───────── timeline constants (seconds) ───────── */
+const DUR = 145.0;
+const VO_AT = 0.58;      // vo.mp3 starts here (file was trimmed to the scripted read)
+const MUS_AT = 0.0;      // music.mp3 starts at 0 (its natural ending lands on the final frame)
+// Voiced spans of the narration, measured from vo.mp3 and mapped onto the timeline.
+const SPEECH = [[1.00,3.43],[3.93,7.27],[7.96,9.51],[10.07,13.21],[13.65,15.90],[16.28,19.03],[19.48,23.30],
+  [24.14,27.49],[27.80,30.29],[30.85,33.20],[33.56,35.42],[35.98,37.58],[37.96,40.27],[40.60,43.22],[43.76,46.29],
+  [46.77,47.70],[48.02,48.59],[49.00,52.12],[52.42,58.68],[59.40,60.32],[60.67,61.20],[61.71,65.44],[65.89,69.34],
+  [69.86,75.10],[75.87,77.41],[77.92,80.20],[80.47,83.21],[83.68,87.65],[88.08,91.18],[91.60,94.80],[95.15,96.87],
+  [97.12,99.81],[100.46,102.69],[103.09,106.44],[106.70,109.30],[109.80,112.91],[113.31,114.92],[116.36,117.89],
+  [118.21,120.09],[120.46,122.62],[123.15,126.61],[127.63,134.59]];
+const NAV = [ // scene jump targets (transition starts)
+  [0,'Ochilish'],[9.55,'Mavsum natijasi'],[23.45,'Oʻtgan yil bilan taqqoslash'],[35.5,'Oʻsish drayveri'],
+  [43.35,'Qanday ishladik'],[46.35,'1-bosqich: Tanitish'],[59.0,'2-bosqich: Ishonch'],[75.3,'3-bosqich: Qaror'],
+  [87.6,'Kanallar va narx'],[100.0,'Chirchiq'],[114.95,'Keyingi mavsum vazifalari'],[134.75,'Final']];
+const WIPES = [87.6, 114.95];           // brand-module wipes (cover 0.45 s, reveal 0.55 s)
+const WHOOSH = [[0.32,1],[9.6,.55],[23.45,.55],[35.5,.55],[43.38,.55],[46.38,.5],[59.0,.55],[75.3,.55],[87.6,1],[100.0,.55],[114.95,1],[134.78,1]];
+const HITS = [4.62, 42.2];               // plus every counter marked data-hit
+const CHIME = 136.2;
+
+/* ───────── helpers ───────── */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const clamp01 = x => x < 0 ? 0 : x > 1 ? 1 : x;
+const ease = x => 1 - Math.pow(1 - x, 3);                 // ease-out cubic
+const prog = (t, t0, d) => d <= 0 ? (t >= t0 ? 1 : 0) : clamp01((t - t0) / d);
+const lerp = (a, b, k) => a + (b - a) * k;
+const NBSP = '\u00A0';   // thousands separator: a full space that never wraps
+function fmt(x, dec) {
+  const s = Math.abs(x).toFixed(dec);
+  const parts = s.split('.');
+  const int = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, NBSP);
+  return (x < 0 ? '−' : '') + (parts[1] ? int + ',' + parts[1] : int);
+}
+function setStyle(cache, el, prop, val) { if (cache[prop] !== val) { cache[prop] = val; el.style[prop] = val; } }
+
+/* ───────── scenes & declarative animations ───────── */
+const stage = $('#stage');
+const DEF_D = { 'grow-y': .8, 'grow-x': .65, wipe: .8, rise: .65, pop: .45 };
+function mkAnim(el) {
+  const d = el.dataset, fx = d.in != null ? (d.fx || 'up') : 'none';
+  return { el, fx, t0: d.in != null ? +d.in : -1e9, d: d.d != null ? +d.d : (DEF_D[fx] || .6), dist: d.dist != null ? +d.dist : 28,
+    dim: d.dim != null ? +d.dim : null, dimTo: d.dimto != null ? +d.dimto : .3, out: d.out != null ? +d.out : null, c: {} };
+}
+function mkCounter(el) {
+  const d = el.dataset;
+  let at = d.at != null ? +d.at : null;
+  if (at == null) { const host = el.closest('[data-in]'); at = host ? +host.dataset.in + .1 : 0; }
+  return { el, v: +d.count, at, cd: d.cd != null ? +d.cd : 1.3, dec: +(d.dec || 0), pre: d.pre || '', suf: d.suf || '', hit: !!d.hit, last: null };
+}
+const scenes = $$('.scene').map(el => ({
+  el, id: el.id, start: +el.dataset.start, end: el.dataset.end != null ? +el.dataset.end : 1e9, cut: el.dataset.x === 'cut',
+  anims: $$('[data-in],[data-dim],[data-out]', el).map(mkAnim), counters: $$('[data-count]', el).map(mkCounter), shown: false, c: {}
+}));
+const allCounters = scenes.flatMap(s => s.counters);
+
+function applyAnim(a, t) {
+  const e = ease(prog(t, a.t0, a.d)), on = t >= a.t0;
+  let o = 1, tr = 'none', clip = null;
+  switch (a.fx) {
+    case 'up':    o = e; tr = `translate3d(0,${((1 - e) * a.dist).toFixed(2)}px,0)`; break;
+    case 'down':  o = e; tr = `translate3d(0,${(-(1 - e) * a.dist).toFixed(2)}px,0)`; break;
+    case 'left':  o = e; tr = `translate3d(${(-(1 - e) * a.dist).toFixed(2)}px,0,0)`; break;
+    case 'fade':  o = e; break;
+    case 'pop':   o = e; tr = `scale(${(.55 + .45 * e).toFixed(4)})`; break;
+    case 'rise':  o = on ? 1 : 0; tr = `translate3d(0,${((1 - e) * 105).toFixed(2)}%,0)`; break;
+    case 'grow-y': o = on ? 1 : 0; tr = `scaleY(${e.toFixed(4)})`; break;
+    case 'grow-x': o = on ? 1 : 0; tr = `scaleX(${e.toFixed(4)})`; break;
+    case 'wipe':  o = on ? 1 : 0; clip = `inset(0 ${((1 - e) * 100).toFixed(2)}% 0 0)`; break;
+  }
+  if (a.dim != null) o *= 1 - (1 - a.dimTo) * ease(prog(t, a.dim, .45));
+  if (a.out != null) o *= 1 - ease(prog(t, a.out, .35));
+  setStyle(a.c, a.el, 'opacity', o.toFixed(3));
+  if (a.fx !== 'none' && a.fx !== 'fade') setStyle(a.c, a.el, 'transform', tr);
+  if (clip) setStyle(a.c, a.el, 'clipPath', clip);
+}
+function counterValue(c, t) { const k = prog(t, c.at, c.cd); return k >= 1 ? c.v : c.v * ease(k); }
+function applyCounter(c, t) {
+  const txt = c.pre + fmt(counterValue(c, t), c.dec) + c.suf;
+  if (txt !== c.last) { c.last = txt; c.el.textContent = txt; }
+}
+
+/* ───────── signature red rule (keyframed segment) ───────── */
+const ruleEl = $('#rule');
+const RULE = (() => {
+  const tw = []; let s = { x0: 120, x1: 120, y: 760, o: 1 };
+  const add = (t0, d, to) => { const from = { ...s }; s = { ...s, ...to }; tw.push({ t0, d, from, to: { ...s } }); };
+  const retractDraw = (t, y) => { add(t, .35, { x0: 1800 }); add(t + .36, 0, { x0: 120, x1: 120, y: y != null ? y : s.y }); add(t + .36, .6, { x1: 1800 }); };
+  add(1.4, .75, { x1: 1800 });
+  add(9.62, .75, { y: 236 });
+  retractDraw(23.45);
+  retractDraw(35.5);
+  add(43.42, .8, { y: 560 });
+  add(46.35, .45, { x0: 1800 });
+  add(46.86, 0, { x0: 120, x1: 120, y: 236 });
+  add(47.0, .6, { x1: 1800 });
+  retractDraw(59.0);
+  retractDraw(75.3);
+  add(88.05, 0, { x0: 120, x1: 120 });
+  add(88.45, .6, { x1: 1800 });
+  retractDraw(100.0);
+  add(115.4, 0, { x0: 120, x1: 120 });
+  add(115.75, .6, { x1: 1800 });
+  add(134.7, .35, { o: 0 });
+  return tw;
+})();
+const ruleCache = {};
+function renderRule(t) {
+  let st = RULE[0].from;
+  for (const tw of RULE) {
+    if (t < tw.t0) break;
+    const k = ease(prog(t, tw.t0, tw.d));
+    st = { x0: lerp(tw.from.x0, tw.to.x0, k), x1: lerp(tw.from.x1, tw.to.x1, k), y: lerp(tw.from.y, tw.to.y, k), o: lerp(tw.from.o, tw.to.o, k) };
+  }
+  const w = Math.max(0, st.x1 - st.x0);
+  setStyle(ruleCache, ruleEl, 'transform', `translate3d(${st.x0.toFixed(2)}px,${(st.y - 1.5).toFixed(2)}px,0)`);
+  setStyle(ruleCache, ruleEl, 'width', w.toFixed(2) + 'px');
+  setStyle(ruleCache, ruleEl, 'opacity', (w < .5 ? 0 : st.o).toFixed(3));
+}
+
+/* ───────── stepper: big path (scene 5) → compact progress (scenes 6–8) ───────── */
+const STP = { sc: [0,1,2].map(i => $('#sc' + i)), ss: [0,1,2].map(i => $('#ss' + i)), sl: [0,1,2].map(i => $('#sl' + i)),
+  scn: [0,1].map(i => $('#scn' + i)), arr: $('#sarr'), root: $('#stepper'), small: null, c: [] };
+const STEP_ON = [48.0, 60.7, 76.9], STEP_OFF = [59.4, 75.9, 1e9], MORPH = 46.35;
+const SMALL_SCALE = 26 / 72;
+function layoutStepper() {
+  const widths = STP.sl.map(el => el.getBoundingClientRect().width / (stageScale || 1));
+  const gapCircle = 12, gapConn = 18, conn = 44, circ = 14;
+  let total = 0; widths.forEach((w, i) => { total += circ + gapCircle + w * SMALL_SCALE + (i < 2 ? gapConn * 2 + conn : 0); });
+  let x = 1800 - total; const res = { circ: [], lab: [], conn: [] };
+  widths.forEach((w, i) => {
+    res.circ.push(x); res.lab.push(x + circ + gapCircle); x += circ + gapCircle + w * SMALL_SCALE;
+    if (i < 2) { res.conn.push([x + gapConn, conn]); x += gapConn * 2 + conn; }
+  });
+  STP.small = res;
+  res.conn.forEach(([l, w], i) => { STP.scn[i].style.left = l + 'px'; STP.scn[i].style.width = w + 'px'; });
+}
+const NAVY = [0, 46, 96], RED = [255, 1, 88];
+const mix = (a, b, k) => `rgb(${a.map((v, i) => Math.round(lerp(v, b[i], k))).join(',')})`;
+function renderStepper(t) {
+  const vis = t >= 44.2 && t < 88.05;
+  if (STP.root.style.display !== (vis ? 'block' : 'none')) STP.root.style.display = vis ? 'block' : 'none';
+  if (!vis || !STP.small) return;
+  const m = ease(prog(t, MORPH, .8));
+  for (let i = 0; i < 3; i++) {
+    const c = STP.c[i] || (STP.c[i] = { a: {}, b: {}, d: {} });
+    const appear = ease(prog(t, 44.3 + i * .15, .45)), appearL = ease(prog(t, 44.42 + i * .15, .6));
+    const k = ease(prog(t, STEP_ON[i], .4)) * (1 - ease(prog(t, STEP_OFF[i], .4)));
+    const done = ease(prog(t, STEP_OFF[i], .4));
+    const bx = 120 + i * 570;
+    // circle
+    const cx = lerp(bx, STP.small.circ[i], m), cy = lerp(546, 65, m), cs = lerp(1, .5, m) * (.55 + .45 * appear);
+    setStyle(c.a, STP.sc[i], 'transform', `translate3d(${cx.toFixed(2)}px,${cy.toFixed(2)}px,0) scale(${cs.toFixed(4)})`);
+    setStyle(c.a, STP.sc[i], 'opacity', appear.toFixed(3));
+    setStyle(c.a, STP.sc[i], 'background', mix(NAVY, RED, k));
+    const border = k > 0 ? mix([255,255,255], RED, k) : (done > 0 ? `rgba(255,255,255,${(.55 + .4 * done).toFixed(3)})` : `rgba(255,255,255,${lerp(1, .55, m).toFixed(3)})`);
+    setStyle(c.a, STP.sc[i], 'borderColor', border);
+    // main label
+    const lx = lerp(bx, STP.small.lab[i], m), ly = lerp(636, 59, m) + (1 - appearL) * 24, ls = lerp(1, SMALL_SCALE, m);
+    setStyle(c.b, STP.sl[i], 'transform', `translate3d(${lx.toFixed(2)}px,${ly.toFixed(2)}px,0) scale(${ls.toFixed(4)})`);
+    const smallOp = .55 + .45 * Math.max(k, done * .5);
+    setStyle(c.b, STP.sl[i], 'opacity', (appearL * lerp(1, smallOp, m)).toFixed(3));
+    setStyle(c.b, STP.sl[i], 'color', mix([255,255,255], RED, k));
+    // sub label
+    setStyle(c.d, STP.ss[i], 'transform', `translate3d(${bx}px,${(600 + (1 - appearL) * 20).toFixed(2)}px,0)`);
+    setStyle(c.d, STP.ss[i], 'opacity', (appearL * clamp01(1 - m * 2.5)).toFixed(3));
+  }
+  const cm = clamp01((m - .55) / .45);
+  STP.scn.forEach(el => { el.style.opacity = cm.toFixed(3); });
+  STP.arr.style.opacity = (ease(prog(t, 44.85, .5)) * clamp01(1 - m * 3)).toFixed(3);
+}
+
+/* ───────── brand module overlay (opening, wipes, final) ───────── */
+const modEl = $('#mod'), seal0 = $('#seal0'), modCache = {}, sealCache = {};
+const SPLIT_TOP = 1100, SPLIT_BOT = 820, SLANT = 240;
+function modPolygon(t) {
+  const split = X => `polygon(${SPLIT_TOP + X}px 0, 2400px 0, 2400px 1080px, ${SPLIT_BOT + X}px 1080px)`;
+  if (t < 1.35) return split(1300 * ease(prog(t, .3, 1.0)));
+  for (const T of WIPES) {
+    if (t >= T && t < T + 1.0) {
+      let L, R;
+      if (t < T + .45) { L = -SLANT - 40; R = lerp(-SLANT - 40, 1960, ease(prog(t, T, .45))); }
+      else { R = 2400; L = lerp(-SLANT - 40, 1960, ease(prog(t, T + .45, .55))); }
+      return `polygon(${L + SLANT}px 0, ${R + SLANT}px 0, ${R}px 1080px, ${L}px 1080px)`;
+    }
+  }
+  if (t >= 134.75) return split(1300 * (1 - ease(prog(t, 134.75, .9))));
+  return null;
+}
+function renderModule(t) {
+  const poly = modPolygon(t);
+  setStyle(modCache, modEl, 'display', poly ? 'block' : 'none');
+  if (poly) setStyle(modCache, modEl, 'clipPath', poly);
+  const so = 1 - ease(prog(t, .3, .45));
+  setStyle(sealCache, seal0, 'display', so > 0 ? 'block' : 'none');
+  setStyle(sealCache, seal0, 'opacity', so.toFixed(3));
+  setStyle(sealCache, seal0, 'transform', `translate3d(0,${(-(1 - so) * 14).toFixed(2)}px,0)`);
+}
+
+/* ───────── render ───────── */
+function render(t) {
+  for (const s of scenes) {
+    const vis = t >= s.start && t < (s.cut ? s.end : s.end + .4);
+    if (vis !== s.shown) { s.shown = vis; s.el.style.display = vis ? 'block' : 'none'; }
+    if (!vis) continue;
+    if (!s.cut) {
+      const x = ease(prog(t, s.end, .35));
+      setStyle(s.c, s.el, 'opacity', (1 - x).toFixed(3));
+      setStyle(s.c, s.el, 'transform', x > 0 ? `translate3d(0,${(-x * 12).toFixed(2)}px,0)` : 'none');
+    }
+    for (const a of s.anims) applyAnim(a, t);
+    for (const c of s.counters) applyCounter(c, t);
+  }
+  renderRule(t);
+  renderStepper(t);
+  renderModule(t);
+}
+
+/* ───────── audio: one AudioContext for narration, music and synthesized effects ───────── */
+const AU = { ctx: null, buf: {}, src: [], master: null, vo: null, mus: null, sfx: null, verb: null, noise: null, muted: false };
+// Music sits ≈18 dB under the narration (vo.mp3 plays as dual-mono, ≈3 dB louder than its file loudness),
+// lifts 5 dB in pauses and opens fully on the final frame.
+const G_SPEECH = Math.pow(10, -15 / 20), G_PAUSE = Math.pow(10, -10 / 20), G_FULL = 1;
+const MASTER = .85;
+const MUSIC_ENV = (() => {   // ducking envelope: [time, gain]
+  const e = [[0, 0], [.7, G_PAUSE], [SPEECH[0][0] - .2, G_PAUSE], [SPEECH[0][0] - .03, G_SPEECH]];
+  for (let i = 0; i < SPEECH.length - 1; i++) {
+    const a = SPEECH[i][1], b = SPEECH[i + 1][0];
+    if (b - a >= .6) e.push([a + .08, G_SPEECH], [a + .4, G_PAUSE], [b - .24, G_PAUSE], [b - .04, G_SPEECH]);
+  }
+  const last = SPEECH[SPEECH.length - 1][1];
+  e.push([last + .1, G_SPEECH], [last + 1.2, G_FULL], [DUR - 2.2, G_FULL], [DUR, 0]);
+  return e;
+})();
+function envAt(t) {
+  const e = MUSIC_ENV; if (t <= e[0][0]) return e[0][1];
+  for (let i = 1; i < e.length; i++) if (t <= e[i][0]) return lerp(e[i - 1][1], e[i][1], (t - e[i - 1][0]) / Math.max(1e-6, e[i][0] - e[i - 1][0]));
+  return e[e.length - 1][1];
+}
+// One mixing graph, built the same way for live playback (AudioContext) and offline export (OfflineAudioContext).
+function buildBus(ctx) {
+  const bus = { ctx };
+  bus.master = ctx.createGain();
+  const comp = ctx.createDynamicsCompressor(); comp.threshold.value = -8; comp.knee.value = 6; comp.ratio.value = 3; comp.attack.value = .005; comp.release.value = .2;
+  bus.master.connect(comp); comp.connect(ctx.destination);
+  bus.vo = ctx.createGain(); bus.vo.connect(bus.master);
+  bus.mus = ctx.createGain(); bus.mus.gain.value = 0; bus.mus.connect(bus.master);
+  bus.sfx = ctx.createGain(); bus.sfx.gain.value = .9; bus.sfx.connect(bus.master);
+  // white noise source material
+  const nb = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate), nd = nb.getChannelData(0);
+  for (let i = 0; i < nd.length; i++) nd[i] = Math.random() * 2 - 1;
+  bus.noise = nb;
+  // small synthetic room for the chime
+  const ir = ctx.createBuffer(2, Math.round(ctx.sampleRate * 2.6), ctx.sampleRate);
+  for (let ch = 0; ch < 2; ch++) { const d = ir.getChannelData(ch); for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / d.length, 3.2); }
+  bus.verb = ctx.createConvolver(); bus.verb.buffer = ir;
+  const wet = ctx.createGain(); wet.gain.value = .22; bus.verb.connect(wet); wet.connect(bus.sfx);
+  return bus;
+}
+function initAudio() {
+  if (AU.ctx) return AU.ctx;
+  const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return null;
+  Object.assign(AU, buildBus(new AC()));
+  AU.master.gain.value = AU.muted ? 0 : MASTER;
+  return AU.ctx;
+}
+function b64ToBuf(b64) { const bin = atob(b64), u = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i); return u.buffer; }
+function decode(ctx, ab) { return new Promise((res, rej) => { const p = ctx.decodeAudioData(ab, res, rej); if (p && p.then) p.then(res, rej); }); }
+async function loadAudio() {
+  const ctx = initAudio(); if (!ctx) return;
+  const embedded = window.__AIFU_ASSETS__ || {};
+  await Promise.all(['vo', 'music'].map(async k => {
+    try {
+      const ab = embedded[k] ? b64ToBuf(embedded[k]) : await (await fetch('assets/' + k + '.mp3')).arrayBuffer();
+      AU.buf[k] = await decode(ctx, ab);
+    } catch (err) { console.warn('Audio not loaded:', k, err); }
+  }));
+}
+function scheduleBeds(bus, t, c, keep) {
+  const play = (buf, at, dest) => {
+    if (!buf) return; const off = t - at; if (off >= buf.duration) return;
+    const s = bus.ctx.createBufferSource(); s.buffer = buf; s.connect(dest);
+    if (off >= 0) s.start(c, off); else s.start(c - off, 0);
+    if (keep) keep.push(s);
+  };
+  play(AU.buf.vo, VO_AT, bus.vo);
+  play(AU.buf.music, MUS_AT, bus.mus);
+  const g = bus.mus.gain; g.cancelScheduledValues(0); g.setValueAtTime(envAt(t), c);
+  for (const [pt, v] of MUSIC_ENV) if (pt > t) g.linearRampToValueAtTime(v, c + (pt - t));
+}
+function stopSources() { for (const s of AU.src) { try { s.stop(); } catch (e) {} } AU.src = []; }
+function startSources(t, c) { if (AU.ctx) scheduleBeds(AU, t, c, AU.src); }
+
+/* synthesized effects: subtle, low, corporate */
+function sWhoosh(bus, t, strength) {
+  const ctx = bus.ctx, d = .85;
+  const n = ctx.createBufferSource(); n.buffer = bus.noise;
+  const bp = ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.Q.value = .9;
+  bp.frequency.setValueAtTime(320, t); bp.frequency.exponentialRampToValueAtTime(2100, t + d * .45); bp.frequency.exponentialRampToValueAtTime(520, t + d);
+  const lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 5200;
+  const g = ctx.createGain(); const peak = .16 * strength;
+  g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(peak, t + d * .42); g.gain.exponentialRampToValueAtTime(.0001, t + d);
+  let out = g;
+  if (ctx.createStereoPanner) { const p = ctx.createStereoPanner(); p.pan.setValueAtTime(-.45, t); p.pan.linearRampToValueAtTime(.45, t + d); g.connect(p); out = p; }
+  n.connect(bp); bp.connect(lp); lp.connect(g); out.connect(bus.sfx);
+  n.start(t, Math.random() * .8); n.stop(t + d + .05);
+}
+function sTick(bus, t) {
+  const ctx = bus.ctx;
+  const o = ctx.createOscillator(); o.type = 'sine'; o.frequency.value = 2350;
+  const hp = ctx.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 1200;
+  const g = ctx.createGain(); g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(.022, t + .002); g.gain.exponentialRampToValueAtTime(.0001, t + .03);
+  o.connect(hp); hp.connect(g); g.connect(bus.sfx); o.start(t); o.stop(t + .04);
+}
+function sHit(bus, t) {
+  const ctx = bus.ctx;
+  const o = ctx.createOscillator(); o.type = 'sine';
+  o.frequency.setValueAtTime(96, t); o.frequency.exponentialRampToValueAtTime(41, t + .32);
+  const g = ctx.createGain(); g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(.55, t + .008); g.gain.exponentialRampToValueAtTime(.0001, t + 1.1);
+  o.connect(g); g.connect(bus.sfx); o.start(t); o.stop(t + 1.2);
+  const n = ctx.createBufferSource(); n.buffer = bus.noise;
+  const lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 220;
+  const ng = ctx.createGain(); ng.gain.setValueAtTime(.0001, t); ng.gain.exponentialRampToValueAtTime(.28, t + .006); ng.gain.exponentialRampToValueAtTime(.0001, t + .22);
+  n.connect(lp); lp.connect(ng); ng.connect(bus.sfx); n.start(t); n.stop(t + .3);
+}
+function sChime(bus, t0) {
+  const ctx = bus.ctx;
+  [[784, 0], [1174.66, .09]].forEach(([f, dt]) => {
+    const t = t0 + dt;
+    [[1, .12], [2, .035], [3, .012]].forEach(([h, a]) => {
+      const o = ctx.createOscillator(); o.type = 'sine'; o.frequency.value = f * h;
+      const g = ctx.createGain(); g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(a, t + .006); g.gain.exponentialRampToValueAtTime(.0001, t + 2.8 / h);
+      o.connect(g); g.connect(bus.sfx); g.connect(bus.verb); o.start(t); o.stop(t + 3);
+    });
+  });
+}
+const SFX = { whoosh: sWhoosh, hit: sHit, chime: sChime };
+const EVENTS = [
+  ...WHOOSH.map(([t, s]) => ({ t, type: 'whoosh', s })),
+  ...HITS.map(t => ({ t, type: 'hit' })),
+  ...allCounters.filter(c => c.hit).map(c => ({ t: c.at + c.cd, type: 'hit' })),
+  { t: CHIME, type: 'chime' }
+].sort((a, b) => a.t - b.t);
+const TICKS = 12;
+function sfxOK() { return AU.ctx && AU.ctx.state === 'running' && !AU.muted; }
+function fireEvents(a, b) {
+  if (b <= a || b - a > .3 || !sfxOK()) return;
+  const when = AU.ctx.currentTime + .005;
+  for (const ev of EVENTS) if (ev.t > a && ev.t <= b) SFX[ev.type](AU, when, ev.s);
+  for (const c of allCounters) {   // at most one soft tick per frame
+    if (b < c.at || a > c.at + c.cd) continue;
+    const n0 = Math.floor(ease(prog(a, c.at, c.cd)) * TICKS), n1 = Math.floor(ease(prog(b, c.at, c.cd)) * TICKS);
+    if (n1 > n0 && n1 < TICKS) { sTick(AU, when); break; }
+  }
+}
+// Offline mixdown of the whole soundtrack (used by tools/render-video.mjs for the MP4 copy).
+async function renderMix(sr = 48000) {
+  const oc = new OfflineAudioContext(2, Math.ceil(DUR * sr), sr);
+  const bus = buildBus(oc); bus.master.gain.value = MASTER;
+  scheduleBeds(bus, 0, 0, null);
+  for (const ev of EVENTS) SFX[ev.type](bus, ev.t + .005, ev.s);
+  const ticks = [];
+  for (const c of allCounters) for (let n = 1; n < TICKS; n++) ticks.push(c.at + (1 - Math.cbrt(1 - n / TICKS)) * c.cd);
+  ticks.sort((a, b) => a - b);
+  let lastTick = -1; for (const t of ticks) if (t - lastTick >= 1 / 30) { sTick(bus, t + .005); lastTick = t; }
+  const out = await oc.startRendering();
+  const L = out.getChannelData(0), R = out.getChannelData(1), pcm = new Int16Array(L.length * 2);
+  for (let i = 0; i < L.length; i++) { pcm[2 * i] = Math.max(-1, Math.min(1, L[i])) * 32767; pcm[2 * i + 1] = Math.max(-1, Math.min(1, R[i])) * 32767; }
+  window.__AIFU_MIX__ = new Uint8Array(pcm.buffer);
+  return { bytes: window.__AIFU_MIX__.length, sampleRate: sr };
+}
+function mixChunk(offset, size) {
+  const u = window.__AIFU_MIX__.subarray(offset, offset + size); let s = '';
+  for (let i = 0; i < u.length; i += 0x8000) s += String.fromCharCode.apply(null, u.subarray(i, i + 0x8000));
+  return btoa(s);
+}
+
+/* ───────── clock (AudioContext time when available) ───────── */
+const CLK = { playing: false, t0: 0, c0: 0, started: false, ended: false };
+const ctxNow = () => AU.ctx ? AU.ctx.currentTime : performance.now() / 1000;
+function now() { return CLK.playing ? CLK.t0 + Math.max(0, ctxNow() - CLK.c0) : CLK.t0; }
+function play() {
+  if (CLK.ended || CLK.t0 >= DUR - .05) { CLK.t0 = 0; CLK.ended = false; }
+  if (AU.ctx && AU.ctx.state !== 'running') AU.ctx.resume();
+  CLK.c0 = ctxNow() + .06; CLK.playing = true; prevT = CLK.t0;
+  stopSources(); startSources(CLK.t0, CLK.c0); syncUI();
+}
+function pause() { CLK.t0 = now(); CLK.playing = false; stopSources(); syncUI(); }
+function seek(t) {
+  t = Math.max(0, Math.min(DUR, t)); CLK.ended = false; CLK.t0 = t; prevT = t;
+  if (CLK.playing) { stopSources(); CLK.c0 = ctxNow() + .06; startSources(t, CLK.c0); }
+  render(t); syncUI();
+}
+let prevT = 0;
+function frame() {
+  let t = now();
+  if (CLK.playing && t >= DUR) { t = DUR; CLK.t0 = DUR; CLK.playing = false; CLK.ended = true; stopSources(); syncUI(); }
+  render(t);
+  if (CLK.playing) fireEvents(prevT, t);
+  prevT = t;
+  updateUI(t);
+  requestAnimationFrame(frame);
+}
+
+/* ───────── fit stage to window ───────── */
+let stageScale = 1;
+function fit() {
+  const vw = innerWidth, vh = innerHeight, gutter = vw < 800 ? 16 : 0;
+  stageScale = Math.min((vw - gutter * 2) / 1920, (vh - gutter * 2) / 1080);
+  stage.style.transform = `translate(-50%,-50%) scale(${stageScale})`;
+}
+addEventListener('resize', fit);
+
+/* ───────── control panel (hidden; reveals near the bottom edge) ───────── */
+const ui = $('#ui'), scrub = $('#scrub'), fill = $('.fill', scrub), knob = $('.knob', scrub), tip = $('.tip', scrub);
+const timeEl = $('#uiTime'), playBtn = $('#uiPlay'), muteBtn = $('#uiMute'), fsBtn = $('#uiFs'), row = $('#scenesRow');
+let pinned = false, hideTimer = 0, idleTimer = 0, dragging = false;
+const mmss = s => { s = Math.max(0, Math.floor(s + 1e-6)); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); };
+NAV.forEach(([t, name], i) => {
+  const tk = document.createElement('div'); tk.className = 'tick'; tk.style.left = (t / DUR * 100) + '%'; scrub.insertBefore(tk, knob);
+  const b = document.createElement('button'); b.type = 'button'; b.title = name; b.dataset.i = i;
+  b.innerHTML = `${i + 1}<span>&nbsp;${name}</span>`;
+  b.addEventListener('click', () => { seek(t); });
+  row.insertBefore(b, $('#uiHint'));
+});
+const navBtns = $$('button[data-i]', row);
+function sceneIndex(t) { let k = 0; NAV.forEach(([s], i) => { if (t >= s - .001) k = i; }); return k; }
+let lastUI = { t: -1, i: -1 };
+function updateUI(t) {
+  if (Math.abs(t - lastUI.t) > .04) {
+    lastUI.t = t; const pct = (t / DUR * 100).toFixed(3) + '%';
+    fill.style.width = pct; knob.style.left = pct; timeEl.textContent = mmss(t) + ' / ' + mmss(DUR);
+  }
+  const i = sceneIndex(t);
+  if (i !== lastUI.i) { lastUI.i = i; navBtns.forEach((b, j) => b.classList.toggle('on', j === i)); }
+}
+function syncUI() {
+  $('#icPlay').style.display = CLK.playing ? 'none' : 'block';
+  $('#icPause').style.display = CLK.playing ? 'block' : 'none';
+  muteBtn.classList.toggle('on', AU.muted); muteBtn.textContent = AU.muted ? 'Ovoz oʻchiq' : 'Ovoz';
+}
+function showUI() { ui.classList.add('show'); clearTimeout(hideTimer); hideTimer = setTimeout(() => { if (!pinned && !dragging && !ui.matches(':hover')) ui.classList.remove('show'); }, 2200); }
+addEventListener('mousemove', e => {
+  document.body.classList.remove('idle'); clearTimeout(idleTimer);
+  idleTimer = setTimeout(() => { if (!ui.matches(':hover')) document.body.classList.add('idle'); }, 2000);
+  if (CLK.started && (e.clientY > innerHeight * .84 || ui.matches(':hover'))) showUI();
+});
+addEventListener('touchstart', () => { if (CLK.started) showUI(); }, { passive: true });
+function scrubTo(e) { const r = scrub.getBoundingClientRect(); seek(clamp01((e.clientX - r.left) / r.width) * DUR); }
+scrub.addEventListener('pointerdown', e => { dragging = true; scrub.setPointerCapture(e.pointerId); scrubTo(e); });
+scrub.addEventListener('pointermove', e => {
+  const r = scrub.getBoundingClientRect(), k = clamp01((e.clientX - r.left) / r.width);
+  tip.style.display = 'block'; tip.style.left = (k * 100) + '%'; tip.textContent = (sceneIndex(k * DUR) + 1) + ' · ' + NAV[sceneIndex(k * DUR)][1] + ' · ' + mmss(k * DUR);
+  if (dragging) scrubTo(e);
+});
+scrub.addEventListener('pointerleave', () => { tip.style.display = 'none'; });
+scrub.addEventListener('pointerup', () => { dragging = false; });
+scrub.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') { seek(now() - 5); e.preventDefault(); } if (e.key === 'ArrowRight') { seek(now() + 5); e.preventDefault(); } });
+playBtn.addEventListener('click', () => { CLK.playing ? pause() : play(); });
+function toggleMute() { AU.muted = !AU.muted; if (AU.master) AU.master.gain.value = AU.muted ? 0 : MASTER; syncUI(); }
+muteBtn.addEventListener('click', toggleMute);
+function toggleFs() {
+  try {
+    if (document.fullscreenElement || document.webkitFullscreenElement) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+    else { const el = document.documentElement, rq = el.requestFullscreen || el.webkitRequestFullscreen; if (rq) { const p = rq.call(el); if (p && p.catch) p.catch(() => {}); } }
+  } catch (e) {}
+}
+fsBtn.addEventListener('click', toggleFs);
+ui.addEventListener('click', e => { const b = e.target.closest('button'); if (b) b.blur(); });
+addEventListener('keydown', e => {
+  if (!CLK.started) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); begin(); } return; }
+  if (e.target === scrub && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) return;
+  const k = e.key;
+  if (k === ' ' || k === 'k' || k === 'K') { e.preventDefault(); CLK.playing ? pause() : play(); }
+  else if (k === 'ArrowRight') { e.preventDefault(); const i = sceneIndex(now()); if (i < NAV.length - 1) seek(NAV[i + 1][0]); }
+  else if (k === 'ArrowLeft') { e.preventDefault(); const t = now(), i = sceneIndex(t); seek(NAV[(t - NAV[i][0] < 1.5 && i > 0) ? i - 1 : i][0]); }
+  else if (k === 'Home') { e.preventDefault(); seek(0); }
+  else if (k === 'f' || k === 'F') toggleFs();
+  else if (k === 'm' || k === 'M') toggleMute();
+  else if (k === 'h' || k === 'H') { pinned = !pinned; pinned ? ui.classList.add('show') : ui.classList.remove('show'); }
+});
+
+/* ───────── start ───────── */
+const startEl = $('#start'), startBtn = $('#startBtn'), startLabel = $('#startLabel');
+let audioReady = null;
+function begin() {
+  if (CLK.started || startBtn.disabled) return;
+  CLK.started = true; startEl.classList.add('gone');
+  const ctx = initAudio(); if (ctx && ctx.state !== 'running') ctx.resume();
+  try { const el = document.documentElement, rq = el.requestFullscreen || el.webkitRequestFullscreen; if (rq && !document.fullscreenElement) { const p = rq.call(el); if (p && p.catch) p.catch(() => {}); } } catch (e) {}
+  CLK.t0 = 0; play();
+}
+startBtn.addEventListener('click', begin);
+
+window.AIFU = { seek: t => { CLK.started = true; startEl.classList.add('gone'); seek(t); }, render, DUR, now,
+  renderMix, mixChunk,
+  audio: () => ({ vo: AU.buf.vo ? +AU.buf.vo.duration.toFixed(2) : 0, music: AU.buf.music ? +AU.buf.music.duration.toFixed(2) : 0, state: AU.ctx ? AU.ctx.state : 'none', playing: CLK.playing }) };
+
+const params = new URLSearchParams(location.search);
+(document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => {
+  fit(); layoutStepper(); render(0); syncUI();
+  if (params.has('render')) document.body.classList.add('render');
+  if (params.has('t')) { window.AIFU.seek(parseFloat(params.get('t')) || 0); }
+  requestAnimationFrame(frame);
+  audioReady = loadAudio().finally(() => { startBtn.disabled = false; startLabel.textContent = 'Boshlash'; startBtn.focus({ preventScroll: true }); });
+});
+fit();
+})();
+</script>
+</body>
+</html>
