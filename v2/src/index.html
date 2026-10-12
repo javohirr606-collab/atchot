@@ -606,7 +606,7 @@ const AU = { ctx: null, buf: {}, src: [], master: null, vo: null, mus: null, sfx
 // Music sits ≈18 dB under the narration (vo.mp3 plays as dual-mono, ≈3 dB louder than its file loudness),
 // lifts 5 dB in pauses and opens fully on the final frame.
 const G_SPEECH = Math.pow(10, -15 / 20), G_PAUSE = Math.pow(10, -10 / 20), G_FULL = 1;
-const MASTER = .85;
+const MASTER = .76;
 const MUSIC_ENV = (() => {   // ducking envelope: [time, gain]
   const e = [[0, 0], [.7, G_PAUSE], [SPEECH[0][0] - .2, G_PAUSE], [SPEECH[0][0] - .03, G_SPEECH]];
   for (let i = 0; i < SPEECH.length - 1; i++) {
