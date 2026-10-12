@@ -2,6 +2,8 @@
 
 Rektorat va rahbariyat uchun hisobot-animatsiya: 1920×1080, 2:25, diktor ovozi bilan sinxron.
 
+> 12.10.2026 dagi yangilangan raqamlar bilan 2-video: [`v2/`](v2/README.md). Quyidagi tavsif 04.10.2026 holatidagi 1-video haqida.
+
 ## Qaysi faylni ochish kerak
 
 | Fayl | Nima uchun |

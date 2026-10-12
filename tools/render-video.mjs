@@ -1,15 +1,17 @@
 // Renders the built HTML frame by frame into an MP4 backup copy (1920×1080, 30 fps, AAC).
 // Requires: ffmpeg in PATH and Playwright with Chromium (npm i -D playwright, or a global install).
-// Usage: node tools/build.mjs && node tools/render-video.mjs [--fps 30] [--from 0] [--to 145]
+// Usage: node tools/build.mjs [v2] && node tools/render-video.mjs [v2] [--fps 30] [--from 0] [--to 145]
 import { spawn, execSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 import { writeFileSync, rmSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
-const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-const html = join(root, 'dist', 'AIFU_2026-2027_marketing_hisoboti.html');
-const out = join(root, 'dist', 'AIFU_2026-2027_marketing_hisoboti.mp4');
+const sub = process.argv[2] && !process.argv[2].startsWith('--') ? process.argv[2] : '';
+const root = join(dirname(fileURLToPath(import.meta.url)), '..', sub);
+const NAME = 'AIFU_2026-2027_marketing_hisoboti' + (sub ? '_' + sub : '');
+const html = join(root, 'dist', NAME + '.html');
+const out = join(root, 'dist', NAME + '.mp4');
 const wav = join(root, 'dist', '.mix.wav');
 const arg = (k, d) => { const i = process.argv.indexOf('--' + k); return i > 0 ? +process.argv[i + 1] : d; };
 const FPS = arg('fps', 30);
