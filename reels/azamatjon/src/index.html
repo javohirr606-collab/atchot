@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Azamatjon Rashidov Nankinda</title>
+<style>
+/* 1080×1920 vertical reel. Brand: #FF0158, #002E60, white; Helvetica/Inter. */
+:root { --navy:#002E60; --red:#FF0158; --white:#fff; --font:"AIFU Sans","Helvetica Neue",Helvetica,Arial,sans-serif; }
+@font-face { font-family:"AIFU Sans"; font-weight:400; font-display:block; src:url(assets/fonts/inter-latin-400-normal.woff2) format("woff2"); unicode-range:U+0000-00FF,U+02BB-02BC,U+2000-206F,U+2212; }
+@font-face { font-family:"AIFU Sans"; font-weight:400; font-display:block; src:url(assets/fonts/inter-latin-ext-400-normal.woff2) format("woff2"); unicode-range:U+0100-02BA,U+02BD-02FF; }
+@font-face { font-family:"AIFU Sans"; font-weight:500; font-display:block; src:url(assets/fonts/inter-latin-500-normal.woff2) format("woff2"); unicode-range:U+0000-00FF,U+02BB-02BC,U+2000-206F,U+2212; }
+@font-face { font-family:"AIFU Sans"; font-weight:500; font-display:block; src:url(assets/fonts/inter-latin-ext-500-normal.woff2) format("woff2"); unicode-range:U+0100-02BA,U+02BD-02FF; }
+@font-face { font-family:"AIFU Sans"; font-weight:700; font-display:block; src:url(assets/fonts/inter-latin-700-normal.woff2) format("woff2"); unicode-range:U+0000-00FF,U+02BB-02BC,U+2000-206F,U+2212; }
+@font-face { font-family:"AIFU Sans"; font-weight:700; font-display:block; src:url(assets/fonts/inter-latin-ext-700-normal.woff2) format("woff2"); unicode-range:U+0100-02BA,U+02BD-02FF; }
+
+html,body { margin:0; height:100%; background:#000; overflow:hidden; }
+#stage { position:absolute; left:50%; top:50%; width:1080px; height:1920px; overflow:hidden; background:var(--navy);
+  transform-origin:50% 50%; font-family:var(--font); color:#fff; -webkit-font-smoothing:antialiased; }
+#stage * { box-sizing:border-box; }
+.abs { position:absolute; }
+.scene { position:absolute; inset:0; overflow:hidden; display:none; will-change:transform,filter,opacity; }
+.media { position:absolute; left:0; top:0; transform-origin:0 0; filter:contrast(1.06) saturate(1.1) brightness(1.02); }
+.bgblur { position:absolute; inset:-80px; background-size:cover; background-position:center; filter:blur(46px) brightness(.55) saturate(1.2); }
+.shade { position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(ellipse at 50% 42%, rgba(0,0,0,0) 55%, rgba(0,0,0,.35) 100%),
+             linear-gradient(180deg, rgba(0,0,0,.28) 0%, rgba(0,0,0,0) 16%, rgba(0,0,0,0) 52%, rgba(0,10,30,.62) 100%); }
+.dark { position:absolute; inset:0; background:rgba(0,20,50,.5); }
+.big { font-weight:700; letter-spacing:-.035em; line-height:.95; white-space:nowrap; }
+
+/* captions */
+#cap { position:absolute; left:70px; right:70px; top:1290px; text-align:center; z-index:30; }
+#cap .line { display:inline-block; font-size:74px; font-weight:700; line-height:1.12; letter-spacing:-.015em;
+  text-shadow:0 3px 0 rgba(0,0,0,.35), 0 6px 26px rgba(0,0,0,.55); transform-origin:50% 60%; }
+#cap .hl { background:var(--red); padding:0 .16em .02em; margin:0 .02em; box-decoration-break:clone; -webkit-box-decoration-break:clone; text-shadow:none; }
+
+/* brand tab */
+#tab { position:absolute; left:64px; top:0; width:112px; height:128px; background:#fff; z-index:40; }
+#tab img { position:absolute; left:16px; top:26px; width:80px; }
+
+#flash { position:absolute; inset:0; background:#fff; opacity:0; z-index:50; pointer-events:none; }
+
+/* chips / tags */
+.chip { display:inline-flex; align-items:center; gap:16px; padding:0 30px; height:84px; font-size:44px; font-weight:700; white-space:nowrap; }
+.pin { width:34px; height:46px; }
+.seal { position:absolute; border-radius:50%; background:#fff; }
+.seal img { position:absolute; }
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <!-- 1 · Toshkent → Nankin (hook) -->
+  <section class="scene" id="sRoute">
+    <div class="bgblur" style="background-image:url(assets/photos/3.jpg)"></div>
+    <div class="dark" style="background:rgba(0,30,70,.62)"></div>
+    <svg class="abs" id="routeSvg" width="1080" height="1920" viewBox="0 0 1080 1920" style="left:0;top:0">
+      <g stroke="rgba(255,255,255,.07)" stroke-width="2">
+        <path d="M0 560H1080M0 760H1080M0 960H1080M0 1160H1080M180 400V1240M360 400V1240M540 400V1240M720 400V1240M900 400V1240"/>
+      </g>
+      <path id="arc" d="M210 1060 Q 520 520 880 760" fill="none" stroke="#FF0158" stroke-width="8" stroke-linecap="round"/>
+    </svg>
+    <div class="abs" id="dotA" style="left:186px;top:1036px;width:48px;height:48px;border-radius:50%;background:#fff;"></div>
+    <div class="abs" id="dotB" style="left:856px;top:736px;width:48px;height:48px;border-radius:50%;background:var(--red);"></div>
+    <svg class="abs" id="plane" width="64" height="64" viewBox="0 0 24 24" style="left:0;top:0"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z" fill="#fff"/></svg>
+    <div class="abs big" id="lblA" style="left:120px;top:1110px;font-size:58px;">Toshkent</div>
+    <div class="abs big" id="lblB" style="left:640px;top:640px;font-size:58px;color:#fff">Nankin</div>
+    <div class="abs big" id="hookA" style="left:72px;top:250px;font-size:132px;">Toshkentdan</div>
+    <div class="abs big" id="hookB" style="left:72px;top:390px;font-size:132px;color:var(--red)">Nankinga</div>
+  </section>
+
+  <!-- media scenes are generated from SHOTS -->
+  <div id="shots"></div>
+
+  <!-- 1+2+1 -->
+  <section class="scene" data-id="sNum" style="background:var(--red)">
+    <div class="abs" style="left:-200px;top:1180px;width:1600px;height:900px;background:var(--navy);transform:rotate(-14deg);transform-origin:0 0;"></div>
+    <div class="abs big" id="nAifu" style="left:0;right:0;top:470px;text-align:center;font-size:56px;font-weight:500;letter-spacing:.02em;">AIFU</div>
+    <div class="abs" style="left:0;right:0;top:600px;display:flex;justify-content:center;align-items:baseline;">
+      <span class="big" id="n1" style="font-size:330px;display:inline-block">1</span>
+      <span class="big" id="n2" style="font-size:330px;display:inline-block">+2</span>
+      <span class="big" id="n3" style="font-size:330px;display:inline-block">+1</span>
+    </div>
+    <div class="abs" id="nSub" style="left:0;right:0;top:1000px;text-align:center;">
+      <span class="chip" style="background:#fff;color:var(--navy);font-size:52px;height:96px;">xalqaro taʼlim dasturi</span>
+    </div>
+  </section>
+
+  <!-- 1 yil / 2 yil -->
+  <section class="scene" data-id="sYears" style="background:var(--navy)">
+    <div class="abs" id="yT" style="left:96px;top:330px;font-size:44px;font-weight:500;color:rgba(255,255,255,.75);">1+2+1 dasturi</div>
+    <div class="abs big" id="y1n" style="left:90px;top:520px;font-size:230px;">1 yil</div>
+    <div class="abs big" id="y1t" style="left:100px;top:760px;font-size:72px;">Toshkentda</div>
+    <div class="abs" id="y1b" style="left:100px;top:870px;width:293px;height:28px;background:#fff;transform-origin:0 50%;"></div>
+    <div class="abs big" id="y2n" style="left:90px;top:1000px;font-size:230px;color:var(--red)">2 yil</div>
+    <div class="abs big" id="y2t" style="left:100px;top:1240px;font-size:72px;">Xitoyda</div>
+    <div class="abs" id="y2b" style="left:100px;top:1350px;width:586px;height:28px;background:var(--red);transform-origin:0 50%;"></div>
+  </section>
+
+  <!-- logo reveal -->
+  <section class="scene" data-id="sLogo" style="background:var(--navy)">
+    <div class="abs" id="lgMod" style="left:0;top:0;width:1080px;height:1920px;background:var(--red);"></div>
+    <div class="seal" id="lgSeal" style="left:250px;top:470px;width:580px;height:580px;"><img src="assets/logo.png" alt="AIFU" style="left:96px;top:86px;width:390px;"></div>
+    <div class="abs" id="lgT1" style="left:0;right:0;top:1100px;text-align:center;font-size:70px;font-weight:700;line-height:1.1;letter-spacing:-.02em;">Aniq va ijtimoiy<br>fanlar universiteti</div>
+  </section>
+
+  <!-- end card -->
+  <section class="scene" data-id="sEnd" style="background:var(--navy)">
+    <div class="bgblur" style="background-image:url(assets/photos/4.jpg);filter:blur(50px) brightness(.35) saturate(1.1);"></div>
+    <div class="seal" id="eSeal" style="left:420px;top:300px;width:240px;height:240px;"><img src="assets/logo.png" alt="AIFU" style="left:40px;top:36px;width:162px;"></div>
+    <div class="abs big" id="e1" style="left:0;right:0;top:700px;text-align:center;font-size:110px;">1 yil Toshkentda</div>
+    <div class="abs big" id="e2" style="left:0;right:0;top:850px;text-align:center;font-size:110px;color:var(--red)">2 yil Xitoyda</div>
+    <div class="abs" id="e3" style="left:0;right:0;top:1060px;text-align:center;">
+      <span class="chip" style="background:#fff;color:var(--navy);font-size:46px;height:96px;">AIFU 1+2+1 xalqaro taʼlim dasturi</span>
+    </div>
+  </section>
+
+  <!-- overlays -->
+  <div class="abs" id="loc" style="left:72px;top:250px;z-index:35;">
+    <span class="chip" style="background:var(--navy);"><svg class="pin" viewBox="0 0 24 32"><path d="M12 0C5.4 0 0 5.2 0 11.7 0 20.5 12 32 12 32s12-11.5 12-20.3C24 5.2 18.6 0 12 0zm0 16.5a4.8 4.8 0 1 1 0-9.6 4.8 4.8 0 0 1 0 9.6z" fill="#FF0158"/></svg>Nankin, Xitoy</span>
+  </div>
+  <div class="abs" id="name" style="left:72px;top:1190px;z-index:35;">
+    <div id="nameA" class="big" style="display:inline-block;background:var(--red);font-size:78px;padding:18px 30px 16px;">Azamatjon Rashidov</div><br>
+    <div id="nameB" style="display:inline-block;background:#fff;color:var(--navy);font-size:44px;font-weight:700;padding:14px 30px;">AIFU talabasi · Nankin</div>
+  </div>
+  <div class="abs" id="kin" style="left:72px;right:72px;top:760px;z-index:35;"></div>
+
+  <div id="cap"></div>
+  <div id="tab"><img src="assets/logo.png" alt="AIFU"></div>
+  <div id="flash"></div>
+</div>
+
+<script>
+(() => {
+'use strict';
+const W = 1080, H = 1920, FPS = 30;
+const DUR = 52.5;
+const VO_AT = 0.3;
+
+/* ───── shot list (timeline seconds) ─────
+   photo: src, focus [fx,fy] in 0..1 of the image, zoom z0→z1 on top of "cover"; framed = whole image on a blurred copy
+   video: frames folder, vs = source start (s)
+   tin = transition into this shot */
+const P = n => 'assets/photos/' + n + '.jpg';
+const IMG = { 3:[1280,853], 4:[1280,878], 5:[960,1280], 7:[1279,852] };
+const SHOTS = [
+  { id:'route', t0:0,     t1:2.55,  graphic:'sRoute' },
+  { t0:2.55,  t1:5.0,   video:'v2', vs:9.0,  focus:[.5,.5],  z0:1.0,  z1:1.08, tin:'whip' },
+  { t0:5.0,   t1:8.6,   photo:3,  focus:[.535,.40], z0:1.0,  z1:1.13, tin:'zoom' },
+  { t0:8.6,   t1:10.7,  photo:5,  focus:[.39,.72], z0:1.05, z1:1.75, tin:'flash' },
+  { t0:10.7,  t1:13.55, photo:4,  focus:[.70,.52], z0:1.0,  z1:1.07, tin:'whip' },
+  { t0:13.55, t1:16.75, photo:4,  framed:true, z0:1.0, z1:1.07, tin:'zoom' },
+  { t0:16.75, t1:20.2,  video:'v1', vs:15.4, focus:[.5,.5],  z0:1.0,  z1:1.06, tin:'whip' },
+  { t0:20.2,  t1:22.1,  photo:5,  focus:[.5,.30], z0:1.25, z1:1.08, tin:'cut' },
+  { t0:22.1,  t1:26.38, video:'v1', vs:1.5,  focus:[.5,.5],  z0:1.0,  z1:1.08, tin:'zoom' },
+  { t0:26.38, t1:28.6,  photo:7,  focus:[.53,.45], z0:1.0,  z1:1.1,  tin:'whip' },
+  { t0:28.6,  t1:30.85, video:'v1', vs:10.4, focus:[.5,.5],  z0:1.04, z1:1.0,  tin:'cut' },
+  { t0:30.85, t1:32.6,  video:'v2', vs:15.0, focus:[.5,.5],  z0:1.0,  z1:1.07, tin:'whip' },
+  { id:'num', t0:32.6,  t1:37.3,  graphic:'sNum',   tin:'flash' },
+  { id:'yrs', t0:37.3,  t1:40.5,  graphic:'sYears', tin:'slide' },
+  { t0:40.5,  t1:43.65, video:'v2', vs:17.0, focus:[.5,.5],  z0:1.0,  z1:1.1,  tin:'zoom', dark:.42 },
+  { t0:43.65, t1:44.39, photo:4,  focus:[.5,.5],  z0:1.12, z1:1.0,  tin:'flash', dark:.45 },
+  { t0:44.39, t1:45.12, photo:7,  focus:[.5,.45], z0:1.1,  z1:1.0,  tin:'cut', dark:.45 },
+  { t0:45.12, t1:45.86, photo:3,  focus:[.535,.4], z0:1.15, z1:1.0, tin:'cut', dark:.45 },
+  { t0:45.86, t1:46.3,  photo:4,  focus:[.70,.52], z0:1.1,  z1:1.0,  tin:'cut', dark:.45 },
+  { id:'logo', t0:46.3, t1:48.9,  graphic:'sLogo',  tin:'zoom' },
+  { id:'end',  t0:48.9, t1:DUR+1, graphic:'sEnd',   tin:'slide' },
+];
+
+/* ───── captions: [t0, t1, text] (narration time + VO_AT); keywords get the red box ───── */
+const SEGS = [
+  [0.30,2.23,"U oʻqishni Toshkentda boshlagan."],
+  [2.77,4.92,"Bugun esa Xitoyning Nankin shahrida"],
+  [4.98,8.32,"Oʻzbekiston konsulligi vakillari bilan uchrashuvda ishtirok etmoqda."],
+  [8.81,9.27,"Bu —"],
+  [9.38,12.02,"Aniq va ijtimoiy fanlar universiteti talabasi"],
+  [13.70,16.75,"Oʻzbekistonning Shanxaydagi Bosh konsulligi vakillari"],
+  [16.75,20.09,"Nankin shahridagi oliy taʼlim muassasalarida tahsil olayotgan"],
+  [20.20,21.82,"xalqaro talabalar bilan uchrashdi."],
+  [22.16,23.94,"Suhbat davomida taʼlim,"],
+  [24.02,26.31,"talabalar uchun yaratilayotgan imkoniyatlar"],
+  [26.38,30.72,"hamda Oʻzbekiston va Xitoy oʻrtasidagi hamkorlik masalalari muhokama qilindi."],
+  [31.06,32.60,"Azamatjon Xitoyda AIFUning"],
+];
+const KEY = /^(Toshkentda|Nankin|konsulligi|taʼlim|imkoniyatlar|hamkorlik|Xitoyda|AIFUning|Azamatjon)$/;
+const MAXC = 19;
+const CHUNKS = [];
+for (const [a, b, text] of SEGS) {
+  const words = text.split(' '); const groups = []; let cur = [];
+  for (const w of words) { const len = cur.join(' ').length; if (cur.length && (len + 1 + w.length > MAXC || cur.length >= 3)) { groups.push(cur); cur = []; } cur.push(w); }
+  if (cur.length) groups.push(cur);
+  // a lone dash or a very short tail joins its neighbour
+  for (let i = groups.length - 1; i > 0; i--) if (groups[i].join(' ').length <= 3) { groups[i - 1] = groups[i - 1].concat(groups[i]); groups.splice(i, 1); }
+  const total = groups.reduce((s, g) => s + g.join(' ').length + 2, 0); let t = a;
+  for (const g of groups) { const d = (b - a) * (g.join(' ').length + 2) / total; CHUNKS.push({ t0: t, t1: t + d, words: g }); t += d; }
+}
+for (let i = 0; i < CHUNKS.length - 1; i++) if (CHUNKS[i + 1].t0 - CHUNKS[i].t1 < .6) CHUNKS[i].t1 = CHUNKS[i + 1].t0;  // no flicker in short pauses
+CHUNKS.forEach(c => { c.t1 += .12; });
+
+/* ───── helpers ───── */
+const $ = s => document.querySelector(s);
+const clamp01 = x => x < 0 ? 0 : x > 1 ? 1 : x;
+const prog = (t, t0, d) => d <= 0 ? (t >= t0 ? 1 : 0) : clamp01((t - t0) / d);
+const easeOut = x => 1 - Math.pow(1 - x, 3);
+const easeInOut = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const easeIn = x => x * x * x;
+const back = x => { const c1 = 1.9, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+const lerp = (a, b, k) => a + (b - a) * k;
+const set = (el, prop, v) => { if (!el) return; const c = el.__c || (el.__c = {}); if (c[prop] !== v) { c[prop] = v; el.style[prop] = v; } };
+const pending = [];
+function setSrc(img, src) { if (img.__src === src) return; img.__src = src; img.src = src; pending.push(img.decode().catch(() => {})); }
+
+/* ───── build media scenes ───── */
+const shotsEl = $('#shots');
+for (const s of SHOTS) {
+  if (s.graphic) { s.el = s.graphic === 'sRoute' ? $('#sRoute') : document.querySelector(`[data-id="${s.graphic}"]`); continue; }
+  const el = document.createElement('section'); el.className = 'scene';
+  let iw, ih, src;
+  if (s.photo) { [iw, ih] = IMG[s.photo]; src = P(s.photo); } else { iw = 720; ih = 1280; }
+  if (s.framed) {
+    const bg = document.createElement('div'); bg.className = 'bgblur'; bg.style.backgroundImage = `url(${src})`; el.appendChild(bg);
+  }
+  const img = document.createElement('img'); img.className = 'media'; img.alt = ''; el.appendChild(img);
+  if (s.photo) setSrc(img, src);
+  const shade = document.createElement('div'); shade.className = 'shade'; el.appendChild(shade);
+  if (s.dark) { const d = document.createElement('div'); d.className = 'dark'; d.style.background = `rgba(0,20,50,${s.dark})`; el.insertBefore(d, shade); }
+  Object.assign(s, { el, img, iw, ih });
+  shotsEl.appendChild(el);
+}
+function placeMedia(s, t) {
+  const k = easeInOut(prog(t, s.t0, s.t1 - s.t0));
+  const z = lerp(s.z0, s.z1, k);
+  let sc, x, y;
+  if (s.framed) {
+    sc = W / s.iw * z; const w = s.iw * sc, h = s.ih * sc;
+    x = (W - w) / 2; y = 640 - h / 2 + 40;
+  } else {
+    sc = Math.max(W / s.iw, H / s.ih) * z; const w = s.iw * sc, h = s.ih * sc;
+    const [fx, fy] = s.focus || [.5, .5];
+    x = Math.min(0, Math.max(W - w, W / 2 - fx * w)); y = Math.min(0, Math.max(H - h, H / 2 - fy * h));
+  }
+  set(s.img, 'transform', `translate3d(${x.toFixed(2)}px,${y.toFixed(2)}px,0) scale(${sc.toFixed(5)})`);
+  if (s.video) {
+    const n = Math.min(s.video === 'v1' ? 639 : 628, Math.max(1, Math.floor((s.vs + (t - s.t0)) * FPS + 1e-6) + 1));
+    setSrc(s.img, `frames/${s.video}/${String(n).padStart(4, '0')}.jpg`);
+  }
+}
+
+/* ───── transitions ───── */
+const TD = { whip: [.12, .2], zoom: [.12, .22], flash: [0, .0], cut: [0, 0], slide: [0, .32] };
+function transitionStyle(s, next, t) {
+  let tx = 0, ty = 0, sc = 1, blur = 0;
+  const tin = s.tin || 'cut';
+  if (t < s.t0 + TD[tin][1]) {               // incoming
+    const k = easeOut(prog(t, s.t0, TD[tin][1]));
+    if (tin === 'whip') { tx = (1 - k) * 420; blur = (1 - k) * 26; }
+    if (tin === 'zoom') { sc = lerp(1.3, 1, k); blur = (1 - k) * 18; }
+    if (tin === 'slide') { ty = (1 - k) * H; }
+  }
+  if (next && t >= next.t0 - TD[next.tin || 'cut'][0]) {    // outgoing
+    const d = TD[next.tin || 'cut'][0]; const k = easeIn(prog(t, next.t0 - d, d));
+    if (next.tin === 'whip') { tx = -k * 420; blur = k * 26; }
+    if (next.tin === 'zoom') { sc = lerp(1, 1.3, k); blur = k * 18; }
+  }
+  return { tr: `translate3d(${tx.toFixed(1)}px,${ty.toFixed(1)}px,0) scale(${sc.toFixed(4)})`, blur };
+}
+
+/* ───── graphics ───── */
+function anim(el, t, t0, d, kind = 'up', dist = 60) {
+  const k = prog(t, t0, d), e = kind === 'pop' ? back(k) : easeOut(k);
+  set(el, 'opacity', (t < t0 ? 0 : Math.min(1, k * 1.6)).toFixed(3));
+  if (kind === 'up') set(el, 'transform', `translate3d(0,${((1 - e) * dist).toFixed(1)}px,0)`);
+  if (kind === 'left') set(el, 'transform', `translate3d(${(-(1 - e) * dist).toFixed(1)}px,0,0)`);
+  if (kind === 'pop') set(el, 'transform', `scale(${(t < t0 ? .4 : lerp(.4, 1, e)).toFixed(4)})`);
+  if (kind === 'fade') {}
+}
+const arc = $('#arc'), arcLen = arc.getTotalLength();
+function gRoute(t) {
+  anim($('#hookA'), t, .05, .4, 'up', 80);
+  anim($('#hookB'), t, 1.25, .4, 'up', 80);
+  anim($('#dotA'), t, .25, .35, 'pop');
+  anim($('#lblA'), t, .35, .4, 'up', 30);
+  const k = easeInOut(prog(t, .45, 1.15));
+  arc.style.strokeDasharray = `${(k * arcLen).toFixed(1)} ${arcLen.toFixed(1)}`;
+  const p = arc.getPointAtLength(Math.max(1, k * arcLen)), p2 = arc.getPointAtLength(Math.max(0, k * arcLen - 4));
+  const ang = Math.atan2(p.y - p2.y, p.x - p2.x) * 180 / Math.PI + 90;
+  set($('#plane'), 'transform', `translate3d(${(p.x - 32).toFixed(1)}px,${(p.y - 32).toFixed(1)}px,0) rotate(${ang.toFixed(1)}deg)`);
+  set($('#plane'), 'opacity', (k > 0 && k < 1 ? 1 : 0).toString());
+  anim($('#dotB'), t, 1.55, .4, 'pop');
+  anim($('#lblB'), t, 1.6, .4, 'up', 30);
+}
+function gNum(t) {
+  anim($('#nAifu'), t, 32.65, .3, 'up', 30);
+  anim($('#n1'), t, 32.78, .32, 'pop');
+  anim($('#n2'), t, 33.28, .32, 'pop');
+  anim($('#n3'), t, 33.82, .32, 'pop');
+  anim($('#nSub'), t, 34.45, .4, 'up', 50);
+}
+function gYears(t) {
+  anim($('#yT'), t, 37.45, .35, 'up', 30);
+  anim($('#y1n'), t, 37.5, .4, 'left', 80); anim($('#y1t'), t, 37.62, .4, 'left', 60);
+  set($('#y1b'), 'transform', `scaleX(${easeOut(prog(t, 37.6, .6)).toFixed(4)})`);
+  anim($('#y2n'), t, 38.9, .4, 'left', 80); anim($('#y2t'), t, 39.02, .4, 'left', 60);
+  set($('#y2b'), 'transform', `scaleX(${easeOut(prog(t, 39.0, .8)).toFixed(4)})`);
+}
+function gLogo(t) {
+  // red block sweeps up into a slanted band, the seal pops on the beat
+  const k = easeInOut(prog(t, 46.3, .7));
+  const top = lerp(0, 1560, k);
+  set($('#lgMod'), 'clipPath', `polygon(0 ${top}px, 1080px ${(top - 260 * k).toFixed(1)}px, 1080px 1920px, 0 1920px)`);
+  anim($('#lgSeal'), t, 46.45, .55, 'pop');
+  anim($('#lgT1'), t, 46.75, .5, 'up', 50);
+}
+function gEnd(t) {
+  anim($('#eSeal'), t, 49.15, .5, 'pop');
+  anim($('#e1'), t, 49.35, .45, 'up', 60);
+  anim($('#e2'), t, 49.75, .45, 'up', 60);
+  anim($('#e3'), t, 50.25, .45, 'up', 40);
+}
+const GRAPH = { sRoute: gRoute, sNum: gNum, sYears: gYears, sLogo: gLogo, sEnd: gEnd };
+
+/* ───── kinetic text (statement + montage) ───── */
+const kin = $('#kin');
+kin.innerHTML = `
+  <div class="big" id="k1" style="font-size:112px;">Xalqaro taʼlim —</div>
+  <div class="big" id="k2" style="font-size:112px;margin-top:22px;position:relative;display:inline-block">shunchaki <span id="kShior" style="position:relative;display:inline-block">shior<i id="kStrike" style="position:absolute;left:-6px;right:-6px;top:52%;height:14px;background:var(--red);transform-origin:0 50%;"></i></span></div>
+  <div class="big" id="k3" style="font-size:112px;margin-top:22px;color:var(--red)">emas.</div>
+  <div class="big" id="k4" style="font-size:96px;position:absolute;left:0;top:0;">Bu —</div>
+  <div class="big" id="k5" style="font-size:96px;position:absolute;left:0;top:118px;">talabalarimizning</div>
+  <div class="big" id="k6" style="font-size:96px;position:absolute;left:0;top:236px;">bugungi</div>
+  <div class="big" id="k7" style="font-size:150px;position:absolute;left:0;top:350px;"><span style="background:var(--red);padding:0 .12em;">tajribasi.</span></div>`;
+function gKin(t) {
+  const on1 = t >= 40.5 && t < 43.65, on2 = t >= 43.65 && t < 46.3;
+  set(kin, 'display', on1 || on2 ? 'block' : 'none');
+  ['k1', 'k2', 'k3'].forEach(id => set($('#' + id), 'visibility', on1 ? 'visible' : 'hidden'));
+  ['k4', 'k5', 'k6', 'k7'].forEach(id => set($('#' + id), 'visibility', on2 ? 'visible' : 'hidden'));
+  if (on1) {
+    anim($('#k1'), t, 40.72, .4, 'up', 70);
+    anim($('#k2'), t, 41.95, .4, 'up', 70);
+    set($('#kStrike'), 'transform', `scaleX(${easeOut(prog(t, 42.85, .3)).toFixed(4)})`);
+    anim($('#k3'), t, 42.9, .35, 'pop');
+  }
+  if (on2) {
+    anim($('#k4'), t, 43.66, .3, 'up', 50);
+    anim($('#k5'), t, 44.17, .35, 'up', 50);
+    anim($('#k6'), t, 44.85, .35, 'up', 50);
+    anim($('#k7'), t, 45.3, .4, 'pop');
+  }
+}
+
+/* ───── captions ───── */
+const cap = $('#cap');
+const CAP_OFF = [[12.05, 13.6], [32.6, 46.3], [46.3, 1e9]];
+let capIdx = -2;
+function gCap(t) {
+  let i = -1;
+  if (!CAP_OFF.some(([a, b]) => t >= a && t < b)) i = CHUNKS.findIndex(c => t >= c.t0 && t < c.t1);
+  if (i !== capIdx) {
+    capIdx = i;
+    cap.innerHTML = i < 0 ? '' : '<span class="line">' + CHUNKS[i].words.map(w => KEY.test(w.replace(/[.,!?]$/, '')) ? `<span class="hl">${w}</span>` : w).join(' ') + '</span>';
+  }
+  if (i >= 0) {
+    const ln = cap.firstChild, k = prog(t, CHUNKS[i].t0, .16);
+    ln.style.transform = `scale(${lerp(.82, 1, back(k)).toFixed(4)})`; ln.style.opacity = Math.min(1, k * 2).toFixed(3);
+  }
+}
+
+/* ───── overlays: location tag, name tag, brand tab, flash ───── */
+function gOverlays(t) {
+  const loc = $('#loc'), on = t >= 3.15 && t < 8.6;
+  set(loc, 'display', on ? 'block' : 'none');
+  if (on) { anim(loc, t, 3.15, .35, 'left', 60); if (t > 8.25) set(loc, 'opacity', (1 - prog(t, 8.25, .3)).toFixed(3)); }
+  const nm = $('#name'), on2 = t >= 12.05 && t < 13.55;
+  set(nm, 'display', on2 ? 'block' : 'none');
+  if (on2) { anim($('#nameA'), t, 12.08, .3, 'left', 90); anim($('#nameB'), t, 12.25, .3, 'left', 90); }
+  set($('#tab'), 'opacity', (t >= 46.3 ? 0 : 1).toString());
+  let f = 0;
+  for (const s of SHOTS) if (s.tin === 'flash' && t >= s.t0 && t < s.t0 + .3) f = Math.max(f, 1 - easeOut(prog(t, s.t0, .3)));
+  set($('#flash'), 'opacity', (f * .9).toFixed(3));
+}
+
+/* ───── render ───── */
+function render(t) {
+  for (let i = 0; i < SHOTS.length; i++) {
+    const s = SHOTS[i], next = SHOTS[i + 1];
+    const outD = next ? TD[next.tin || 'cut'][0] : 0;
+    const vis = t >= s.t0 && t < (next ? next.t0 : s.t1);
+    if (s.el.__vis !== vis) { s.el.__vis = vis; s.el.style.display = vis ? 'block' : 'none'; }
+    if (!vis) continue;
+    if (s.img) placeMedia(s, t);
+    if (s.graphic) GRAPH[s.graphic](t);
+    const { tr, blur } = transitionStyle(s, next, t);
+    set(s.el, 'transform', tr);
+    set(s.el, 'filter', blur > .3 ? `blur(${blur.toFixed(1)}px)` : 'none');
+    void outD;
+  }
+  gKin(t); gCap(t); gOverlays(t);
+}
+async function seek(t) { pending.length = 0; render(t); await Promise.all(pending.splice(0)); }
+
+function fit() { const s = Math.min(innerWidth / W, innerHeight / H); $('#stage').style.transform = `translate(-50%,-50%) scale(${s})`; }
+addEventListener('resize', fit); fit();
+
+// preview playback (with sound if the mix is next to the page)
+let playing = false, t0 = 0, c0 = 0; const au = new Audio('../build/mix.wav');
+function loop() { if (playing) { const t = t0 + (performance.now() / 1000 - c0); if (t >= DUR) { playing = false; au.pause(); } render(Math.min(t, DUR)); } requestAnimationFrame(loop); }
+addEventListener('keydown', e => { if (e.key === ' ') { playing = !playing; if (playing) { c0 = performance.now() / 1000; au.currentTime = t0; au.play().catch(() => {}); } else { t0 += performance.now() / 1000 - c0; au.pause(); } } });
+window.R = { seek, DUR, FPS, CHUNKS, SHOTS: SHOTS.map(({ t0, t1, tin }) => ({ t0, t1, tin })) };
+const params = new URLSearchParams(location.search);
+(document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { if (params.has('t')) seek(+params.get('t')); else render(0); if (!params.has('render')) requestAnimationFrame(loop); });
+})();
+</script>
+</body>
+</html>

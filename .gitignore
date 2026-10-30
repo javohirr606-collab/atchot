@@ -1,3 +1,5 @@
 node_modules/
 .mix.wav
 .DS_Store
+reels/azamatjon/src/frames
+reels/azamatjon/build/
