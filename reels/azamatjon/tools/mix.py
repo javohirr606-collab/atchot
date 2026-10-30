@@ -9,7 +9,7 @@ A = os.path.join(ROOT, 'src', 'assets', 'audio')
 OUT = os.path.join(ROOT, 'build')
 os.makedirs(OUT, exist_ok=True)
 SR = 48000
-DUR = 52.5
+DUR = 55.5
 VO_AT = 0.3
 rng = np.random.default_rng(7)
 
@@ -57,8 +57,8 @@ vo = load(os.path.join(A, 'vo.mp3'), vo_chain)
 voice = np.zeros((N, 2)); place(voice, vo, VO_AT)
 
 # speech spans (narration time) for ducking
-SPEECH = [(0.07, 1.98), (2.47, 8.02), (8.51, 12.94), (13.40, 21.52), (21.86, 30.42), (30.76, 36.88),
-          (37.19, 38.38), (38.58, 40.05), (40.40, 43.02), (43.35, 45.72), (46.13, 48.42)]
+SPEECH = [(0.07, 1.91), (2.49, 8.04), (8.75, 13.11), (13.64, 21.74), (22.02, 30.23), (30.60, 36.58),
+          (36.95, 38.15), (38.30, 39.63), (39.90, 43.09), (43.44, 46.01), (46.35, 48.78), (49.13, 51.30)]
 SPEECH = [(a + VO_AT, b + VO_AT) for a, b in SPEECH]
 
 
@@ -73,22 +73,22 @@ def duck_points(t_from, t_to, under, gap, start_level):
     return pts
 
 
-# ── bed 1: percussion, 0 → 37.5 s ──
+# ── bed 1: percussion, 0 → 37.6 s ──
 perc = load(os.path.join(A, 'music_percussion.mp3'))
 perc = perc[int(0.9 * SR):]
 bus_p = np.zeros((N, 2)); place(bus_p, perc, 0.0)
 pts = duck_points(0.0, 37.0, -13, -8, -4)
-pts = [p for p in pts if p[0] < 37.0] + [(37.0, -13), (37.55, -60), (DUR, -60)]
+pts = [p for p in pts if p[0] < 37.0] + [(37.0, -13), (37.6, -60), (DUR, -60)]
 bus_p *= envelope(pts)
 bus_p[: int(.03 * SR)] *= np.linspace(0, 1, int(.03 * SR))[:, None]
 
 # ── bed 2: Evergreen. Its first band entry (16.10 s in the file) lands on "Bu — talabalarimizning…" (43.65 s) ──
-DROP = 43.65
+DROP = 46.65
 eg = load(os.path.join(A, 'music_evergreen.mp3'))
 bus_e = np.zeros((N, 2)); place(bus_e, eg, DROP - 16.10)
-pre = [(0, -80), (36.95, -80), (37.6, 3), (DROP - .02, 3)]
-post = duck_points(DROP, 48.8, -12, -8, -12)
-end = [(49.4, -5), (51.2, -5), (52.45, -40)]
+pre = [(0, -80), (36.95, -80), (37.7, 3), (DROP - .02, 3)]
+post = duck_points(DROP, 51.7, -12, -8, -12)
+end = [(52.3, -5), (54.2, -5), (55.45, -40)]
 bus_e *= envelope(pre + post + end)
 
 # ── SFX (synthesized) ──
@@ -165,23 +165,25 @@ def chime(level=-16):
     return np.stack([y, y * .96], 1)
 
 
-SHOT_IN = [(2.55, 'whip'), (5.0, 'zoom'), (8.6, 'flash'), (10.7, 'whip'), (13.55, 'zoom'), (16.75, 'whip'),
-           (22.1, 'zoom'), (26.38, 'whip'), (30.85, 'whip'), (37.3, 'slide'), (40.5, 'zoom'), (48.9, 'slide')]
+SHOT_IN = [(2.6, 'whip'), (5.0, 'zoom'), (8.75, 'flash'), (10.9, 'whip'), (13.75, 'zoom'), (16.78, 'whip'),
+           (22.25, 'zoom'), (26.35, 'whip'), (30.85, 'whip'), (37.1, 'slide'), (43.6, 'zoom'), (51.9, 'slide')]
 for tt, kind in SHOT_IN:
     w = whoosh(.38 if kind != 'slide' else .55, level=-15 if kind != 'flash' else -19)
     place(sfx, w, tt - .22)
 place(sfx, boom(-9), 0.04)                       # hook
 place(sfx, pop(-17, 1200), 3.15)                 # location tag
-place(sfx, whoosh(.3, 600, 4000, -20), 11.95)    # name tag
+place(sfx, whoosh(.3, 600, 4000, -20), 12.1)     # name tag
 place(sfx, boom(-12, 90, 40, .8), 32.6)          # 1+2+1 card
-for tt in (32.78, 33.28, 33.82):
+for tt in (32.75, 33.75, 34.25):
     place(sfx, pop(-13, 660), tt); place(sfx, boom(-17, 130, 60, .35), tt)
-place(sfx, boom(-14, 100, 45, .8), 37.3)
+place(sfx, boom(-14, 100, 45, .8), 37.1)
+for tt in (37.3, 38.62, 40.45):                  # years appear
+    place(sfx, pop(-18, 990), tt)
 place(sfx, riser(1.75, -17), DROP - 1.75)        # into the drop
 place(sfx, boom(-6), DROP)
-place(sfx, whoosh(.5, 300, 2500, -14), 46.08)    # logo
-place(sfx, boom(-10, 100, 42, 1.0), 46.3)
-place(sfx, chime(-19), 46.5)
+place(sfx, whoosh(.5, 300, 2500, -14), 48.98)    # logo
+place(sfx, boom(-10, 100, 42, 1.0), 49.2)
+place(sfx, chime(-19), 49.4)
 
 mix = voice + bus_p + bus_e + sfx
 raw = os.path.join(OUT, 'mix_raw.f32')
