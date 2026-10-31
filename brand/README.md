@@ -61,7 +61,16 @@ Oddiy, qatʼiy, standart piktogrammalarga oʻxshash chiziqli ikonalar; bitta to�
 
 - Shior (paketlarda): «Kelajak quramiz».
 - Qabul: `qabul.aifu.uz` · 78 555-21-21. Instagram: `@aifu.uz`. Sayt: `www.aifu.uz`.
-- Imlo: oʻ, gʻ uchun ʻ (U+02BB), tutuq belgisi uchun ʼ (U+02BC). Kirill harfi yoʻq.
+- Imlo — **yangi oʻzbek alifbosi** (dizayndagi barcha matnlar uchun):
+
+  | Eski | Yangi | Misol |
+  |---|---|---|
+  | Oʻ oʻ | Ö ö | yoʻnalish → yönaliş |
+  | Gʻ gʻ | Ğ ğ | gʻoya → ğoya |
+  | Sh sh | Ş ş | ishlab → işlab |
+  | Ch ch | Ç ç | uchun → uçun |
+
+  Tutuq belgisi ʼ (U+02BC) va «ng» oʻzgarmaydi («maʼlumot», «sönggi»). Logolardagi va xorijiy nomlar (TÜBİTAK, Balıkesir Üniversitesi) asl yozuvida qoladi. Kirill harfi yoʻq. Helvetica va Inter (latin-ext) bu harflarni qoʻllaydi.
 - Dasturlar haqida maʼlum faktlar: 1+2+1 xalqaro dastur (1 yil Toshkent, 2 yil Xitoy, 1 yil AIFU), «25 ta grant» va «Xitoyda 1 yilgacha taʼlim» (2024 gid namunalaridan — ishlatishdan oldin dolzarbligini tekshiring).
 
 ## Stil yoʻnalishlari (2026 tadqiqoti, doskada)

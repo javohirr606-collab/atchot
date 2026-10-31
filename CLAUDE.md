@@ -8,4 +8,4 @@ Har qanday AIFU dizaynidan oldin `brand/README.md` ni oʻqing — u brend gidida
 - Shrift: Helvetica (Bold/Regular/Light) → zaxira Inter.
 - Logo: `brand/logos/` dagi fayllar, proporsiya va rang oʻzgartirilmaydi; pushti fonda oq plashka ustida.
 - Stil elementi: qalqon/ark shakli (tepasi tekis, pasti yarim doira).
-- Imlo: ʻ (U+02BB) va ʼ (U+02BC).
+- Imlo: dizayndagi barcha matnlar **yangi oʻzbek alifbosida**: Oʻ oʻ → Ö ö, Gʻ gʻ → Ğ ğ, Sh sh → Ş ş, Ch ch → Ç ç (masalan: «yönalişlar», «Ilğor», «işlab çiqariş», «uçun»). Tutuq belgisi ʼ (U+02BC) oʻzgarmaydi («maʼlumot», «taʼlim»). Ng oʻzgarmaydi. Logolardagi va xorijiy nomlar asl yozuvida qoladi.
