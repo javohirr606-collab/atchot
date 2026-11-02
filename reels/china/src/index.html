@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Keyingi bekat Xitoy</title>
+<style>
+/* 1080×1920 reel. Brand: #FF0158, #002E60, white; Inter. */
+:root { --navy:#002E60; --red:#FF0158; --font:"AIFU Sans","Helvetica Neue",Helvetica,Arial,sans-serif; }
+@font-face { font-family:"AIFU Sans"; font-weight:400; font-display:block; src:url(assets/fonts/inter-latin-400-normal.woff2) format("woff2"); unicode-range:U+0000-00FF,U+02BB-02BC,U+2000-206F,U+2212; }
+@font-face { font-family:"AIFU Sans"; font-weight:400; font-display:block; src:url(assets/fonts/inter-latin-ext-400-normal.woff2) format("woff2"); unicode-range:U+0100-02BA,U+02BD-02FF; }
+@font-face { font-family:"AIFU Sans"; font-weight:500; font-display:block; src:url(assets/fonts/inter-latin-500-normal.woff2) format("woff2"); unicode-range:U+0000-00FF,U+02BB-02BC,U+2000-206F,U+2212; }
+@font-face { font-family:"AIFU Sans"; font-weight:500; font-display:block; src:url(assets/fonts/inter-latin-ext-500-normal.woff2) format("woff2"); unicode-range:U+0100-02BA,U+02BD-02FF; }
+@font-face { font-family:"AIFU Sans"; font-weight:700; font-display:block; src:url(assets/fonts/inter-latin-700-normal.woff2) format("woff2"); unicode-range:U+0000-00FF,U+02BB-02BC,U+2000-206F,U+2212; }
+@font-face { font-family:"AIFU Sans"; font-weight:700; font-display:block; src:url(assets/fonts/inter-latin-ext-700-normal.woff2) format("woff2"); unicode-range:U+0100-02BA,U+02BD-02FF; }
+
+html,body { margin:0; height:100%; background:#000; overflow:hidden; }
+#stage { position:absolute; left:50%; top:50%; width:1080px; height:1920px; overflow:hidden; background:#000;
+  transform-origin:50% 50%; font-family:var(--font); color:#fff; -webkit-font-smoothing:antialiased; }
+#stage * { box-sizing:border-box; }
+.abs { position:absolute; }
+#media { position:absolute; inset:0; overflow:hidden; }
+#media img { position:absolute; left:0; top:0; width:1080px; height:1920px; transform-origin:50% 50%; filter:contrast(1.06) saturate(1.12); }
+#dark { position:absolute; inset:0; background:#00142e; opacity:0; }
+#grad { position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,0) 14%, rgba(0,0,0,0) 48%, rgba(0,8,24,.55) 100%); }
+
+.layer { position:absolute; left:0; top:0; width:1080px; height:1920px; display:none; }
+.cap { font-weight:700; letter-spacing:-.03em; line-height:.96; white-space:nowrap; text-transform:uppercase; }
+.lbl { font-size:44px; font-weight:500; letter-spacing:-.005em; color:rgba(255,255,255,.9); white-space:nowrap; }
+.sm { font-size:40px; font-weight:400; line-height:1.25; color:rgba(255,255,255,.88); }
+.red { color:var(--red); text-shadow:0 4px 34px rgba(0,0,0,.65), 0 0 2px rgba(0,0,0,.3); }
+.echo { position:absolute; left:0; top:0; color:transparent; -webkit-text-stroke:2.5px rgba(255,255,255,.85); }
+.chip { display:inline-flex; align-items:center; gap:16px; padding:0 30px; height:86px; font-size:44px; font-weight:700; white-space:nowrap; }
+.tick { width:44px; height:44px; flex:none; }
+.shadow { text-shadow:0 4px 24px rgba(0,0,0,.45); }
+
+#tab { position:absolute; left:64px; top:0; width:112px; height:128px; background:#fff; z-index:40; }
+#tab img { position:absolute; left:16px; top:26px; width:80px; }
+#flash { position:absolute; inset:0; background:#fff; opacity:0; z-index:50; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="media"><img id="imA" alt=""><img id="imB" alt=""></div>
+  <div id="dark"></div>
+  <div id="grad"></div>
+
+  <!-- hook -->
+  <div class="layer" id="Lhook">
+    <div class="abs" style="left:72px;top:1040px;">
+      <div class="lbl shadow" id="hk1" style="font-size:56px;font-weight:700;letter-spacing:.02em;">KEYINGI BEKAT —</div>
+    </div>
+    <div class="abs" id="hkWrap" style="left:66px;top:1130px;width:960px;height:520px;">
+      <div class="cap echo" id="hkE1" style="font-size:230px;">XITOY</div>
+      <div class="cap echo" id="hkE2" style="font-size:230px;">XITOY</div>
+      <div class="cap echo" id="hkE3" style="font-size:230px;">XITOY</div>
+      <div class="cap echo" id="hkE4" style="font-size:230px;">XITOY</div>
+      <div class="cap red" id="hkM" style="position:absolute;left:0;top:0;font-size:230px;">XITOY</div>
+    </div>
+  </div>
+
+  <!-- montage tag -->
+  <div class="layer" id="Lloc">
+    <div class="abs" id="loc" style="left:72px;top:250px;"><span class="chip" style="background:var(--navy);"><svg width="34" height="46" viewBox="0 0 24 32"><path d="M12 0C5.4 0 0 5.2 0 11.7 0 20.5 12 32 12 32s12-11.5 12-20.3C24 5.2 18.6 0 12 0zm0 16.5a4.8 4.8 0 1 1 0-9.6 4.8 4.8 0 0 1 0 9.6z" fill="#FF0158"/></svg>Chunsin, Xitoy</span></div>
+  </div>
+
+  <!-- value 1 -->
+  <div class="layer" id="L1">
+    <div class="abs lbl shadow" id="v1a" style="left:72px;top:900px;">Professor-oʻqituvchilar uchun</div>
+    <div class="abs cap red" id="v1b" style="left:66px;top:980px;font-size:200px;">15 kunlik</div>
+    <div class="abs cap shadow" id="v1c" style="left:68px;top:1190px;font-size:104px;">xalqaro malaka</div>
+    <div class="abs cap shadow" id="v1d" style="left:68px;top:1295px;font-size:104px;">oshirish</div>
+  </div>
+
+  <!-- value 2: AI -->
+  <div class="layer" id="L2">
+    <div class="abs lbl shadow" id="v2a" style="left:72px;top:820px;">Dars va ilmiy ish uchun</div>
+    <div class="abs cap shadow" id="v2b" style="left:66px;top:900px;font-size:150px;">Sunʼiy</div>
+    <div class="abs cap red" id="v2c" style="left:66px;top:1045px;font-size:150px;">intellekt</div>
+    <div class="abs" id="v2d" style="left:72px;top:1240px;"><span class="chip" style="background:#fff;color:var(--navy);">Poster</span></div>
+    <div class="abs" id="v2e" style="left:72px;top:1346px;"><span class="chip" style="background:#fff;color:var(--navy);">Koʻp tilli matn</span></div>
+    <div class="abs" id="v2f" style="left:72px;top:1452px;"><span class="chip" style="background:var(--red);">Video</span></div>
+  </div>
+
+  <!-- value 3: factories -->
+  <div class="layer" id="L3">
+    <div class="abs lbl shadow" id="v3a" style="left:72px;top:820px;">Zavodlarga tashrif</div>
+    <div class="abs cap red" id="v3b" style="left:62px;top:890px;font-size:230px;letter-spacing:-.02em;">BYD</div>
+    <div class="abs cap shadow" id="v3c" style="left:68px;top:1120px;font-size:84px;">FinDreams Battery</div>
+    <div class="abs cap shadow" id="v3d" style="left:68px;top:1215px;font-size:84px;">+ Seres</div>
+    <div class="abs sm shadow" id="v3e" style="left:72px;top:1330px;width:900px;">Yangi energiyali avtomobillar qanday ishlab chiqariladi — oʻz koʻzingiz bilan</div>
+  </div>
+
+  <!-- value 4: seminar -->
+  <div class="layer" id="L4">
+    <div class="abs lbl shadow" id="v4a" style="left:72px;top:860px;">Qoʻshma seminar</div>
+    <div class="abs cap shadow" id="v4b" style="left:66px;top:940px;font-size:132px;">Oʻzbekiston</div>
+    <div class="abs cap red" id="v4c" style="left:66px;top:1070px;font-size:132px;">× Xitoy</div>
+    <div class="abs sm shadow" id="v4d" style="left:72px;top:1240px;width:900px;">Xalqaro jamoa bilan amaliy loyiha ustida ishlash</div>
+  </div>
+
+  <!-- value 5: certificate -->
+  <div class="layer" id="L5">
+    <div class="abs lbl shadow" id="v5a" style="left:72px;top:660px;">Yakunda —</div>
+    <div class="abs" id="v5card" style="left:72px;top:740px;width:936px;height:600px;background:#fff;color:var(--navy);">
+      <div class="abs" style="left:0;top:0;width:100%;height:16px;background:var(--red);"></div>
+      <div class="abs" style="left:56px;top:70px;font-size:34px;font-weight:500;letter-spacing:.14em;">CERTIFICATE</div>
+      <div class="abs cap" style="left:52px;top:130px;font-size:96px;">Xalqaro</div>
+      <div class="abs cap" style="left:52px;top:226px;font-size:96px;">sertifikat</div>
+      <div class="abs" style="left:56px;top:380px;width:520px;font-size:34px;font-weight:500;line-height:1.3;">Chunsin texnologiya va biznes instituti</div>
+      <div class="abs" id="v5seal" style="left:640px;top:330px;width:220px;height:220px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:62px;font-weight:700;letter-spacing:-.02em;box-shadow:0 0 0 10px #fff, 0 0 0 14px var(--red);">CTBI</div>
+    </div>
+    <div class="abs sm shadow" id="v5b" style="left:72px;top:1380px;">AIFUning xalqaro hamkori</div>
+  </div>
+
+  <!-- dates -->
+  <div class="layer" id="L6">
+    <div class="abs cap shadow" id="v6a" style="left:66px;top:880px;font-size:150px;">20-noyabr</div>
+    <div class="abs cap red" id="v6b" style="left:66px;top:1030px;font-size:150px;">4-dekabr</div>
+    <div class="abs lbl shadow" id="v6c" style="left:72px;top:1210px;">Chunsin, Xitoy</div>
+  </div>
+
+  <!-- all inclusive -->
+  <div class="layer" id="L7">
+    <div class="abs cap red" id="v7a" style="left:66px;top:620px;font-size:132px;">All inclusive</div>
+    <div class="abs" id="v7list" style="left:72px;top:820px;"></div>
+  </div>
+
+  <!-- price -->
+  <div class="layer" id="L8">
+    <div class="abs lbl shadow" id="v8a" style="left:72px;top:820px;">Hammasi shu narxda</div>
+    <div class="abs cap shadow" id="v8b" style="left:52px;top:890px;font-size:330px;letter-spacing:-.05em;">$950</div>
+  </div>
+
+  <!-- CTA -->
+  <div class="layer" id="L9">
+    <div class="abs" id="v9a" style="left:72px;top:640px;"><span class="chip" style="background:var(--red);height:110px;font-size:62px;padding:0 40px;">10 ta joy qoldi</span></div>
+    <div class="abs lbl shadow" id="v9b" style="left:72px;top:820px;">Joy band qilish:</div>
+    <div class="abs" id="v9c" style="left:72px;top:890px;"><span class="chip" style="background:#fff;color:var(--navy);height:118px;font-size:66px;padding:0 40px;gap:22px;"><svg width="64" height="64" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#229ED9"/><path d="M5.4 11.7l11.6-4.5c.5-.2 1 .1.8.9l-2 9.3c-.1.6-.5.8-1 .5l-3-2.2-1.4 1.4c-.2.2-.3.3-.6.3l.2-3.1 5.6-5.1c.2-.2 0-.3-.4-.1l-6.9 4.4-3-.9c-.6-.2-.6-.6.1-.9z" fill="#fff"/></svg>@China_programm</span></div>
+    <div class="abs" id="v9d" style="left:72px;top:1180px;display:flex;align-items:center;gap:30px;">
+      <div style="width:150px;height:150px;border-radius:50%;background:#fff;position:relative;flex:none;"><img src="assets/logo.png" alt="AIFU" style="position:absolute;left:24px;top:22px;width:102px;"></div>
+      <div style="font-size:44px;font-weight:700;line-height:1.15;">Aniq va ijtimoiy<br>fanlar universiteti</div>
+    </div>
+    <div class="abs sm" id="v9e" style="left:72px;top:1360px;font-size:34px;color:rgba(255,255,255,.75);">CTBI bilan hamkorlikda</div>
+  </div>
+
+  <div id="tab"><img src="assets/logo.png" alt="AIFU"></div>
+  <div id="flash"></div>
+</div>
+
+<script src="shots.js"></script>
+<script>
+(() => {
+'use strict';
+const W = 1080, H = 1920, FPS = 30;
+const { DUR, SHOTS } = window.EDIT;
+const NFR = {};   // frames available per shot (filled lazily from failed loads is overkill; known counts suffice)
+
+const $ = s => document.querySelector(s);
+const clamp01 = x => x < 0 ? 0 : x > 1 ? 1 : x;
+const prog = (t, t0, d) => d <= 0 ? (t >= t0 ? 1 : 0) : clamp01((t - t0) / d);
+const easeOut = x => 1 - Math.pow(1 - x, 3);
+const easeIn = x => x * x * x;
+const easeInOut = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const back = x => { const c1 = 1.9, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+const lerp = (a, b, k) => a + (b - a) * k;
+const set = (el, p, v) => { const c = el.__c || (el.__c = {}); if (c[p] !== v) { c[p] = v; el.style[p] = v; } };
+const pending = [];
+function setSrc(img, src) { if (img.__src === src) return; img.__src = src; img.src = src; pending.push(img.decode().catch(() => {})); }
+
+/* ───── footage ───── */
+const imA = $('#imA'), imB = $('#imB');
+const COUNT = { 0:88,1:18,2:19,3:18,4:19,5:18,6:19,7:46,8:46,9:32,10:33,11:32,12:32,13:32,14:32,15:32,16:32,17:32,18:88,19:19,20:18,21:19,22:18,23:108,24:60,25:126 };
+function frameSrc(i, t) {
+  const s = SHOTS[i]; const n = Math.min(COUNT[i] || 1, Math.max(1, Math.floor((t - s.t0) * FPS + 1e-6) + 1));
+  return `frames/s${String(i).padStart(2, '0')}/${String(n).padStart(4, '0')}.jpg`;
+}
+function shotAt(t) { let k = 0; SHOTS.forEach((s, i) => { if (t >= s.t0) k = i; }); return k; }
+function renderMedia(t) {
+  const i = shotAt(t), s = SHOTS[i];
+  setSrc(imA, frameSrc(i, t));
+  const k = easeInOut(prog(t, s.t0, s.t1 - s.t0));
+  let z = lerp(s.z0, s.z1, k);
+  // beat cuts get a short punch-in, section changes a zoom-blur in
+  const fast = s.t1 - s.t0 < .6, sinceCut = t - s.t0;
+  let blur = 0;
+  if (!fast && i > 0 && sinceCut < .2) { const e = easeOut(prog(t, s.t0, .2)); z *= lerp(1.18, 1, e); blur = (1 - e) * 14; }
+  if (fast) z *= lerp(1.06, 1, easeOut(prog(t, s.t0, .25)));
+  set(imA, 'transform', `scale(${z.toFixed(4)})`);
+  set(imA, 'filter', `contrast(1.06) saturate(1.12)${blur > .3 ? ` blur(${blur.toFixed(1)}px)` : ''}`);
+  set(imB, 'display', 'none');
+  set($('#dark'), 'opacity', String(s.dark || 0));
+}
+
+/* ───── text animation helpers ───── */
+function show(el, on) { set(el, 'display', on ? 'block' : 'none'); }
+function inUp(el, t, t0, d = .35, dist = 70) { const k = prog(t, t0, d), e = easeOut(k); set(el, 'opacity', (t < t0 ? 0 : Math.min(1, k * 1.8)).toFixed(3)); set(el, 'transform', `translate3d(0,${((1 - e) * dist).toFixed(1)}px,0)`); }
+function inLeft(el, t, t0, d = .32, dist = 120) { const k = prog(t, t0, d), e = easeOut(k); set(el, 'opacity', (t < t0 ? 0 : Math.min(1, k * 1.8)).toFixed(3)); set(el, 'transform', `translate3d(${(-(1 - e) * dist).toFixed(1)}px,0,0)`); }
+function inPop(el, t, t0, d = .32) { const k = prog(t, t0, d); set(el, 'opacity', (t < t0 ? 0 : Math.min(1, k * 2)).toFixed(3)); set(el, 'transform', `scale(${(t < t0 ? .5 : lerp(.5, 1, back(k))).toFixed(4)})`); set(el, 'transformOrigin', '0 50%'); }
+function outWhip(el, t, t1, d = .14) { if (t < t1 - d) return; const k = easeIn(prog(t, t1 - d, d)); const tr = el.style.transform || ''; set(el, 'transform', `translate3d(${(-k * 500).toFixed(1)}px,0,0) ${tr.includes('translate') ? '' : tr}`); set(el, 'opacity', (1 - k).toFixed(3)); }
+
+/* ───── sections ───── */
+const L = id => $('#' + id);
+const SECT = [
+  ['Lhook', 0, 2.80], ['Lloc', 2.95, 5.55], ['L1', 5.59, 8.37], ['L2', 8.37, 11.16], ['L3', 11.16, 13.95], ['L4', 13.95, 16.74],
+  ['L5', 16.74, 19.52], ['L6', 19.52, 21.38], ['L7', 21.38, 25.10], ['L8', 25.10, 26.95], ['L9', 26.95, 99],
+];
+const INCL = ['Aviachipta', 'Yashash joyi', 'Uch mahal ovqat', 'Ekskursiyalar', 'Sugʻurta'];
+$('#v7list').innerHTML = INCL.map((x, i) => `<div id="inc${i}" style="display:flex;align-items:center;gap:24px;height:112px;font-size:66px;font-weight:700;letter-spacing:-.02em;">
+  <svg class="tick" viewBox="0 0 24 24" style="width:58px;height:58px"><rect width="24" height="24" fill="#FF0158"/><path d="M6 12.5l4 4 8-9" fill="none" stroke="#fff" stroke-width="2.8"/></svg>${x}</div>`).join('');
+const INCL_T = [21.85, 22.31, 22.78, 23.24, 23.71];
+
+function texts(t) {
+  for (const [id, a, b] of SECT) {
+    const el = L(id), on = t >= a && t < b; show(el, on);
+    if (on) { const k = (b < 90 && t > b - .12) ? easeIn(prog(t, b - .12, .12)) : 0; set(el, 'transform', `translate3d(${(-k * 420).toFixed(1)}px,0,0)`); set(el, 'opacity', (1 - k).toFixed(3)); set(el, 'filter', k > .05 ? `blur(${(k * 16).toFixed(1)}px)` : 'none'); }
+  }
+  // hook: "KEYINGI BEKAT —", then XITOY with stacked outline echoes
+  inLeft($('#hk1'), t, .35, .4, 80);
+  inUp($('#hkM'), t, 1.55, .3, 90);
+  ['hkE1', 'hkE2', 'hkE3', 'hkE4'].forEach((id, i) => {
+    const el = $('#' + id), t0 = 1.62 + i * .07, k = easeOut(prog(t, t0, .3));
+    set(el, 'opacity', (t < t0 ? 0 : (.9 - i * .17) * Math.min(1, prog(t, t0, .1) * 3)).toFixed(3));
+    set(el, 'transform', `translate3d(0,${((i + 1) * 92 * k).toFixed(1)}px,0)`);
+  });
+  inLeft($('#loc'), t, 2.95, .3, 80);
+  // value 1
+  inUp($('#v1a'), t, 5.65, .3, 40); inPop($('#v1b'), t, 5.9); inUp($('#v1c'), t, 6.35); inUp($('#v1d'), t, 6.55);
+  // value 2
+  inUp($('#v2a'), t, 8.42, .3, 40); inUp($('#v2b'), t, 8.6); inUp($('#v2c'), t, 8.8);
+  inPop($('#v2d'), t, 9.30, .28); inPop($('#v2e'), t, 9.77, .28); inPop($('#v2f'), t, 10.23, .28);
+  // value 3
+  inUp($('#v3a'), t, 11.2, .3, 40); inPop($('#v3b'), t, 11.32); inUp($('#v3c'), t, 11.85); inUp($('#v3d'), t, 12.31); inUp($('#v3e'), t, 12.9, .4, 40);
+  // value 4
+  inUp($('#v4a'), t, 14.0, .3, 40); inLeft($('#v4b'), t, 14.1, .35); inLeft($('#v4c'), t, 14.56, .35); inUp($('#v4d'), t, 15.1, .4, 40);
+  // value 5
+  inUp($('#v5a'), t, 16.8, .3, 40);
+  { const el = $('#v5card'), k = easeOut(prog(t, 17.0, .5)); set(el, 'opacity', (t < 17 ? 0 : Math.min(1, k * 1.6)).toFixed(3)); set(el, 'transform', `translate3d(0,${((1 - k) * 160).toFixed(1)}px,0) rotate(${((1 - k) * -4).toFixed(2)}deg)`); }
+  { const el = $('#v5seal'), k = prog(t, 17.65, .35); set(el, 'transform', `scale(${(t < 17.65 ? 0 : lerp(1.8, 1, back(k))).toFixed(4)}) rotate(${((1 - easeOut(k)) * -25).toFixed(1)}deg)`); set(el, 'opacity', (t < 17.65 ? 0 : 1).toString()); }
+  inUp($('#v5b'), t, 18.1, .35, 30);
+  // dates
+  inLeft($('#v6a'), t, 19.55, .3); inLeft($('#v6b'), t, 20.0, .3); inUp($('#v6c'), t, 20.45, .3, 30);
+  // all inclusive
+  inUp($('#v7a'), t, 21.42, .35);
+  INCL_T.forEach((t0, i) => inLeft($('#inc' + i), t, t0, .28, 90));
+  // price
+  inUp($('#v8a'), t, 25.15, .3, 40);
+  { const el = $('#v8b'), k = prog(t, 25.32, .38); set(el, 'opacity', (t < 25.32 ? 0 : 1).toString()); set(el, 'transform', `scale(${(t < 25.32 ? 1.6 : lerp(1.6, 1, back(k))).toFixed(4)})`); set(el, 'transformOrigin', '0 60%'); }
+  // CTA
+  { const el = $('#v9a'); inPop(el, t, 27.0, .32); if (t > 27.4) set(el, 'transform', `scale(${(1 + .035 * Math.max(0, Math.sin((t - 27.4) * Math.PI * 2 / .9288))).toFixed(4)})`); }
+  inUp($('#v9b'), t, 27.45, .3, 40); inUp($('#v9c'), t, 27.6, .35, 50); inUp($('#v9d'), t, 28.2, .4, 40); inUp($('#v9e'), t, 28.45, .4, 30);
+  // flash on the drop and on the price
+  let f = 0; for (const t0 of [2.80, 25.32]) if (t >= t0 && t < t0 + .25) f = Math.max(f, 1 - easeOut(prog(t, t0, .25)));
+  set($('#flash'), 'opacity', (f * .85).toFixed(3));
+}
+
+function render(t) { renderMedia(t); texts(t); }
+async function seek(t) { pending.length = 0; render(t); await Promise.all(pending.splice(0)); }
+function fit() { const s = Math.min(innerWidth / W, innerHeight / H); $('#stage').style.transform = `translate(-50%,-50%) scale(${s})`; }
+addEventListener('resize', fit); fit();
+let playing = false, t0 = 0, c0 = 0; const au = new Audio('../build/mix.wav');
+function loop() { if (playing) { const t = t0 + (performance.now() / 1000 - c0); if (t >= DUR) { playing = false; au.pause(); } render(Math.min(t, DUR)); } requestAnimationFrame(loop); }
+addEventListener('keydown', e => { if (e.key === ' ') { playing = !playing; if (playing) { c0 = performance.now() / 1000; au.currentTime = t0; au.play().catch(() => {}); } else { t0 += performance.now() / 1000 - c0; au.pause(); } } });
+window.R = { seek, DUR, FPS };
+const params = new URLSearchParams(location.search);
+(document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { if (params.has('t')) seek(+params.get('t')); else render(0); if (!params.has('render')) requestAnimationFrame(loop); });
+})();
+</script>
+</body>
+</html>
