@@ -26,8 +26,8 @@ html,body { margin:0; height:100%; background:#000; overflow:hidden; }
 
 .layer { position:absolute; left:0; top:0; width:1080px; height:1920px; display:none; }
 .cap { font-weight:700; letter-spacing:-.03em; line-height:.96; white-space:nowrap; text-transform:uppercase; }
-.lbl { font-size:44px; font-weight:500; letter-spacing:-.005em; color:rgba(255,255,255,.9); white-space:nowrap; }
-.sm { font-size:40px; font-weight:400; line-height:1.25; color:rgba(255,255,255,.88); }
+.lbl { font-size:52px; font-weight:500; letter-spacing:-.005em; color:rgba(255,255,255,.9); white-space:nowrap; }
+.sm { font-size:46px; font-weight:400; line-height:1.25; color:rgba(255,255,255,.88); }
 .red { color:var(--red); text-shadow:0 4px 34px rgba(0,0,0,.65), 0 0 2px rgba(0,0,0,.3); }
 .echo { position:absolute; left:0; top:0; color:transparent; -webkit-text-stroke:2.5px rgba(255,255,255,.85); }
 .chip { display:inline-flex; align-items:center; gap:16px; padding:0 30px; height:86px; font-size:44px; font-weight:700; white-space:nowrap; }
@@ -36,6 +36,15 @@ html,body { margin:0; height:100%; background:#000; overflow:hidden; }
 
 #tab { position:absolute; left:64px; top:0; width:112px; height:128px; background:#fff; z-index:40; }
 #tab img { position:absolute; left:16px; top:26px; width:80px; }
+/* metro hook */
+#station { position:absolute; inset:0; background:#0d2a52; display:none; }
+#car { position:absolute; inset:0; transform-origin:540px 975px; z-index:5; display:none; }
+.wall { position:absolute; background:linear-gradient(180deg,#eef1f5,#d4d9e0); }
+.door { position:absolute; top:250px; width:390px; height:1450px; background:linear-gradient(90deg,#c3cad3,#dfe4ea 45%,#b9c1cb); overflow:hidden; }
+.door .win { position:absolute; left:60px; top:130px; width:270px; height:560px; border-radius:30px; background:#081627; overflow:hidden; box-shadow:inset 0 0 0 10px #8e98a5; }
+.door .streak { position:absolute; height:6px; border-radius:3px; background:linear-gradient(90deg,rgba(255,220,150,0),rgba(255,230,180,.9),rgba(255,220,150,0)); }
+.door .rub { position:absolute; top:0; width:12px; height:100%; background:#1f2328; }
+.door .band { position:absolute; left:0; right:0; top:1310px; height:46px; background:var(--red); }
 #flash { position:absolute; inset:0; background:#fff; opacity:0; z-index:50; }
 </style>
 </head>
@@ -45,23 +54,38 @@ html,body { margin:0; height:100%; background:#000; overflow:hidden; }
   <div id="dark"></div>
   <div id="grad"></div>
 
-  <!-- hook -->
-  <div class="layer" id="Lhook">
-    <div class="abs" style="left:72px;top:1040px;">
-      <div class="lbl shadow" id="hk1" style="font-size:56px;font-weight:700;letter-spacing:.02em;">KEYINGI BEKAT —</div>
-    </div>
-    <div class="abs" id="hkWrap" style="left:66px;top:1130px;width:960px;height:520px;">
-      <div class="cap echo" id="hkE1" style="font-size:230px;">XITOY</div>
-      <div class="cap echo" id="hkE2" style="font-size:230px;">XITOY</div>
-      <div class="cap echo" id="hkE3" style="font-size:230px;">XITOY</div>
-      <div class="cap echo" id="hkE4" style="font-size:230px;">XITOY</div>
-      <div class="cap red" id="hkM" style="position:absolute;left:0;top:0;font-size:230px;">XITOY</div>
+  <!-- hook: station seen through open doors, doors close, open onto Chongqing -->
+  <div id="station">
+    <div class="abs" style="left:0;right:0;top:0;height:1500px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 2px,transparent 2px 120px),repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 2px,transparent 2px 120px),#0d2a52;"></div>
+    <div class="abs" style="left:0;right:0;top:820px;height:24px;background:var(--red);"></div>
+    <div class="abs" style="left:190px;top:560px;width:700px;height:200px;background:#fff;color:var(--navy);display:flex;align-items:center;justify-content:center;font-size:118px;font-weight:700;letter-spacing:-.02em;">TOSHKENT</div>
+    <div class="abs" style="left:0;right:0;top:1500px;bottom:0;background:#2a2f36;"></div>
+    <div class="abs" style="left:0;right:0;top:1500px;height:22px;background:repeating-linear-gradient(90deg,#f2c230 0 60px,#2a2f36 60px 80px);"></div>
+  </div>
+  <div id="car">
+    <div class="door" id="dL" style="left:150px;"><div class="win" id="wL"></div><div class="rub" style="right:0"></div><div class="band"></div></div>
+    <div class="door" id="dR" style="left:540px;"><div class="win" id="wR"></div><div class="rub" style="left:0"></div><div class="band"></div></div>
+    <div class="wall" style="left:0;top:0;width:1080px;height:250px;"></div>
+    <div class="wall" style="left:0;top:1700px;width:1080px;height:220px;"></div>
+    <div class="wall" style="left:0;top:250px;width:150px;height:1450px;"></div>
+    <div class="wall" style="left:930px;top:250px;width:150px;height:1450px;"></div>
+    <div class="abs" style="left:0;top:1560px;width:150px;height:46px;background:var(--red);"></div>
+    <div class="abs" style="left:930px;top:1560px;width:150px;height:46px;background:var(--red);"></div>
+    <div class="abs" style="left:138px;top:238px;width:804px;height:1474px;border:12px solid #9aa4b1;border-radius:6px;"></div>
+  </div>
+  <div class="layer" id="Lhook" style="z-index:6">
+    <div class="abs" id="hkAud" style="left:0;right:0;top:132px;text-align:center;"><span class="chip" style="background:var(--navy);height:80px;font-size:42px;">Professor-oʻqituvchilar uchun</span></div>
+    <div class="abs" id="hk1" style="left:150px;width:780px;top:965px;text-align:center;font-size:58px;font-weight:700;letter-spacing:.02em;color:var(--navy);">KEYINGI BEKAT —</div>
+    <div class="abs" id="hkWrap" style="left:150px;top:1060px;width:780px;height:420px;">
+      <div class="cap echo" id="hkE1" style="width:780px;text-align:center;font-size:220px;-webkit-text-stroke:2.5px rgba(0,46,96,.75);">XITOY</div>
+      <div class="cap echo" id="hkE2" style="width:780px;text-align:center;font-size:220px;-webkit-text-stroke:2.5px rgba(0,46,96,.75);">XITOY</div>
+      <div class="cap red" id="hkM" style="position:absolute;left:0;top:0;width:780px;text-align:center;font-size:220px;text-shadow:none;">XITOY</div>
     </div>
   </div>
 
   <!-- montage tag -->
   <div class="layer" id="Lloc">
-    <div class="abs" id="loc" style="left:72px;top:250px;"><span class="chip" style="background:var(--navy);"><svg width="34" height="46" viewBox="0 0 24 32"><path d="M12 0C5.4 0 0 5.2 0 11.7 0 20.5 12 32 12 32s12-11.5 12-20.3C24 5.2 18.6 0 12 0zm0 16.5a4.8 4.8 0 1 1 0-9.6 4.8 4.8 0 0 1 0 9.6z" fill="#FF0158"/></svg>Chunsin, Xitoy</span></div>
+    <div class="abs" id="locIn" style="left:72px;top:250px;"><span class="chip" style="background:var(--navy);"><svg width="34" height="46" viewBox="0 0 24 32"><path d="M12 0C5.4 0 0 5.2 0 11.7 0 20.5 12 32 12 32s12-11.5 12-20.3C24 5.2 18.6 0 12 0zm0 16.5a4.8 4.8 0 1 1 0-9.6 4.8 4.8 0 0 1 0 9.6z" fill="#FF0158"/></svg>Chunsin, Xitoy</span></div>
   </div>
 
   <!-- value 1 -->
@@ -76,7 +100,7 @@ html,body { margin:0; height:100%; background:#000; overflow:hidden; }
   <div class="layer" id="L2">
     <div class="abs lbl shadow" id="v2a" style="left:72px;top:820px;">Dars va ilmiy ish uchun</div>
     <div class="abs cap shadow" id="v2b" style="left:66px;top:900px;font-size:150px;">Sunʼiy</div>
-    <div class="abs cap red" id="v2c" style="left:66px;top:1045px;font-size:150px;">intellekt</div>
+    <div class="abs cap red" id="v2c" style="left:66px;top:1045px;font-size:150px;">intellekt<svg viewBox="0 0 24 24" style="width:96px;height:96px;margin-left:18px;vertical-align:top"><path d="M12 1l2.4 7.6L22 11l-7.6 2.4L12 21l-2.4-7.6L2 11l7.6-2.4z" fill="#fff"/><path d="M20 1l.9 2.6L23.5 4.5l-2.6.9L20 8l-.9-2.6-2.6-.9 2.6-.9z" fill="#fff"/></svg></div>
     <div class="abs" id="v2d" style="left:72px;top:1240px;"><span class="chip" style="background:#fff;color:var(--navy);">Poster</span></div>
     <div class="abs" id="v2e" style="left:72px;top:1346px;"><span class="chip" style="background:#fff;color:var(--navy);">Koʻp tilli matn</span></div>
     <div class="abs" id="v2f" style="left:72px;top:1452px;"><span class="chip" style="background:var(--red);">Video</span></div>
@@ -86,9 +110,9 @@ html,body { margin:0; height:100%; background:#000; overflow:hidden; }
   <div class="layer" id="L3">
     <div class="abs lbl shadow" id="v3a" style="left:72px;top:820px;">Zavodlarga tashrif</div>
     <div class="abs cap red" id="v3b" style="left:62px;top:890px;font-size:230px;letter-spacing:-.02em;">BYD</div>
-    <div class="abs cap shadow" id="v3c" style="left:68px;top:1120px;font-size:84px;">FinDreams Battery</div>
+    <div class="abs cap shadow" id="v3c" style="left:68px;top:1120px;font-size:84px;"><svg viewBox="0 0 32 20" style="width:86px;height:54px;margin-right:18px;vertical-align:-2px"><rect x="1" y="2" width="27" height="16" rx="3" fill="none" stroke="#fff" stroke-width="2.4"/><rect x="28.5" y="7" width="2.5" height="6" rx="1" fill="#fff"/><rect x="4" y="5" width="15" height="10" rx="1.5" fill="#FF0158"/></svg>FinDreams Battery</div>
     <div class="abs cap shadow" id="v3d" style="left:68px;top:1215px;font-size:84px;">+ Seres</div>
-    <div class="abs sm shadow" id="v3e" style="left:72px;top:1330px;width:900px;">Yangi energiyali avtomobillar qanday ishlab chiqariladi — oʻz koʻzingiz bilan</div>
+    <div class="abs sm shadow" id="v3e" style="left:72px;top:1330px;width:900px;">Zamonaviy avtosanoat — oʻz koʻzingiz bilan</div>
   </div>
 
   <!-- value 4: seminar -->
@@ -96,7 +120,7 @@ html,body { margin:0; height:100%; background:#000; overflow:hidden; }
     <div class="abs lbl shadow" id="v4a" style="left:72px;top:860px;">Qoʻshma seminar</div>
     <div class="abs cap shadow" id="v4b" style="left:66px;top:940px;font-size:132px;">Oʻzbekiston</div>
     <div class="abs cap red" id="v4c" style="left:66px;top:1070px;font-size:132px;">× Xitoy</div>
-    <div class="abs sm shadow" id="v4d" style="left:72px;top:1240px;width:900px;">Xalqaro jamoa bilan amaliy loyiha ustida ishlash</div>
+    <div class="abs sm shadow" id="v4d" style="left:72px;top:1240px;width:900px;">Xalqaro jamoa bilan loyiha ustida ishlash</div>
   </div>
 
   <!-- value 5: certificate -->
@@ -134,7 +158,7 @@ html,body { margin:0; height:100%; background:#000; overflow:hidden; }
 
   <!-- CTA -->
   <div class="layer" id="L9">
-    <div class="abs" id="v9a" style="left:72px;top:640px;"><span class="chip" style="background:var(--red);height:110px;font-size:62px;padding:0 40px;">10 ta joy qoldi</span></div>
+    <div class="abs" id="v9a" style="left:72px;top:640px;"><span class="chip" style="background:var(--red);height:110px;font-size:62px;padding:0 40px;">Joylar cheklangan</span></div>
     <div class="abs lbl shadow" id="v9b" style="left:72px;top:820px;">Joy band qilish:</div>
     <div class="abs" id="v9c" style="left:72px;top:890px;"><span class="chip" style="background:#fff;color:var(--navy);height:118px;font-size:66px;padding:0 40px;gap:22px;"><svg width="64" height="64" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#229ED9"/><path d="M5.4 11.7l11.6-4.5c.5-.2 1 .1.8.9l-2 9.3c-.1.6-.5.8-1 .5l-3-2.2-1.4 1.4c-.2.2-.3.3-.6.3l.2-3.1 5.6-5.1c.2-.2 0-.3-.4-.1l-6.9 4.4-3-.9c-.6-.2-.6-.6.1-.9z" fill="#fff"/></svg>@China_programm</span></div>
     <div class="abs" id="v9d" style="left:72px;top:1180px;display:flex;align-items:center;gap:30px;">
@@ -149,6 +173,7 @@ html,body { margin:0; height:100%; background:#000; overflow:hidden; }
 </div>
 
 <script src="shots.js"></script>
+<script src="frames/counts.js"></script>
 <script>
 (() => {
 'use strict';
@@ -170,13 +195,15 @@ function setSrc(img, src) { if (img.__src === src) return; img.__src = src; img.
 
 /* ───── footage ───── */
 const imA = $('#imA'), imB = $('#imB');
-const COUNT = { 0:88,1:18,2:19,3:18,4:19,5:18,6:19,7:46,8:46,9:32,10:33,11:32,12:32,13:32,14:32,15:32,16:32,17:32,18:88,19:19,20:18,21:19,22:18,23:108,24:60,25:126 };
+const COUNT = window.FRAMECOUNT || {};
 function frameSrc(i, t) {
   const s = SHOTS[i]; const n = Math.min(COUNT[i] || 1, Math.max(1, Math.floor((t - s.t0) * FPS + 1e-6) + 1));
   return `frames/s${String(i).padStart(2, '0')}/${String(n).padStart(4, '0')}.jpg`;
 }
 function shotAt(t) { let k = 0; SHOTS.forEach((s, i) => { if (t >= s.t0) k = i; }); return k; }
 function renderMedia(t) {
+  set(imA, 'visibility', t < SHOTS[0].t0 ? 'hidden' : 'visible');
+  if (t < SHOTS[0].t0) { set($('#dark'), 'opacity', '0'); return; }
   const i = shotAt(t), s = SHOTS[i];
   setSrc(imA, frameSrc(i, t));
   const k = easeInOut(prog(t, s.t0, s.t1 - s.t0));
@@ -184,7 +211,7 @@ function renderMedia(t) {
   // beat cuts get a short punch-in, section changes a zoom-blur in
   const fast = s.t1 - s.t0 < .6, sinceCut = t - s.t0;
   let blur = 0;
-  if (!fast && i > 0 && sinceCut < .2) { const e = easeOut(prog(t, s.t0, .2)); z *= lerp(1.18, 1, e); blur = (1 - e) * 14; }
+  if (!fast && i > 0 && sinceCut < .2 && s.t0 > 7) { const e = easeOut(prog(t, s.t0, .2)); z *= lerp(1.18, 1, e); blur = (1 - e) * 14; }
   if (fast) z *= lerp(1.06, 1, easeOut(prog(t, s.t0, .25)));
   set(imA, 'transform', `scale(${z.toFixed(4)})`);
   set(imA, 'filter', `contrast(1.06) saturate(1.12)${blur > .3 ? ` blur(${blur.toFixed(1)}px)` : ''}`);
@@ -202,56 +229,80 @@ function outWhip(el, t, t1, d = .14) { if (t < t1 - d) return; const k = easeIn(
 /* ───── sections ───── */
 const L = id => $('#' + id);
 const SECT = [
-  ['Lhook', 0, 2.80], ['Lloc', 2.95, 5.55], ['L1', 5.59, 8.37], ['L2', 8.37, 11.16], ['L3', 11.16, 13.95], ['L4', 13.95, 16.74],
-  ['L5', 16.74, 19.52], ['L6', 19.52, 21.38], ['L7', 21.38, 25.10], ['L8', 25.10, 26.95], ['L9', 26.95, 99],
+  ['Lhook', 0, 5.6], ['Lloc', 5.75, 7.4], ['L1', 7.458, 12.102], ['L2', 12.102, 17.21], ['L3', 17.21, 22.783], ['L4', 22.783, 26.2],
+  ['L5', 26.2, 27.70], ['L6', 27.70, 30.213], ['L7', 30.213, 33.928], ['L8', 33.928, 35.786], ['L9', 35.786, 99],
 ];
 const INCL = ['Aviachipta', 'Yashash joyi', 'Uch mahal ovqat', 'Ekskursiyalar', 'Sugʻurta'];
 $('#v7list').innerHTML = INCL.map((x, i) => `<div id="inc${i}" style="display:flex;align-items:center;gap:24px;height:112px;font-size:66px;font-weight:700;letter-spacing:-.02em;">
   <svg class="tick" viewBox="0 0 24 24" style="width:58px;height:58px"><rect width="24" height="24" fill="#FF0158"/><path d="M6 12.5l4 4 8-9" fill="none" stroke="#fff" stroke-width="2.8"/></svg>${x}</div>`).join('');
-const INCL_T = [21.85, 22.31, 22.78, 23.24, 23.71];
+const INCL_T = [30.38, 31.05, 31.95, 32.4, 33.12];
+
+/* metro hook: doors close on "eshiklar yopiladi", open on "Xitoy" and the camera steps out */
+const STREAKS = [];
+for (const w of ['wL', 'wR']) for (let k = 0; k < 7; k++) { const d = document.createElement('div'); d.className = 'streak'; d.style.top = (40 + k * 74) + 'px'; d.style.width = (120 + (k * 53) % 140) + 'px'; $('#' + w).appendChild(d); STREAKS.push({ el: d, ph: (k * 0.37) % 1, sp: 1.6 + (k % 3) * .5 }); }
+function hook(t) {
+  const st = $('#station'), car = $('#car');
+  set(st, 'display', t < 3.2 ? 'block' : 'none'); set(car, 'display', t < 5.8 ? 'block' : 'none');
+  if (t >= 5.8) return;
+  // door offset: open (390) → closed (0) → open
+  const close = easeInOut(prog(t, 2.45, .62)), open = easeIn(prog(t, 5.08, .42));
+  let off = 390 * (1 - close) + 390 * open;
+  if (t > 3.07 && t < 3.3) off += Math.sin((t - 3.07) / .23 * Math.PI) * 8;       // small bounce when the doors meet
+  set($('#dL'), 'transform', `translate3d(${(-off).toFixed(1)}px,0,0)`);
+  set($('#dR'), 'transform', `translate3d(${off.toFixed(1)}px,0,0)`);
+  // tunnel lights in the windows while moving
+  const moving = t > 3.15 && t < 5.2, sp = easeIn(prog(t, 3.15, 1.6));
+  for (const s of STREAKS) { set(s.el, 'opacity', moving ? '1' : '0'); if (moving) { const x = ((s.ph + (t - 3.15) * s.sp * (.4 + 2.2 * sp)) % 1) * 560 - 200; set(s.el, 'transform', `translate3d(${(-x + 270).toFixed(1)}px,0,0)`); } }
+  // station drifts away a little once the train starts
+  set(st, 'transform', `translate3d(${(-easeIn(prog(t, 3.1, 1.2)) * 300).toFixed(1)}px,0,0)`);
+  // step out: the car (wall + doors) scales past the camera
+  const out = easeIn(prog(t, 5.3, .45));
+  set(car, 'transform', `scale(${(1 + out * 3.2).toFixed(4)})`); set(car, 'opacity', (1 - prog(t, 5.55, .2)).toFixed(3));
+}
 
 function texts(t) {
   for (const [id, a, b] of SECT) {
     const el = L(id), on = t >= a && t < b; show(el, on);
     if (on) { const k = (b < 90 && t > b - .12) ? easeIn(prog(t, b - .12, .12)) : 0; set(el, 'transform', `translate3d(${(-k * 420).toFixed(1)}px,0,0)`); set(el, 'opacity', (1 - k).toFixed(3)); set(el, 'filter', k > .05 ? `blur(${(k * 16).toFixed(1)}px)` : 'none'); }
   }
-  // hook: "KEYINGI BEKAT —", then XITOY with stacked outline echoes
-  inLeft($('#hk1'), t, .35, .4, 80);
-  inUp($('#hkM'), t, 1.55, .3, 90);
-  ['hkE1', 'hkE2', 'hkE3', 'hkE4'].forEach((id, i) => {
-    const el = $('#' + id), t0 = 1.62 + i * .07, k = easeOut(prog(t, t0, .3));
-    set(el, 'opacity', (t < t0 ? 0 : (.9 - i * .17) * Math.min(1, prog(t, t0, .1) * 3)).toFixed(3));
-    set(el, 'transform', `translate3d(0,${((i + 1) * 92 * k).toFixed(1)}px,0)`);
+  hook(t);
+  inUp($('#hkAud'), t, 0, .01, 0);
+  inUp($('#hk1'), t, 3.85, .35, 40);
+  inUp($('#hkM'), t, 5.02, .25, 70);
+  ['hkE1', 'hkE2'].forEach((id, i) => {
+    const el = $('#' + id), t0 = 5.08 + i * .06, k = easeOut(prog(t, t0, .25));
+    set(el, 'opacity', (t < t0 ? 0 : (.85 - i * .3) * Math.min(1, prog(t, t0, .08) * 3)).toFixed(3));
+    set(el, 'transform', `translate3d(0,${((i + 1) * 64 * k).toFixed(1)}px,0)`);
   });
-  inLeft($('#loc'), t, 2.95, .3, 80);
-  // value 1
-  inUp($('#v1a'), t, 5.65, .3, 40); inPop($('#v1b'), t, 5.9); inUp($('#v1c'), t, 6.35); inUp($('#v1d'), t, 6.55);
-  // value 2
-  inUp($('#v2a'), t, 8.42, .3, 40); inUp($('#v2b'), t, 8.6); inUp($('#v2c'), t, 8.8);
-  inPop($('#v2d'), t, 9.30, .28); inPop($('#v2e'), t, 9.77, .28); inPop($('#v2f'), t, 10.23, .28);
-  // value 3
-  inUp($('#v3a'), t, 11.2, .3, 40); inPop($('#v3b'), t, 11.32); inUp($('#v3c'), t, 11.85); inUp($('#v3d'), t, 12.31); inUp($('#v3e'), t, 12.9, .4, 40);
-  // value 4
-  inUp($('#v4a'), t, 14.0, .3, 40); inLeft($('#v4b'), t, 14.1, .35); inLeft($('#v4c'), t, 14.56, .35); inUp($('#v4d'), t, 15.1, .4, 40);
-  // value 5
-  inUp($('#v5a'), t, 16.8, .3, 40);
-  { const el = $('#v5card'), k = easeOut(prog(t, 17.0, .5)); set(el, 'opacity', (t < 17 ? 0 : Math.min(1, k * 1.6)).toFixed(3)); set(el, 'transform', `translate3d(0,${((1 - k) * 160).toFixed(1)}px,0) rotate(${((1 - k) * -4).toFixed(2)}deg)`); }
-  { const el = $('#v5seal'), k = prog(t, 17.65, .35); set(el, 'transform', `scale(${(t < 17.65 ? 0 : lerp(1.8, 1, back(k))).toFixed(4)}) rotate(${((1 - easeOut(k)) * -25).toFixed(1)}deg)`); set(el, 'opacity', (t < 17.65 ? 0 : 1).toString()); }
-  inUp($('#v5b'), t, 18.1, .35, 30);
-  // dates
-  inLeft($('#v6a'), t, 19.55, .3); inLeft($('#v6b'), t, 20.0, .3); inUp($('#v6c'), t, 20.45, .3, 30);
-  // all inclusive
-  inUp($('#v7a'), t, 21.42, .35);
+  inLeft($('#locIn'), t, 5.75, .3, 80);
+  // 1: who and what
+  inUp($('#v1a'), t, 7.53, .3, 40); inPop($('#v1b'), t, 9.85); inUp($('#v1c'), t, 10.62); inUp($('#v1d'), t, 10.85);
+  // 2: AI
+  inUp($('#v2b'), t, 12.15); inUp($('#v2c'), t, 12.4); inUp($('#v2a'), t, 13.85, .3, 40);
+  inPop($('#v2d'), t, 14.45, .28); inPop($('#v2e'), t, 14.95, .28); inPop($('#v2f'), t, 15.55, .28);
+  // 3: plants
+  inUp($('#v3a'), t, 17.3, .3, 40); inPop($('#v3b'), t, 17.42); inUp($('#v3c'), t, 18.5); inUp($('#v3d'), t, 19.72); inUp($('#v3e'), t, 20.95, .4, 40);
+  // 4: seminar
+  inUp($('#v4a'), t, 22.85, .3, 40); inLeft($('#v4b'), t, 22.95, .35); inLeft($('#v4c'), t, 23.55, .35); inUp($('#v4d'), t, 25.1, .4, 40);
+  // 5: certificate
+  inUp($('#v5a'), t, 26.2, .25, 40);
+  { const el = $('#v5card'), k = easeOut(prog(t, 26.28, .45)); set(el, 'opacity', (t < 26.28 ? 0 : Math.min(1, k * 1.6)).toFixed(3)); set(el, 'transform', `translate3d(0,${((1 - k) * 160).toFixed(1)}px,0) rotate(${((1 - k) * -4).toFixed(2)}deg)`); }
+  { const el = $('#v5seal'), k = prog(t, 26.75, .35); set(el, 'transform', `scale(${(t < 26.75 ? 0 : lerp(1.8, 1, back(k))).toFixed(4)}) rotate(${((1 - easeOut(k)) * -25).toFixed(1)}deg)`); set(el, 'opacity', (t < 26.75 ? 0 : 1).toString()); }
+  inUp($('#v5b'), t, 27.0, .3, 30);
+  // 6: dates
+  inLeft($('#v6a'), t, 27.76, .3); inLeft($('#v6b'), t, 28.95, .3); inUp($('#v6c'), t, 29.4, .3, 30);
+  // 7: all inclusive
+  inUp($('#v7a'), t, 30.25, .35);
   INCL_T.forEach((t0, i) => inLeft($('#inc' + i), t, t0, .28, 90));
-  // price
-  inUp($('#v8a'), t, 25.15, .3, 40);
-  { const el = $('#v8b'), k = prog(t, 25.32, .38); set(el, 'opacity', (t < 25.32 ? 0 : 1).toString()); set(el, 'transform', `scale(${(t < 25.32 ? 1.6 : lerp(1.6, 1, back(k))).toFixed(4)})`); set(el, 'transformOrigin', '0 60%'); }
-  // CTA
-  { const el = $('#v9a'); inPop(el, t, 27.0, .32); if (t > 27.4) set(el, 'transform', `scale(${(1 + .035 * Math.max(0, Math.sin((t - 27.4) * Math.PI * 2 / .9288))).toFixed(4)})`); }
-  inUp($('#v9b'), t, 27.45, .3, 40); inUp($('#v9c'), t, 27.6, .35, 50); inUp($('#v9d'), t, 28.2, .4, 40); inUp($('#v9e'), t, 28.45, .4, 30);
-  // flash on the drop and on the price
-  let f = 0; for (const t0 of [2.80, 25.32]) if (t >= t0 && t < t0 + .25) f = Math.max(f, 1 - easeOut(prog(t, t0, .25)));
+  // 8: price
+  inUp($('#v8a'), t, 33.98, .3, 40);
+  { const el = $('#v8b'), k = prog(t, 34.45, .38); set(el, 'opacity', (t < 34.45 ? 0 : 1).toString()); set(el, 'transform', `scale(${(t < 34.45 ? 1.6 : lerp(1.6, 1, back(k))).toFixed(4)})`); set(el, 'transformOrigin', '0 60%'); }
+  // 9: CTA
+  { const el = $('#v9a'); inPop(el, t, 36.05, .32); if (t > 36.45) set(el, 'transform', `scale(${(1 + .035 * Math.max(0, Math.sin((t - 36.45) * Math.PI * 2 / .9288))).toFixed(4)})`); }
+  inUp($('#v9b'), t, 37.2, .3, 40); inUp($('#v9c'), t, 37.3, .35, 50); inUp($('#v9d'), t, 38.3, .4, 40); inUp($('#v9e'), t, 38.6, .4, 30);
+  let f = 0; for (const t0 of [5.6, 34.45]) if (t >= t0 && t < t0 + .25) f = Math.max(f, 1 - easeOut(prog(t, t0, .25)));
   set($('#flash'), 'opacity', (f * .85).toFixed(3));
+  set($('#tab'), 'opacity', '1');
 }
 
 function render(t) { renderMedia(t); texts(t); }

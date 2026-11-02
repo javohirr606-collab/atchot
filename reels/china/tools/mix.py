@@ -1,4 +1,4 @@
-"""Soundtrack: metro-chime hook, percussion bed from the drop, synthesized whooshes and hits.
+"""Soundtrack: metro announcement hook (announcer + doors + train), narration, ducked percussion bed, synthesized SFX.
 Usage: python3 tools/mix.py   (needs ffmpeg and numpy; writes build/mix.wav)
 """
 import os, subprocess, tempfile
@@ -9,7 +9,7 @@ A = os.path.join(ROOT, 'src', 'assets')
 OUT = os.path.join(ROOT, 'build')
 os.makedirs(OUT, exist_ok=True)
 SR = 48000
-DUR = 31.0
+DUR = 42.0
 rng = np.random.default_rng(7)
 
 
@@ -123,17 +123,50 @@ def chime(level=-16):
 
 
 
-DROP = 2.80
+DROP = 5.6
+NA = 7.45            # narration start
+VO_CHAIN = ('highpass=f=85,equalizer=f=220:t=q:w=1.2:g=-2,equalizer=f=3200:t=q:w=1.0:g=3,'
+            'equalizer=f=9000:t=h:w=0.7:g=2,acompressor=threshold=-24dB:ratio=3:attack=6:release=90:makeup=4,'
+            'loudnorm=I=-15:TP=-2:LRA=7')
+# station PA: narrower band, short slap from the platform walls
+PA_CHAIN = ('highpass=f=230,lowpass=f=6500,equalizer=f=1800:t=q:w=1.0:g=3,'
+            'acompressor=threshold=-22dB:ratio=4:attack=4:release=80:makeup=4,'
+            'aecho=0.85:0.6:45|95:0.28|0.16,loudnorm=I=-16:TP=-2:LRA=6')
 
-# ── hook: low city drone, metro chime, riser into the drop ──
+# ── voices ──
+voice = np.zeros((N, 2))
+ann = load(os.path.join(A, 'vo_announcer.mp3'), PA_CHAIN)
+a_end = int(3.40 * SR); b_from = int(4.50 * SR)
+place(voice, ann[:a_end], 0.15)                       # "Ehtiyot bo'ling, eshiklar yopiladi."
+place(voice, ann[b_from:], 3.85 - 0.08)               # "Keyingi bekat — Xitoy."  (file 4.58 s → 3.85 s)
+nar = load(os.path.join(A, 'vo_narrator.mp3'), VO_CHAIN)
+place(voice, nar, NA)
+SPEECH = [(0.08, 1.45), (1.68, 4.40), (4.68, 9.68), (9.95, 15.27), (15.50, 20.10), (20.31, 22.68), (22.91, 28.43), (28.60, 29.62), (29.80, 31.74)]
+SPEECH = [(a + NA, b + NA) for a, b in SPEECH]
+VO_END = SPEECH[-1][1]
+
+# ── hook ambience: station hum, doors, train pulling away ──
 bed = np.zeros((N, 2))
-n = int(DROP * SR)
-drone = onepole_lp(noise(n), 260) * 6
-tt = np.arange(n) / SR
-drone += .25 * np.sin(2 * np.pi * 55 * tt) + .12 * np.sin(2 * np.pi * 82.4 * tt)
-drone *= np.minimum(1, tt / .4) * db(-24)
-place(bed, np.stack([drone, drone], 1), 0)
-
+n = int(DROP * SR); tt = np.arange(n) / SR
+hum = onepole_lp(noise(n), 300) * 5 + .2 * np.sin(2 * np.pi * 50 * tt)
+hum *= np.minimum(1, tt / .3) * db(-30)
+place(bed, np.stack([hum, hum], 1), 0)
+# pneumatic hiss as the doors close, thud when they meet
+hn = int(.6 * SR); hiss = sweep_bp(noise(hn), 5000, 1800) * np.exp(-np.arange(hn) / SR * 4.5)
+hiss = hiss / np.abs(hiss).max() * db(-22)
+place(bed, np.stack([hiss, hiss], 1), 2.47)
+place(bed, boom(-16, 90, 45, .45), 3.08)
+# train: rumble rising, rail-joint clicks speeding up
+rn = int((DROP - 3.15) * SR); rt = np.arange(rn) / SR
+rumble = onepole_lp(noise(rn), 140) * 7 * (rt / rt[-1]) ** 1.2 * db(-20)
+place(bed, np.stack([rumble, rumble], 1), 3.15)
+tclick = 3.4; gap = .42
+while tclick < DROP - .15:
+    for dt in (0, .11):
+        place(bed, boom(-24, 160, 90, .12), tclick + dt)
+    tclick += gap; gap = max(.17, gap * .8)
+place(bed, whoosh(.45, 300, 2600, -16), 5.0)          # doors open
+place(bed, riser(1.2, -17), DROP - 1.2)
 
 def metro_chime(level=-13):
     """Three-tone station chime (bright, soft attack)."""
@@ -146,31 +179,31 @@ def metro_chime(level=-13):
 
 
 
-# ── percussion bed from the drop (its strong downbeat at 3.76 s lands on 2.80 s) ──
+
+# ── percussion bed from the drop (its strong downbeat at 3.76 s lands on DROP), ducked under the narrator ──
 perc = load(os.path.join(A, 'music_percussion.mp3'))
 perc = perc[int(3.76 * SR):]
 bus_p = np.zeros((N, 2)); place(bus_p, perc, DROP)
-bus_p *= envelope([(0, -80), (DROP - .01, -80), (DROP, 0), (29.9, 0), (30.95, -40), (DUR, -60)])
+pts = [(0, -80), (DROP - .01, -80), (DROP, -2)]
+for a, b in SPEECH:
+    pts += [(a - .12, pts[-1][1]), (a, -11), (b, -11), (b + .25, -7)]
+pts += [(VO_END + .3, -7), (VO_END + .8, -2), (DUR - 1.2, -2), (DUR - .05, -45), (DUR, -60)]
+bus_p *= envelope(sorted(pts, key=lambda p: p[0]))
 
 # ── SFX ──
 sfx = np.zeros((N, 2))
-
-place(sfx, metro_chime(-12), 0.12)
-place(sfx, whoosh(.35, 500, 3500, -20), 0.3)       # KEYINGI BEKAT
-place(sfx, whoosh(.3, 400, 3000, -17), 1.42)       # XITOY
-place(sfx, riser(1.3, -15), DROP - 1.3)
 place(sfx, boom(-5), DROP)
-for tt in (5.59, 8.37, 11.16, 13.95, 16.74, 19.52, 21.38, 25.10, 26.95):
-    place(sfx, whoosh(.38, level=-15), tt - .2)
-for tt in (9.30, 9.77, 10.23, 21.85, 22.31, 22.78, 23.24, 23.71, 27.0):
-    place(sfx, pop(-15, 900), tt)
-place(sfx, boom(-12, 120, 50, .6), 5.9)            # 15 kunlik
-place(sfx, boom(-12, 120, 50, .6), 11.32)          # BYD
-place(sfx, boom(-10, 140, 55, .5), 17.65)          # seal stamp
-place(sfx, boom(-6), 25.32)                        # $950
-place(sfx, metro_chime(-16), 29.75)                # bookend
+for tt in (7.458, 12.102, 17.21, 22.783, 26.2, 27.70, 30.213, 33.928, 35.786):
+    place(sfx, whoosh(.38, level=-17), tt - .2)
+for tt in (14.45, 14.95, 15.55, 30.38, 31.05, 31.95, 32.4, 33.12, 36.05, 37.3):
+    place(sfx, pop(-17, 900), tt)
+place(sfx, boom(-13, 120, 50, .6), 9.85)              # 15 kunlik
+place(sfx, boom(-13, 120, 50, .6), 17.42)             # BYD
+place(sfx, boom(-12, 140, 55, .5), 26.75)             # seal stamp
+place(sfx, boom(-7), 34.45)                           # $950
+place(sfx, metro_chime(-19), 40.3)                    # bookend
 
-mix = bed + bus_p + sfx
+mix = voice + bed + bus_p + sfx
 raw = os.path.join(OUT, 'mix_raw.f32')
 mix.astype(np.float32).tofile(raw)
 subprocess.run(['ffmpeg', '-hide_banner', '-loglevel', 'error', '-y', '-f', 'f32le', '-ar', str(SR), '-ac', '2', '-i', raw,
