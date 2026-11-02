@@ -7,7 +7,7 @@ Ovoz: metro e’loni — Nodira (ElevenLabs, stansiya karnayi effekti bilan), di
 | Vaqt | Ekranda | Ovoz |
 |---|---|---|
 | 0:00 | Metro vagoni ichi, ochiq eshikdan «TOSHKENT» bekati; tepada «Professor-o‘qituvchilar uchun» | «Ehtiyot bo‘ling, eshiklar yopiladi.» |
-| 0:02 | Eshiklar yopiladi, derazada tunnel chiroqlari | eshik shovqini, poyezd yurishi |
+| 0:01 | Eshiklar yopiladi, derazada tunnel chiroqlari | eshik shovqini, poyezd yurishi |
 | 0:04 | «KEYINGI BEKAT — XITOY», eshiklar ochilib Chunsin ko‘rinadi | «Keyingi bekat — Xitoy.» |
 | 0:05 | Zarb, Chunsin kadrlari har zarbda | musiqa |
 | 0:07 | 15 kunlik xalqaro malaka oshirish | diktor |

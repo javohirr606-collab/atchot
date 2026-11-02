@@ -242,19 +242,19 @@ const STREAKS = [];
 for (const w of ['wL', 'wR']) for (let k = 0; k < 7; k++) { const d = document.createElement('div'); d.className = 'streak'; d.style.top = (40 + k * 74) + 'px'; d.style.width = (120 + (k * 53) % 140) + 'px'; $('#' + w).appendChild(d); STREAKS.push({ el: d, ph: (k * 0.37) % 1, sp: 1.6 + (k % 3) * .5 }); }
 function hook(t) {
   const st = $('#station'), car = $('#car');
-  set(st, 'display', t < 3.2 ? 'block' : 'none'); set(car, 'display', t < 5.8 ? 'block' : 'none');
+  set(st, 'display', t < 2.15 ? 'block' : 'none'); set(car, 'display', t < 5.8 ? 'block' : 'none');
   if (t >= 5.8) return;
   // door offset: open (390) → closed (0) → open
-  const close = easeInOut(prog(t, 2.45, .62)), open = easeIn(prog(t, 5.08, .42));
+  const close = easeInOut(prog(t, 1.45, .62)), open = easeIn(prog(t, 5.08, .42));
   let off = 390 * (1 - close) + 390 * open;
-  if (t > 3.07 && t < 3.3) off += Math.sin((t - 3.07) / .23 * Math.PI) * 8;       // small bounce when the doors meet
+  if (t > 2.07 && t < 2.3) off += Math.sin((t - 2.07) / .23 * Math.PI) * 8;       // small bounce when the doors meet
   set($('#dL'), 'transform', `translate3d(${(-off).toFixed(1)}px,0,0)`);
   set($('#dR'), 'transform', `translate3d(${off.toFixed(1)}px,0,0)`);
   // tunnel lights in the windows while moving
-  const moving = t > 3.15 && t < 5.2, sp = easeIn(prog(t, 3.15, 1.6));
-  for (const s of STREAKS) { set(s.el, 'opacity', moving ? '1' : '0'); if (moving) { const x = ((s.ph + (t - 3.15) * s.sp * (.4 + 2.2 * sp)) % 1) * 560 - 200; set(s.el, 'transform', `translate3d(${(-x + 270).toFixed(1)}px,0,0)`); } }
+  const moving = t > 2.1 && t < 5.2, sp = easeIn(prog(t, 2.1, 2.4));
+  for (const s of STREAKS) { set(s.el, 'opacity', moving ? '1' : '0'); if (moving) { const x = ((s.ph + (t - 2.1) * s.sp * (.4 + 2.2 * sp)) % 1) * 560 - 200; set(s.el, 'transform', `translate3d(${(-x + 270).toFixed(1)}px,0,0)`); } }
   // station drifts away a little once the train starts
-  set(st, 'transform', `translate3d(${(-easeIn(prog(t, 3.1, 1.2)) * 300).toFixed(1)}px,0,0)`);
+  set(st, 'transform', `translate3d(${(-easeIn(prog(t, 2.05, 1.2)) * 300).toFixed(1)}px,0,0)`);
   // step out: the car (wall + doors) scales past the camera
   const out = easeIn(prog(t, 5.3, .45));
   set(car, 'transform', `scale(${(1 + out * 3.2).toFixed(4)})`); set(car, 'opacity', (1 - prog(t, 5.55, .2)).toFixed(3));

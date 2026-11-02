@@ -137,7 +137,7 @@ PA_CHAIN = ('highpass=f=230,lowpass=f=6500,equalizer=f=1800:t=q:w=1.0:g=3,'
 voice = np.zeros((N, 2))
 ann = load(os.path.join(A, 'vo_announcer.mp3'), PA_CHAIN)
 a_end = int(3.40 * SR); b_from = int(4.50 * SR)
-place(voice, ann[:a_end], 0.15)                       # "Ehtiyot bo'ling, eshiklar yopiladi."
+place(voice, ann[int(1.0 * SR):a_end], 0.08)         # "Ehtiyot bo'ling, eshiklar yopiladi." (file starts with a throat clear, cut)
 place(voice, ann[b_from:], 3.85 - 0.08)               # "Keyingi bekat — Xitoy."  (file 4.58 s → 3.85 s)
 nar = load(os.path.join(A, 'vo_narrator.mp3'), VO_CHAIN)
 place(voice, nar, NA)
@@ -154,13 +154,13 @@ place(bed, np.stack([hum, hum], 1), 0)
 # pneumatic hiss as the doors close, thud when they meet
 hn = int(.6 * SR); hiss = sweep_bp(noise(hn), 5000, 1800) * np.exp(-np.arange(hn) / SR * 4.5)
 hiss = hiss / np.abs(hiss).max() * db(-22)
-place(bed, np.stack([hiss, hiss], 1), 2.47)
-place(bed, boom(-16, 90, 45, .45), 3.08)
+place(bed, np.stack([hiss, hiss], 1), 1.47)
+place(bed, boom(-16, 90, 45, .45), 2.08)
 # train: rumble rising, rail-joint clicks speeding up
-rn = int((DROP - 3.15) * SR); rt = np.arange(rn) / SR
+rn = int((DROP - 2.1) * SR); rt = np.arange(rn) / SR
 rumble = onepole_lp(noise(rn), 140) * 7 * (rt / rt[-1]) ** 1.2 * db(-20)
-place(bed, np.stack([rumble, rumble], 1), 3.15)
-tclick = 3.4; gap = .42
+place(bed, np.stack([rumble, rumble], 1), 2.1)
+tclick = 2.35; gap = .5
 while tclick < DROP - .15:
     for dt in (0, .11):
         place(bed, boom(-24, 160, 90, .12), tclick + dt)
