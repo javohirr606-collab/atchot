@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HEMIS qo'llanma</title>
+<style>
+/* 1920×1080 tutorial. AIFU brand (#FF0158, #002E60, white) around a recreated HEMIS Student UI (AdminLTE blue). */
+:root { --navy:#002E60; --red:#FF0158; --font:"AIFU Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --hb:#3c8dbc; --hbd:#367fa9; --side:#222d32; --side2:#2c3b41; --sidet:#b8c7ce; --bgc:#ecf0f5; }
+@font-face { font-family:"AIFU Sans"; font-weight:400; font-display:block; src:url(assets/fonts/inter-latin-400-normal.woff2) format("woff2"); unicode-range:U+0000-00FF,U+02BB-02BC,U+2000-206F,U+2212; }
+@font-face { font-family:"AIFU Sans"; font-weight:400; font-display:block; src:url(assets/fonts/inter-latin-ext-400-normal.woff2) format("woff2"); unicode-range:U+0100-02BA,U+02BD-02FF; }
+@font-face { font-family:"AIFU Sans"; font-weight:500; font-display:block; src:url(assets/fonts/inter-latin-500-normal.woff2) format("woff2"); unicode-range:U+0000-00FF,U+02BB-02BC,U+2000-206F,U+2212; }
+@font-face { font-family:"AIFU Sans"; font-weight:500; font-display:block; src:url(assets/fonts/inter-latin-ext-500-normal.woff2) format("woff2"); unicode-range:U+0100-02BA,U+02BD-02FF; }
+@font-face { font-family:"AIFU Sans"; font-weight:700; font-display:block; src:url(assets/fonts/inter-latin-700-normal.woff2) format("woff2"); unicode-range:U+0000-00FF,U+02BB-02BC,U+2000-206F,U+2212; }
+@font-face { font-family:"AIFU Sans"; font-weight:700; font-display:block; src:url(assets/fonts/inter-latin-ext-700-normal.woff2) format("woff2"); unicode-range:U+0100-02BA,U+02BD-02FF; }
+html,body { margin:0; height:100%; background:#000; overflow:hidden; }
+#stage { position:absolute; left:50%; top:50%; width:1920px; height:1080px; overflow:hidden; background:var(--navy); transform-origin:50% 50%;
+  font-family:var(--font); color:#fff; -webkit-font-smoothing:antialiased; }
+#stage * { box-sizing:border-box; }
+.abs { position:absolute; }
+#bg { position:absolute; inset:0; background:
+  radial-gradient(circle at 80% 15%, rgba(255,1,88,.18), transparent 40%),
+  repeating-linear-gradient(90deg, rgba(255,255,255,.04) 0 1px, transparent 1px 80px),
+  repeating-linear-gradient(0deg, rgba(255,255,255,.04) 0 1px, transparent 1px 80px), var(--navy); }
+#world { position:absolute; left:0; top:0; width:1920px; height:1080px; transform-origin:0 0; }
+
+/* browser */
+#browser { position:absolute; left:120px; top:60px; width:1680px; height:960px; background:#fff; border-radius:14px; overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.45); font-family:var(--font); color:#333; }
+.tabs { position:absolute; left:0; top:0; right:0; height:42px; background:#dee1e6; }
+.tab { position:absolute; top:8px; height:34px; width:250px; border-radius:10px 10px 0 0; background:#fff; font-size:14px; color:#333;
+  display:flex; align-items:center; gap:8px; padding:0 14px; white-space:nowrap; overflow:hidden; }
+.tab i { width:16px; height:16px; border-radius:4px; background:var(--hb); flex:none; }
+.addr { position:absolute; left:0; right:0; top:42px; height:48px; background:#fff; border-bottom:1px solid #e3e3e3; }
+.urlbox { position:absolute; left:130px; right:200px; top:8px; height:32px; border-radius:16px; background:#f1f3f4; font-size:16px; color:#202124;
+  display:flex; align-items:center; padding-left:40px; white-space:nowrap; }
+.urlbox .lock { position:absolute; left:14px; top:8px; width:16px; height:16px; }
+.caret { display:inline-block; width:2px; height:18px; background:#1a73e8; margin-left:1px; vertical-align:-3px; }
+#loadbar { position:absolute; left:0; top:88px; height:3px; width:0; background:#1a73e8; }
+#content { position:absolute; left:0; top:90px; width:1680px; height:870px; overflow:hidden; background:#fff; }
+.page { position:absolute; inset:0; display:none; }
+
+/* HEMIS shell */
+.topbar { position:absolute; left:0; top:0; right:0; height:50px; background:var(--hb); color:#fff; font-size:15px; }
+.brand { position:absolute; left:0; top:0; width:230px; height:50px; background:var(--hbd); display:flex; align-items:center; justify-content:center; font-size:21px; }
+#side { position:absolute; left:0; top:50px; width:230px; bottom:0; background:var(--side); overflow:hidden; }
+.si { position:absolute; left:0; width:230px; height:44px; display:flex; align-items:center; gap:12px; padding-left:16px; font-size:15px; color:var(--sidet); white-space:nowrap; }
+.si .ic { width:14px; height:14px; border:2px solid #8aa4af; border-radius:3px; flex:none; }
+.si .chev { position:absolute; right:14px; top:15px; width:8px; height:8px; border-left:2px solid #8aa4af; border-bottom:2px solid #8aa4af; transform:rotate(45deg); }
+.ss { position:absolute; left:0; width:230px; height:34px; display:flex; align-items:center; gap:12px; padding-left:22px; font-size:14px; color:#8aa4af; background:var(--side2); white-space:nowrap; }
+.ss .dot { width:10px; height:10px; border:1.5px solid #8aa4af; border-radius:50%; flex:none; }
+.hlbar { position:absolute; left:0; width:230px; background:rgba(255,1,88,.22); border-left:4px solid var(--red); pointer-events:none; }
+.main { position:absolute; left:230px; top:50px; right:0; bottom:0; background:var(--bgc); }
+.box { position:absolute; background:#fff; border-top:3px solid #d2d6de; box-shadow:0 1px 1px rgba(0,0,0,.08); }
+.bh { position:absolute; left:0; right:0; top:0; height:40px; border-bottom:1px solid #f0f0f0; font-size:16px; color:#444; display:flex; align-items:center; padding-left:14px; }
+.tile { position:absolute; width:180px; text-align:center; }
+.tile .c { width:74px; height:74px; border-radius:50%; margin:0 auto; position:relative; box-shadow:0 3px 0 rgba(0,0,0,.12); }
+.tile .c svg { position:absolute; left:19px; top:19px; width:36px; height:36px; }
+.tile .l { margin-top:12px; font-size:16px; color:#3c8dbc; }
+.ring { position:absolute; border:4px solid var(--red); border-radius:50%; pointer-events:none; }
+.inp { position:absolute; height:38px; border:1px solid #d2d6de; background:#fff; font-size:15px; color:#555; padding-left:12px; display:flex; align-items:center; }
+.inp.dis { background:#eee; }
+.lbl { position:absolute; font-size:14px; font-weight:700; color:#333; }
+.blur { display:inline-block; height:12px; border-radius:6px; background:#c9ced6; }
+.btn { position:absolute; display:flex; align-items:center; justify-content:center; color:#fff; font-size:15px; }
+
+/* overlays */
+.callout { position:absolute; background:var(--navy); color:#fff; border-radius:10px; padding:10px 14px; font-size:15px; font-weight:500; line-height:1.3; white-space:nowrap;
+  box-shadow:0 8px 24px rgba(0,0,0,.25); }
+.callout b { color:#fff; background:var(--red); padding:1px 6px; border-radius:4px; }
+#cursor { position:absolute; left:0; top:0; width:30px; height:30px; transform-origin:0 0; z-index:5; }
+.ripple { position:absolute; border-radius:50%; border:3px solid var(--red); pointer-events:none; }
+#stepbar { position:absolute; left:0; right:0; top:18px; display:flex; justify-content:center; gap:10px; z-index:20; }
+.step { display:flex; align-items:center; gap:10px; height:46px; padding:0 18px 0 8px; border-radius:23px; background:rgba(0,20,50,.78); color:rgba(255,255,255,.7); font-size:18px; font-weight:500; }
+.step .n { width:30px; height:30px; border-radius:50%; background:rgba(255,255,255,.18); color:#fff; display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:700; }
+.step.on { background:var(--red); color:#fff; }
+.step.on .n { background:#fff; color:var(--red); }
+.step.done .n { background:#2fb492; }
+#cap { position:absolute; left:160px; right:160px; bottom:28px; text-align:center; z-index:25; }
+#cap span { display:inline-block; background:rgba(0,14,36,.86); color:#fff; font-size:30px; font-weight:500; line-height:1.3; padding:10px 22px; border-radius:12px; max-width:1500px; }
+.layer { position:absolute; inset:0; display:none; }
+.big { font-weight:700; letter-spacing:-.03em; line-height:1; white-space:nowrap; }
+.card { position:absolute; background:#fff; color:var(--navy); border-radius:22px; box-shadow:0 20px 60px rgba(0,0,0,.35); }
+#flash { position:absolute; inset:0; background:#fff; opacity:0; z-index:60; pointer-events:none; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="bg"></div>
+
+  <div id="world">
+    <div id="browser">
+      <div class="tabs">
+        <div class="tab" id="tab1" style="left:12px;"><i></i><span id="tab1t">Yangi oyna</span></div>
+        <div class="tab" id="tab2" style="left:270px;display:none;"><i style="background:#e8a33c"></i><span>unilibrary.uz</span></div>
+      </div>
+      <div class="addr">
+        <svg class="abs" style="left:18px;top:14px" width="90" height="20" viewBox="0 0 90 20"><path d="M12 4l-6 6 6 6M38 4l6 6-6 6" fill="none" stroke="#5f6368" stroke-width="2"/><path d="M78 5a6 6 0 1 0 2 4" fill="none" stroke="#5f6368" stroke-width="2"/><path d="M80 3v6h-6" fill="none" stroke="#5f6368" stroke-width="2"/></svg>
+        <div class="urlbox"><svg class="lock" viewBox="0 0 16 16"><rect x="3" y="7" width="10" height="7" rx="1.5" fill="#5f6368"/><path d="M5 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="#5f6368" stroke-width="1.6"/></svg><span id="url"></span><span class="caret" id="caret"></span></div>
+      </div>
+      <div id="loadbar"></div>
+      <div id="content">
+        <div class="page" id="pgNew" style="background:#fff;">
+          <div class="abs" style="left:540px;top:300px;width:600px;height:52px;border-radius:26px;border:1px solid #dfe1e5;box-shadow:0 1px 6px rgba(32,33,36,.12);"></div>
+        </div>
+        <div class="page" id="pgLogin" style="background:#f7f7f7;"></div>
+        <div class="page" id="pgHemis"></div>
+        <div class="page" id="pgLib" style="background:#fff;"></div>
+      </div>
+    </div>
+    <div id="wover"></div>
+    <svg id="cursor" viewBox="0 0 24 24"><path d="M3 2l17 9.5-7.4 1.6L9 20z" fill="#fff" stroke="#111" stroke-width="1.6" stroke-linejoin="round"/></svg>
+  </div>
+
+  <!-- intro -->
+  <div class="layer" id="Lintro">
+    <div class="abs" id="i_logo" style="left:860px;top:250px;width:200px;height:200px;border-radius:50%;background:#fff;"><img src="assets/logo.png" alt="AIFU" style="position:absolute;left:34px;top:30px;width:132px;"></div>
+    <div class="abs big" id="i_s1" style="left:0;right:0;top:500px;text-align:center;font-size:110px;">Salom,</div>
+    <div class="abs big" id="i_s2" style="left:0;right:0;top:630px;text-align:center;font-size:70px;color:var(--red);">AIFU talabasi!</div>
+    <div class="abs big" id="i_h" style="left:0;right:0;top:330px;text-align:center;font-size:250px;letter-spacing:.02em;"></div>
+    <div class="abs" id="i_hs" style="left:0;right:0;top:620px;text-align:center;font-size:44px;font-weight:500;">Platformadan foydalanish — <span style="color:var(--red);font-weight:700">bosqichma-bosqich</span></div>
+    <div class="abs" id="i_path" style="left:660px;top:740px;width:600px;height:60px;"></div>
+    <div class="abs" id="i_def1" style="left:0;right:0;top:150px;text-align:center;font-size:36px;font-weight:500;color:rgba(255,255,255,.75);">HEMIS —</div>
+    <div class="abs big" id="i_def2" style="left:0;right:0;top:205px;text-align:center;font-size:56px;line-height:1.15;white-space:normal;">oliy taʼlim jarayonlarini boshqarish<br>axborot tizimi</div>
+    <div class="abs" id="i_cards" style="left:0;top:470px;width:1920px;height:300px;"></div>
+    <div class="abs" id="i_one" style="left:0;right:0;top:800px;text-align:center;font-size:46px;font-weight:700;">Hammasi <span style="color:var(--red)">bir joyda</span></div>
+    <div class="abs" id="i_247" style="left:1270px;top:780px;"><div style="background:var(--red);border-radius:16px;padding:14px 26px;font-size:40px;font-weight:700;">24/7</div></div>
+  </div>
+
+  <div id="stepbar"></div>
+
+  <!-- screen-space cards -->
+  <div class="layer" id="Lok" style="z-index:30;"><div class="abs" id="ok" style="left:740px;top:420px;width:440px;height:240px;"></div></div>
+  <div class="layer" id="Llock" style="z-index:30;"><div class="abs" id="lock" style="left:560px;top:300px;width:800px;height:460px;"></div></div>
+  <div class="layer" id="L107" style="z-index:30;background:var(--navy);"></div>
+  <div class="layer" id="Lout" style="z-index:30;background:var(--navy);"></div>
+
+  <div id="cap"></div>
+  <div id="flash"></div>
+</div>
+
+<script>
+(() => {
+'use strict';
+const W = 1920, H = 1080, FPS = 30, DUR = 98.0;
+const $ = s => document.querySelector(s);
+const clamp01 = x => x < 0 ? 0 : x > 1 ? 1 : x;
+const prog = (t, t0, d) => d <= 0 ? (t >= t0 ? 1 : 0) : clamp01((t - t0) / d);
+const eo = x => 1 - Math.pow(1 - x, 3);
+const ei = x => x * x * x;
+const eio = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const back = x => { const c1 = 1.7, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+const lerp = (a, b, k) => a + (b - a) * k;
+const set = (el, p, v) => { const c = el.__c || (el.__c = {}); if (c[p] !== v) { c[p] = v; el.style[p] = v; } };
+const show = (el, on) => set(el, 'display', on ? 'block' : 'none');
+const h = (tag, cls, style, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (style) e.style.cssText = style; if (html != null) e.innerHTML = html; return e; };
+function appear(el, t, t0, d = .35, dy = 40, kind = 'up') {
+  const k = prog(t, t0, d); const e = kind === 'pop' ? back(k) : eo(k);
+  set(el, 'opacity', (t < t0 ? 0 : Math.min(1, k * 1.8)).toFixed(3));
+  set(el, 'transform', kind === 'pop' ? `scale(${(t < t0 ? .4 : lerp(.4, 1, e)).toFixed(4)})` : `translate3d(0,${((1 - e) * dy).toFixed(1)}px,0)`);
+}
+
+/* ───────── timeline (s). Narration: T = file time + 0.3 (+3.0 after the OneID pause) ───────── */
+const T = {
+  intro: 0, browserIn: 19.75, urlType: [21.6, 23.9], enter: 24.05, loginLoad: 24.2,
+  idClick: 26.0, idType: [27.6, 29.9], pwClick: 30.55, pwType: [31.0, 32.4], kirish: 33.45,
+  oneid: 34.75, dash: 37.75, toast: 38.2, tizim: 42.0, profil: 42.9, profLoad: 43.15, check: 44.4,
+  p1Click: 46.0, p1Type: [46.1, 46.9], p2Click: 47.0, p2Type: [47.05, 47.85], save: 48.6, ok: 48.75, lock: 50.0,
+  dash2: 52.55, oquv: 54.35, talaba: 66.1, kutub: 77.4, lib: 77.6, end107: 82.0, outro: 89.12,
+};
+// O'quv reja items highlighted as they are named; tiles pulse with them
+const OQUV_HL = [[55.9, 0, 'oquv'], [56.63, 1, 'dars'], [57.65, 2, 'nazorat'], [59.96, 3, 'res'], [61.47, 4, 'dav'], [62.27, 6, 'ozl'], [63.3, 7, null], [64.3, 9, 'rey']];
+const TAL_HL = [[68.23, 0], [69.05, 1], [69.6, 3], [70.86, 4], [72.18, 5], [73.3, 6], [74.6, 9]];
+
+const CAPS = [
+  [10.11, 13.56, 'HEMIS — oliy taʼlim jarayonlarini boshqarish axborot tizimi.'],
+  [13.83, 19.61, 'Dars jadvali, baholar, davomat va hujjatlaringiz — hammasi bir joyda, istalgan vaqtda.'],
+  [20.04, 25.28, 'Birinchi qadam. Brauzerda student.aifu.uz manzilini oching.'],
+  [25.69, 30.15, 'Talaba ID maydoniga sizga berilgan 12 xonali ID raqamini kiriting.'],
+  [30.42, 32.71, 'Parol — pasportingiz seriyasi va raqami.'],
+  [32.90, 34.55, 'Soʻng «Kirish» tugmasini bosing.'],
+  [34.70, 37.70, 'OneID hisobingiz boʻlsa, «OneID orqali kirish» tugmasi bilan ham kirishingiz mumkin.'],
+  [37.88, 41.72, 'Birinchi marta kirganingizda, xavfsizlik uchun parolni almashtirish soʻraladi.'],
+  [41.96, 43.68, '«Tizim» boʻlimidan «Profil»ni oching.'],
+  [43.89, 49.70, '«Parolni oʻzgartirish» belgisini qoʻying, yangi parolni ikki marta kiriting va «Oʻzgartirish» tugmasini bosing.'],
+  [49.99, 52.11, 'Yangi parolingizni hech kimga bermang.'],
+  [52.55, 54.05, 'Endi asosiy boʻlimlar.'],
+  [54.30, 65.72, '«Oʻquv reja» boʻlimida semestr fanlari, dars jadvali, oraliq va yakuniy nazorat jadvali, fanlar boʻyicha resurslar, davomat, oʻzlashtirish, shaxsiy qaydnoma va reyting daftarchangiz bor.'],
+  [66.05, 76.41, '«Talaba maʼlumoti» boʻlimida rezyume, buyruqlar, oʻqish haqidagi maʼlumotnoma, talaba guvohnomasi, bitiruv varaqasi, GPA balingiz va shaxsiy maʼlumotlaringizni koʻrasiz.'],
+  [76.68, 81.69, '«Elektron kutubxona» tugmasi sizni unilibrary.uz elektron kutubxonasiga avtomatik oʻtkazadi.'],
+];
+const CHUNKS = [];
+for (const [a, b, text] of CAPS) {
+  const words = text.split(' '), groups = []; let cur = [];
+  for (const w of words) { const len = cur.join(' ').length; if (cur.length && (len + 1 + w.length > 66 || (len > 38 && /[,—.]$/.test(cur[cur.length - 1])))) { groups.push(cur); cur = []; } cur.push(w); }
+  if (cur.length) groups.push(cur);
+  const tot = groups.reduce((s, g) => s + g.join(' ').length, 0); let t = a;
+  for (const g of groups) { const d = (b - a) * g.join(' ').length / tot; CHUNKS.push([t, t + d + .15, g.join(' ')]); t += d; }
+}
+
+/* ───────── HEMIS shell ───────── */
+const ICON = {
+  book: '<path d="M3 5h6.5A2.5 2.5 0 0 1 12 7.5V20a2 2 0 0 0-2-2H3zM21 5h-6.5A2.5 2.5 0 0 0 12 7.5V20a2 2 0 0 1 2-2h7z" fill="none" stroke="#fff" stroke-width="1.8"/>',
+  cal: '<rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="#fff" stroke-width="1.8"/><path d="M3 10h18M8 3v4M16 3v4M7 14h2M11 14h2M15 14h2M7 17h2M11 17h2" stroke="#fff" stroke-width="1.8"/>',
+  medal: '<circle cx="12" cy="14" r="6" fill="none" stroke="#fff" stroke-width="1.8"/><path d="M8 3l4 5 4-5M11 12l1-1v5" fill="none" stroke="#fff" stroke-width="1.8"/>',
+  target: '<circle cx="12" cy="12" r="9" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="12" r="5" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="12" r="1.5" fill="#fff"/>',
+  board: '<rect x="3" y="4" width="18" height="12" rx="1" fill="none" stroke="#fff" stroke-width="1.8"/><path d="M12 16v4M8 21h8M7 9h10M7 12h6" stroke="#fff" stroke-width="1.8"/>',
+  clock: '<circle cx="12" cy="12" r="9" fill="none" stroke="#fff" stroke-width="1.8"/><path d="M12 7v5l3 2" fill="none" stroke="#fff" stroke-width="1.8"/>',
+  calc: '<rect x="5" y="3" width="14" height="18" rx="2" fill="none" stroke="#fff" stroke-width="1.8"/><path d="M8 7h8M8 11h2M12 11h2M16 11h0M8 15h2M12 15h2M8 18h2M12 18h2" stroke="#fff" stroke-width="1.8"/>',
+  quest: '<rect x="4" y="4" width="16" height="16" rx="3" fill="none" stroke="#fff" stroke-width="1.8"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .8-1 1.5M12 16.5v.1" fill="none" stroke="#fff" stroke-width="1.8"/>',
+};
+const TILES = {
+  oquv: ['Oʻquv reja', '#a68a64', 'book', 0, 0], dars: ['Dars jadvali', '#7f7fd5', 'cal', 1, 0], nazorat: ['Nazorat jadvali', '#25a7c0', 'medal', 2, 0],
+  fan: ['Fan tanlovi', '#e8583c', 'target', 3, 0], res: ['Fanlar resurslari', '#ee6b3d', 'board', 4, 0], uni: ['Unilibrary', '#ee6b3d', 'board', 5, 0],
+  dav: ['Davomat', '#2aa8c4', 'clock', 0, 1], ozl: ['Oʻzlashtirish', '#2fb492', 'calc', 1, 1], rey: ['Reyting daftarcha', '#a68a64', 'book', 2, 1],
+  imt: ['Imtihonlar', '#2fb492', 'quest', 3, 1], bit: ['Bitiruv ishi', '#a68a64', 'book', 4, 1],
+  qa1: ['Ariza qayta oʻqish', '#a68a64', 'book', 0, 2], qa2: ['Q.Oʻqish mashgʻulotlari', '#7f7fd5', 'cal', 1, 2], qa3: ['Q.Oʻqish nazorat jadvali', '#25a7c0', 'medal', 2, 2], qa4: ['Q.Oʻqish oʻzlashtirish', '#2fb492', 'calc', 3, 2],
+};
+const TILE_X = i => 15 + (1420 / 6) * (i + .5);   // centre x inside .main
+const TILE_Y = [285, 530, 765];                    // circle centre y inside .main
+const SIDE = [
+  ['Oʻquv reja', ['Oʻquv reja', 'Dars jadvali', 'Nazorat jadvali', 'Fanlar resurslari', 'Davomat', 'Davomat hisoboti', 'Oʻzlashtirish', 'Shaxsiy qaydnoma', 'Imtihonlar', 'Reyting daftarcha', 'Fan tanlovi']],
+  ['Qayta oʻqish', []],
+  ['Talaba maʼlumoti', ['Rezyume', 'Buyruqlar', 'Shartnomalar', 'Maʼlumotnomalar', 'Talaba hujjati', 'Bitiruv varaqa', 'Talaba GPA bali', 'Fan sertifikatlari', 'Plagiat maʼlumotlari', 'Shaxsiy maʼlumotlar', 'Bitiruv ishi', 'Ijtimoiy faollik', 'Fan apellyatsiyasi', 'Grant arizalar']],
+  ['Moliyaviy toʻlov', []], ['Xabarlar', []],
+  ['Tizim', ['Profil', 'Hemis soʻrovnoma', 'Global soʻrovnoma', 'Kirish tarixi']],
+  ['Elektron kutubxona', []],
+];
+const pgH = $('#pgHemis');
+pgH.appendChild(h('div', 'topbar', '', `<div class="brand">HEMIS Student</div>
+  <div class="abs" style="left:250px;top:15px;width:20px;height:16px;border-top:2px solid #fff;border-bottom:2px solid #fff;"><div style="margin-top:5px;border-top:2px solid #fff"></div></div>
+  <div class="abs" style="right:230px;top:16px;">Oʻzbekcha</div>
+  <svg class="abs" style="right:178px;top:13px" width="22" height="24" viewBox="0 0 24 24"><path d="M6 17V11a6 6 0 0 1 12 0v6l2 2H4zM10 21h4" fill="none" stroke="#fff" stroke-width="2"/></svg>
+  <div class="abs" style="right:168px;top:8px;background:#f39c12;border-radius:8px;font-size:11px;padding:1px 5px;">3</div>
+  <div class="abs" style="right:24px;top:11px;display:flex;align-items:center;gap:10px;"><div style="width:28px;height:28px;border-radius:50%;background:#d2d6de"></div><span class="blur" style="width:96px;background:rgba(255,255,255,.55)"></span></div>`));
+const side = h('div', '', ''); side.id = 'side'; pgH.appendChild(side);
+const SIDE_EL = SIDE.map(([name, subs], i) => {
+  const it = h('div', 'si', '', `<span class="ic"></span>${name}${subs.length ? '<span class="chev"></span>' : ''}`); side.appendChild(it);
+  const ss = subs.map(s => { const e = h('div', 'ss', '', `<span class="dot"></span>${s}`); side.appendChild(e); return e; });
+  return { it, ss };
+});
+const hlbar = h('div', 'hlbar', 'display:none'); side.appendChild(hlbar);
+const mainDash = h('div', 'main', ''); pgH.appendChild(mainDash);
+const mainProf = h('div', 'main', 'display:none'); pgH.appendChild(mainProf);
+mainDash.innerHTML = `
+  <div class="abs" style="left:16px;top:12px;font-size:13px;color:#777;">⌂ Bosh sahifa &nbsp;/&nbsp; Bosh sahifa</div>
+  <div class="box" style="left:15px;top:40px;width:1420px;height:70px;border-top:none;">
+    <div class="abs" style="left:0;top:0;width:70px;height:70px;background:#00a65a;"></div>
+    <svg class="abs" style="left:20px;top:20px" width="30" height="30" viewBox="0 0 24 24"><rect x="3" y="7" width="12" height="14" rx="2" fill="none" stroke="#fff" stroke-width="1.8"/><path d="M9 7V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-5" fill="none" stroke="#fff" stroke-width="1.8"/></svg>
+    <span class="blur abs" style="left:90px;top:29px;width:110px;"></span>
+    <div class="abs" style="left:212px;top:23px;font-size:18px;color:#444;">/ &nbsp;Oʻqimoqda</div>
+    <div class="abs" style="left:850px;top:24px;font-size:13px;color:#555;">2026-2027 / SEMESTR</div>
+    <div class="abs" style="left:1010px;top:16px;display:flex;gap:6px;">${[1,2,3,4,5,6,7,8,9,10].map(n => `<div style="width:34px;height:36px;display:flex;align-items:center;justify-content:center;font-size:13px;border:1px solid #ddd;${n === 5 ? 'background:#00a65a;color:#fff;border-color:#00a65a' : 'color:#555'}">${n}</div>`).join('')}</div>
+  </div>
+  <div class="box" style="left:15px;top:125px;width:700px;height:44px;"><div class="bh" style="height:41px;border:none">📢&nbsp; Eʼlonlar</div></div>
+  <div class="box" style="left:735px;top:125px;width:700px;height:44px;"><div class="bh" style="height:41px;border:none">Yangiliklar</div></div>
+  <div class="box" style="left:15px;top:185px;width:1420px;height:225px;"><div class="bh">Fanlar va resurslar</div></div>
+  <div class="box" style="left:15px;top:430px;width:1420px;height:220px;"><div class="bh">Oʻquv faoliyati</div></div>
+  <div class="box" style="left:15px;top:670px;width:1420px;height:220px;"><div class="bh">Qayta oʻqish</div></div>`;
+mainDash.querySelector('.bh').innerHTML = 'Eʼlonlar';
+const TILE_EL = {};
+for (const [k, [name, col, ic, ix, row]] of Object.entries(TILES)) {
+  const e = h('div', 'tile', `left:${TILE_X(ix) - 90}px;top:${TILE_Y[row] - 37}px;`, `<div class="c" style="background:${col}"><svg viewBox="0 0 24 24">${ICON[ic]}</svg></div><div class="l">${name}</div>`);
+  mainDash.appendChild(e); TILE_EL[k] = e;
+}
+const ringT = h('div', 'ring', 'display:none'); mainDash.appendChild(ringT);
+// toast from the real system message
+const toast = h('div', 'abs', 'right:20px;bottom:20px;width:370px;height:96px;background:#dd4b39;color:#fff;font-size:14px;line-height:1.35;padding:16px 16px 0 56px;display:none;',
+  '<svg style="position:absolute;left:16px;top:24px" width="26" height="30" viewBox="0 0 24 28"><path d="M12 1l10 4v8c0 7-5 12-10 14C7 25 2 20 2 13V5z" fill="#fff"/><path d="M12 7v9M12 19v1" stroke="#dd4b39" stroke-width="2.6"/></svg>Sizning parolingiz xavfsizlik talablariga mos emas, iltimos, parolingizni yangilang!');
+mainDash.appendChild(toast);
+// profile page
+mainProf.innerHTML = `
+  <div class="abs" style="left:16px;top:12px;font-size:13px;color:#777;">⌂ Bosh sahifa &nbsp;/&nbsp; <span class="blur" style="width:180px;height:10px"></span></div>
+  <div class="box" style="left:15px;top:40px;width:760px;height:760px;border-top:3px solid #d2d6de;">
+    <div class="bh" style="font-size:18px">Mening profilim</div>
+    ${[['Ismi *', 62], ['Familiya *', 140], ['Login', 218], ['Pasport raqami', 296]].map(([l, y]) => `<div class="lbl" style="left:16px;top:${y}px">${l}</div><div class="inp dis" style="left:16px;top:${y + 22}px;width:460px;"><span class="blur" style="width:${120 + (y % 70)}px"></span></div>`).join('')}
+    <div class="lbl" style="left:16px;top:374px">Email</div><div class="inp" style="left:16px;top:396px;width:460px;"><span class="blur" style="width:220px"></span></div>
+    <div class="lbl" style="left:16px;top:452px">Talaba telefoni (+998 xx xxx-xx-xx)</div><div class="inp" style="left:16px;top:474px;width:460px;"><span class="blur" style="width:150px"></span></div>
+    <div class="abs" id="chk" style="left:16px;top:548px;width:20px;height:20px;border:1px solid #bbb;background:#fff;"></div>
+    <div class="abs" style="left:46px;top:548px;font-size:15px;color:#333;">Parolni oʻzgartirish</div>
+    <div class="inp dis" id="np1" style="left:16px;top:586px;width:460px;color:#999">Yangi parol</div>
+    <div class="inp dis" id="np2" style="left:16px;top:636px;width:460px;color:#999">Parol tasdigʻi</div>
+    <div class="abs" style="left:0;right:0;top:700px;border-top:1px solid #f0f0f0;"></div>
+    <div class="btn" id="saveBtn" style="left:630px;top:712px;width:116px;height:36px;background:var(--hb);">Oʻzgartirish</div>
+    <div class="abs" style="left:520px;top:62px;width:120px;height:150px;border:2px dashed #bbb;border-radius:6px;background:repeating-linear-gradient(45deg,#f4f4f4 0 8px,#ececec 8px 16px);"></div>
+  </div>`;
+
+/* login page */
+const pgL = $('#pgLogin');
+pgL.innerHTML = `
+  <div class="abs" id="lcard" style="left:580px;top:150px;width:520px;height:400px;background:#fff;border-top:4px solid #00a65a;box-shadow:0 1px 3px rgba(0,0,0,.12);">
+    <div class="abs" style="left:225px;top:16px;width:72px;height:74px;"><img src="assets/logo.png" style="position:absolute;left:0;top:0;width:72px;" alt=""></div>
+    <div class="abs" style="left:0;right:0;top:104px;text-align:center;font-size:20px;color:#333;">Aniq va ijtimoiy fanlar universiteti</div>
+    <div class="abs" style="left:0;right:0;top:140px;text-align:center;font-size:14px;color:#333;">HEMIS Student axborot tizimi</div>
+    <div class="inp" id="fId" style="left:12px;top:175px;width:496px;height:42px;color:#999">Talaba ID</div>
+    <div class="inp" id="fPw" style="left:12px;top:232px;width:496px;height:42px;color:#999">Parol</div>
+    <svg class="abs" style="left:478px;top:189px" width="18" height="14" viewBox="0 0 18 14"><rect x="1" y="1" width="16" height="12" fill="#333"/><path d="M1 1l8 6 8-6" fill="none" stroke="#fff" stroke-width="1.4"/></svg>
+    <svg class="abs" style="left:476px;top:245px" width="20" height="14" viewBox="0 0 20 14"><path d="M1 7c3-5 15-5 18 0-3 5-15 5-18 0z" fill="#333"/><circle cx="10" cy="7" r="2.5" fill="#fff"/></svg>
+    <div class="abs" style="left:12px;top:302px;width:18px;height:18px;border:1px solid #ccc;"></div>
+    <div class="abs" style="left:40px;top:301px;font-size:14px;color:#333;">Eslab qolish</div>
+    <div class="btn" id="bKirish" style="left:190px;top:292px;width:318px;height:40px;background:var(--hb);">Kirish</div>
+    <div class="btn" id="bOneid" style="left:0;top:352px;width:520px;height:42px;background:#615ca8;">OneID orqali kirish</div>
+  </div>
+  <div class="abs" style="left:0;right:0;top:570px;text-align:center;font-size:13px;color:#333;"><b>Dastur versiyasi:</b> 1.9.86</div>`;
+/* unilibrary placeholder (not the real site): a loading screen with the address */
+$('#pgLib').innerHTML = `
+  <div class="abs" style="left:0;right:0;top:0;height:70px;background:#fff;border-bottom:1px solid #eee;"></div>
+  <div class="abs" style="left:40px;top:20px;font-size:26px;font-weight:700;color:#e0782c;">unilibrary.uz</div>
+  <div class="abs" id="libBooks" style="left:640px;top:250px;width:400px;height:200px;"></div>
+  <div class="abs" style="left:0;right:0;top:480px;text-align:center;font-size:30px;font-weight:700;color:#333;">Elektron kutubxona</div>
+  <div class="abs" style="left:540px;top:540px;width:600px;height:54px;border-radius:27px;border:2px solid #e0782c;color:#999;font-size:18px;display:flex;align-items:center;padding-left:24px;">Kitob, muallif yoki mavzu…</div>`;
+$('#libBooks').innerHTML = ['#e0782c', '#002E60', '#FF0158', '#2fb492', '#7f7fd5'].map((c, i) => `<div style="position:absolute;left:${60 + i * 58}px;bottom:0;width:46px;height:${130 + (i * 37) % 60}px;background:${c};border-radius:4px;transform:rotate(${i === 4 ? 12 : 0}deg);transform-origin:bottom left"></div>`).join('');
+
+/* world overlays: callouts, rings, ripples */
+const wover = $('#wover');
+const callouts = {
+  url:   h('div', 'callout', 'left:300px;top:160px;font-size:13px;', 'Manzil: <b>student.aifu.uz</b>'),
+  id:    h('div', 'callout', 'left:1236px;top:474px;', '<b>12 xonali</b> talaba ID'),
+  pw:    h('div', 'callout', 'left:1236px;top:528px;', 'Pasport seriyasi + raqami<br><span style="opacity:.75;font-weight:400">masalan: AB1234567</span>'),
+  oneid: h('div', 'callout', 'left:745px;top:708px;white-space:normal;width:470px;text-align:center;', 'OneID hisobingiz boʻlsa — shu tugma orqali ham kirish mumkin'),
+  check: h('div', 'callout', 'left:590px;top:781px;', 'Belgini qoʻying'),
+  twice: h('div', 'callout', 'left:862px;top:848px;', 'Yangi parol — <b>2 marta</b>'),
+};
+Object.values(callouts).forEach(c => { c.style.display = 'none'; wover.appendChild(c); });
+const ringW = h('div', 'ring', 'display:none;border-radius:10px'); wover.appendChild(ringW);
+const RIP = []; for (let i = 0; i < 3; i++) { const r = h('div', 'ripple', 'display:none'); wover.appendChild(r); RIP.push(r); }
+
+/* coordinates: content-local → world */
+const CX = 120, CY = 150;
+const W2 = (x, y) => [CX + x, CY + y];
+
+/* sidebar layout (content-local y of each row), expansion animated */
+function expandState(t) {
+  // [menu index, openness 0..1]
+  const st = {};
+  const add = (i, t0, t1) => { const k = eio(prog(t, t0, .3)) * (1 - eio(prog(t, t1, .3))); if (k > 0) st[i] = Math.max(st[i] || 0, k); };
+  add(5, T.tizim, T.dash2 - .3);          // Tizim during password change
+  add(0, T.oquv, T.talaba);                // O'quv reja
+  add(2, T.talaba, 1e9);                   // Talaba ma'lumoti
+  return st;
+}
+function sideRows(t) {
+  const st = expandState(t), rows = []; let y = 10;
+  SIDE.forEach(([, subs], i) => {
+    rows.push({ i, y, sub: -1 }); y += 44;
+    const k = st[i] || 0;
+    subs.forEach((_, j) => { rows.push({ i, j, y: y + j * 34 * k, sub: j, k }); });
+    y += subs.length * 34 * k;
+  });
+  return rows;
+}
+function itemY(t, i, j) { const r = sideRows(t).find(r => r.i === i && (j == null ? r.sub === -1 : r.sub === j)); return r.y + (j == null ? 22 : 17); }
+function renderSide(t) {
+  const rows = sideRows(t);
+  for (const r of rows) {
+    const el = r.sub < 0 ? SIDE_EL[r.i].it : SIDE_EL[r.i].ss[r.j];
+    set(el, 'top', r.y + 'px');
+    if (r.sub >= 0) { const vis = r.k > .02; set(el, 'display', vis ? 'flex' : 'none'); if (vis) set(el, 'opacity', Math.min(1, r.k * 1.4).toFixed(3)); }
+  }
+  // active menu colour
+  const st = expandState(t);
+  SIDE_EL.forEach((s, i) => { const on = (st[i] || 0) > .5; set(s.it, 'background', on ? '#1e282c' : 'transparent'); set(s.it, 'color', on ? '#fff' : 'var(--sidet)'); set(s.it, 'borderLeft', on ? '3px solid #3c8dbc' : '3px solid transparent'); });
+  // highlight bar
+  let hl = null;
+  const pick = (list, menu) => { for (const [t0, j] of list) if (t >= t0 && t < t0 + 1e9) hl = { i: menu, j, t0 }; };
+  if (t >= T.tizim && t < T.profil + .6) hl = { i: 5, j: null, t0: T.tizim };
+  if (t >= T.profil && t < T.profLoad + .8) hl = { i: 5, j: 0, t0: T.profil };
+  if (t >= OQUV_HL[0][0] && t < T.talaba) { for (const [t0, j] of OQUV_HL) if (t >= t0) hl = { i: 0, j, t0 }; }
+  if (t >= TAL_HL[0][0] && t < T.kutub - .4) { for (const [t0, j] of TAL_HL) if (t >= t0) hl = { i: 2, j, t0 }; }
+  if (t >= T.kutub - .4 && t < T.lib) hl = { i: 6, j: null, t0: T.kutub - .4 };
+  set(hlbar, 'display', hl ? 'block' : 'none');
+  if (hl) {
+    const y = itemY(t, hl.i, hl.j), hh = hl.j == null ? 44 : 34, k = eo(prog(t, hl.t0, .25));
+    set(hlbar, 'top', (y - hh / 2) + 'px'); set(hlbar, 'height', hh + 'px'); set(hlbar, 'opacity', k.toFixed(3));
+    set(hlbar, 'transform', `scaleX(${lerp(.3, 1, k).toFixed(3)})`); set(hlbar, 'transformOrigin', '0 50%');
+    // brighten the highlighted label
+    SIDE_EL.forEach((s, i) => s.ss.forEach((e, j) => set(e, 'color', (hl.i === i && hl.j === j) ? '#fff' : '#8aa4af')));
+  }
+}
+
+/* ───────── camera ───────── */
+const CAM = [ // [t, duration, fx, fy, scale]
+  [0, 0, 960, 540, 1],
+  [21.2, .7, 560, 140, 1.9],
+  [24.2, .6, 960, 520, 1.12],
+  [25.4, .7, 980, 520, 1.85],
+  [34.6, .5, 1000, 600, 2.0],
+  [37.7, .5, 960, 540, 1.0],
+  [38.4, .6, 1480, 880, 1.75],
+  [41.4, .6, 600, 520, 1.55],
+  [43.1, .5, 640, 620, 1.25],
+  [43.7, .5, 640, 830, 1.85],
+  [48.05, .5, 900, 880, 1.6],
+  [49.85, .5, 960, 540, 1.0],
+  [54.0, .7, 760, 480, 1.3],
+  [65.9, .6, 600, 520, 1.6],
+  [76.3, .5, 600, 820, 1.65],
+  [78.2, .6, 960, 540, 1.0],
+];
+function camAt(t) {
+  let cur = { fx: CAM[0][2], fy: CAM[0][3], s: CAM[0][4] };
+  for (let i = 1; i < CAM.length; i++) {
+    const [t0, d, fx, fy, s] = CAM[i]; if (t < t0) break;
+    const k = eio(prog(t, t0, d));
+    cur = { fx: lerp(cur.fx, fx, k), fy: lerp(cur.fy, fy, k), s: lerp(cur.s, s, k) };
+  }
+  return cur;
+}
+
+/* ───────── cursor ───────── */
+const CUR = [ // [t, duration, x, y]  (world)
+  [0, 0, 1180, 760],
+  [20.6, .6, 760, 520],
+  [21.0, .5, 470, 125],
+  [25.5, .5, 900, 497], [30.1, .4, 900, 554], [32.95, .45, 1060, 612], [34.85, .5, 1000, 672],
+  [41.4, .55, 200, 0], [42.5, .35, 190, 0], [43.9, .5, 392, 798], [45.6, .4, 600, 845], [46.6, .35, 600, 895], [48.1, .45, 1053, 970],
+  [52.8, .7, 760, 600], [53.85, .5, 200, 0],
+  [65.7, .45, 200, 0],
+  [76.9, .5, 190, 0],
+  [78.2, .5, 1100, 700],
+];
+// sidebar targets resolved from the layout at the moment they are needed
+const CUR_Y = { 41.4: () => CY + itemY(42.0, 5) , 42.5: () => CY + 50 + itemY(42.9, 5, 0), 53.85: () => CY + 50 + itemY(54.3, 0), 65.7: () => CY + 50 + itemY(66.0, 2), 76.9: () => CY + 50 + itemY(77.3, 6) };
+CUR_Y[41.4] = () => CY + 50 + itemY(41.9, 5);
+const CLICKS = [21.4, T.idClick, T.pwClick, T.kirish, T.tizim, T.profil, T.check, T.p1Click, T.p2Click, T.save, T.oquv, T.talaba, T.kutub];
+// during the O'quv reja / Talaba ma'lumoti tours the cursor follows the highlighted row
+function curAt(t) {
+  let cur = { x: CUR[0][2], y: CUR[0][3] };
+  for (let i = 1; i < CUR.length; i++) {
+    const [t0, d, x, y0] = CUR[i]; if (t < t0) break;
+    const y = CUR_Y[t0] ? CUR_Y[t0]() : y0; const k = eio(prog(t, t0, d));
+    cur = { x: lerp(cur.x, x, k), y: lerp(cur.y, y, k) };
+  }
+  const follow = (list, menu, tEnd) => {
+    if (t < list[0][0] - .3 || t >= tEnd) return;
+    let tgt = null, t0 = 0; for (const [ts, j] of list) if (t >= ts - .3) { tgt = j; t0 = ts - .3; }
+    if (tgt == null) return;
+    const ty = CY + 50 + itemY(t0 + .3, menu, tgt), k = eio(prog(t, t0, .3));
+    cur = { x: lerp(cur.x, 205, k), y: lerp(cur.y, ty, k) };
+  };
+  follow(OQUV_HL, 0, T.talaba - .1);
+  follow(TAL_HL, 2, T.kutub - .7);
+  return cur;
+}
+
+/* ───────── text typing ───────── */
+const typed = (t, [a, b], text) => t < a ? '' : text.slice(0, Math.round(text.length * prog(t, a, b - a)));
+
+/* ───────── step bar ───────── */
+const STEPS = [['Kirish', 20.0], ['Parol', T.dash], ['Oʻquv reja', T.dash2], ['Talaba maʼlumoti', T.talaba - .05], ['Kutubxona', 76.68]];
+const stepbar = $('#stepbar');
+const STEP_EL = STEPS.map(([n], i) => { const e = h('div', 'step', '', `<span class="n">${i + 1}</span>${n}`); stepbar.appendChild(e); return e; });
+
+/* ───────── intro pieces ───────── */
+const iH = $('#i_h'); iH.innerHTML = 'HEMIS'.split('').map(c => `<span style="display:inline-block">${c}</span>`).join('');
+const iCards = $('#i_cards');
+const CARDS = [['Dars jadvali', 'cal', '#7f7fd5', 13.83], ['Baholar', 'medal', '#25a7c0', 14.7], ['Davomat', 'clock', '#2fb492', 15.55], ['Hujjatlar', 'book', '#a68a64', 16.2]];
+const CARD_EL = CARDS.map(([n, ic, col], i) => { const e = h('div', 'card', `left:${300 + i * 345}px;top:0;width:300px;height:250px;`, `<div style="position:absolute;left:100px;top:34px;width:100px;height:100px;border-radius:50%;background:${col}"><svg viewBox="0 0 24 24" style="position:absolute;left:26px;top:26px;width:48px;height:48px">${ICON[ic]}</svg></div><div style="position:absolute;left:0;right:0;top:160px;text-align:center;font-size:32px;font-weight:700">${n}</div>`); iCards.appendChild(e); return e; });
+$('#i_path').innerHTML = [0, 1, 2].map(i => `<div class="pdot" style="position:absolute;left:${i * 270}px;top:0;width:60px;height:60px;border-radius:50%;background:#fff;color:var(--navy);font-size:30px;font-weight:700;display:flex;align-items:center;justify-content:center">${i + 1}</div>`).join('') +
+  [0, 1].map(i => `<div class="pline" style="position:absolute;left:${i * 270 + 70}px;top:28px;width:190px;height:5px;background:var(--red);transform-origin:0 50%"></div>`).join('');
+
+/* screen cards */
+$('#ok').innerHTML = `<div class="card" style="inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;"><div style="width:96px;height:96px;border-radius:50%;background:#2fb492;position:relative"><svg viewBox="0 0 24 24" style="position:absolute;left:20px;top:20px;width:56px;height:56px"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3"/></svg></div><div style="font-size:34px;font-weight:700">Parol yangilandi</div></div>`;
+$('#lock').innerHTML = `<div class="card" style="inset:0;"><div style="position:absolute;left:330px;top:46px;width:140px;height:140px;border-radius:50%;background:var(--red)"><svg viewBox="0 0 24 24" style="position:absolute;left:34px;top:30px;width:72px;height:72px"><rect x="5" y="10.5" width="14" height="10" rx="2" fill="#fff"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" fill="none" stroke="#fff" stroke-width="2.4"/></svg></div>
+  <div style="position:absolute;left:0;right:0;top:220px;text-align:center;font-size:52px;font-weight:700;letter-spacing:-.02em">Parolingizni</div><div style="position:absolute;left:0;right:0;top:290px;text-align:center;font-size:52px;font-weight:700;color:var(--red);letter-spacing:-.02em">hech kimga bermang</div>
+  <div style="position:absolute;left:0;right:0;top:380px;text-align:center;font-size:24px;color:#556">Hatto doʻstingizga ham</div></div>`;
+$('#L107').innerHTML = `
+  <div class="abs" id="m1" style="left:200px;top:190px;"><span style="background:var(--red);color:#fff;font-size:40px;font-weight:700;padding:10px 24px;border-radius:12px">MUHIM!</span></div>
+  <div class="abs" id="m2" style="left:200px;top:300px;font-size:64px;font-weight:700;line-height:1.15;letter-spacing:-.02em;">Yoʻnalishingiz yoki guruhingiz<br>notoʻgʻri koʻrsatilganmi?</div>
+  <div class="abs" id="m3" style="left:200px;top:540px;display:flex;align-items:center;gap:40px;">
+    <div style="width:250px;height:330px;border-radius:14px;background:#fff;position:relative;"><div style="position:absolute;left:24px;top:24px;right:24px;bottom:0;border:6px solid var(--navy);border-bottom:none;border-radius:6px 6px 0 0"></div><div style="position:absolute;right:52px;top:170px;width:18px;height:18px;border-radius:50%;background:var(--red)"></div><div style="position:absolute;left:0;right:0;top:70px;text-align:center;font-size:72px;font-weight:700;color:var(--navy)">107</div></div>
+    <div><div style="font-size:150px;font-weight:700;letter-spacing:-.04em;line-height:1"><span style="color:var(--red)">107</span>-xona</div><div style="font-size:48px;font-weight:500;margin-top:16px">ga murojaat qiling</div></div>
+  </div>`;
+$('#Lout').innerHTML = `
+  <div class="abs big" id="o1" style="left:0;right:0;top:120px;text-align:center;font-size:120px;">Hammasi shu!</div>
+  <div class="abs" id="o2" style="left:0;right:0;top:300px;display:flex;justify-content:center;gap:14px;">${STEPS.map(([n]) => `<div class="ochip" style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.1);border-radius:30px;height:60px;padding:0 24px 0 10px;font-size:26px;font-weight:500"><span style="width:40px;height:40px;border-radius:50%;background:#2fb492;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3"/></svg></span>${n}</div>`).join('')}</div>
+  <div class="abs" id="o3" style="left:0;right:0;top:440px;text-align:center;font-size:56px;font-weight:700;letter-spacing:-.02em;">HEMIS bilan oʻqishingiz <span style="color:var(--red)">doim qoʻl ostingizda</span></div>
+  <div class="abs" id="o4" style="left:0;right:0;top:620px;display:flex;justify-content:center;align-items:center;gap:30px;">
+    <div style="width:170px;height:170px;border-radius:50%;background:#fff;position:relative"><img src="assets/logo.png" alt="AIFU" style="position:absolute;left:28px;top:26px;width:114px"></div>
+    <div><div style="font-size:42px;font-weight:700;line-height:1.15">Aniq va ijtimoiy<br>fanlar universiteti</div><div style="margin-top:14px;display:inline-block;background:var(--red);border-radius:10px;padding:8px 18px;font-size:30px;font-weight:700">student.aifu.uz</div></div>
+  </div>`;
+
+/* ───────── render ───────── */
+const world = $('#world'), cursorEl = $('#cursor');
+const PAGES = { pgNew: $('#pgNew'), pgLogin: $('#pgLogin'), pgHemis: $('#pgHemis'), pgLib: $('#pgLib') };
+function pageAt(t) { if (t < T.loginLoad) return 'pgNew'; if (t < T.dash) return 'pgLogin'; if (t < T.lib + .9) return 'pgHemis'; return 'pgLib'; }
+function render(t) {
+  /* intro */
+  const introOn = t < T.browserIn + .6; show($('#Lintro'), introOn);
+  if (introOn) {
+    const out = eio(prog(t, T.browserIn, .5));
+    set($('#Lintro'), 'transform', `translate3d(0,${(-out * 1080).toFixed(1)}px,0)`);
+    const g1 = t < 4.3, g2 = t >= 4.3 && t < 10.0, g3 = t >= 10.0;
+    [$('#i_logo'), $('#i_s1'), $('#i_s2')].forEach(e => show(e, g1));
+    [$('#i_h'), $('#i_hs'), $('#i_path')].forEach(e => show(e, g2));
+    [$('#i_def1'), $('#i_def2'), $('#i_cards'), $('#i_one'), $('#i_247')].forEach(e => show(e, g3));
+    if (g1) { appear($('#i_logo'), t, .1, .45, 0, 'pop'); appear($('#i_s1'), t, .35, .4, 60); appear($('#i_s2'), t, 1.3, .4, 60); }
+    if (g2) {
+      [...iH.children].forEach((c, i) => { const k = prog(t, 4.45 + i * .07, .4); set(c, 'opacity', Math.min(1, k * 2).toFixed(3)); set(c, 'transform', `translate3d(0,${((1 - back(k)) * 120).toFixed(1)}px,0)`); });
+      appear($('#i_hs'), t, 6.3, .45, 40);
+      $('#i_path').querySelectorAll('.pdot').forEach((d, i) => appear(d, t, 7.4 + i * .5, .35, 0, 'pop'));
+      $('#i_path').querySelectorAll('.pline').forEach((l, i) => { set(l, 'transform', `scaleX(${eo(prog(t, 7.6 + i * .5, .35)).toFixed(3)})`); });
+    }
+    if (g3) {
+      appear($('#i_def1'), t, 10.1, .3, 30); appear($('#i_def2'), t, 10.6, .45, 40);
+      const join = eio(prog(t, 17.2, .55));
+      CARD_EL.forEach((c, i) => { const k = prog(t, CARDS[i][3], .4); set(c, 'opacity', (t < CARDS[i][3] ? 0 : Math.min(1, k * 2)).toFixed(3));
+        const dx = (810 - (300 + i * 345)) * join; set(c, 'transform', `translate3d(${dx.toFixed(1)}px,${((1 - back(k)) * 80 + join * (i * 6)).toFixed(1)}px,0) scale(${lerp(1, .72, join).toFixed(3)}) rotate(${(join * (i - 1.5) * 6).toFixed(2)}deg)`); });
+      appear($('#i_one'), t, 17.35, .4, 40); appear($('#i_247'), t, 18.67, .35, 0, 'pop');
+    }
+  }
+  /* world: browser enters from below, then the camera works */
+  const bIn = eo(prog(t, T.browserIn, .7));
+  const c = camAt(t);
+  const s = c.s * lerp(.86, 1, bIn), tx = 960 - c.fx * s, ty = 540 - c.fy * s + (1 - bIn) * 500;
+  set(world, 'transform', `translate3d(${tx.toFixed(2)}px,${ty.toFixed(2)}px,0) scale(${s.toFixed(4)})`);
+  set(world, 'opacity', (t < T.browserIn ? 0 : 1).toString());
+  const pg = pageAt(t); for (const [k, el] of Object.entries(PAGES)) show(el, k === pg);
+  /* browser chrome */
+  const url = t < T.loginLoad ? typed(t, T.urlType, 'student.aifu.uz') : (t < T.lib + .2 ? 'student.aifu.uz' + (t >= T.dash ? (t >= T.profLoad && t < T.dash2 ? '/profile' : '/dashboard') : '') : typed(t, [T.lib + .05, T.lib + .6], 'unilibrary.uz'));
+  $('#url').textContent = url;
+  set($('#caret'), 'display', (t > 21.2 && t < T.enter) || (t > T.lib && t < T.lib + .7) ? 'inline-block' : 'none');
+  $('#tab1t').textContent = t < T.loginLoad ? 'Yangi oyna' : 'HEMIS Student';
+  show($('#tab2'), t >= T.lib); if (t >= T.lib) { const k = eo(prog(t, T.lib, .3)); set($('#tab2'), 'transform', `translate3d(0,${((1 - k) * 34).toFixed(1)}px,0)`); }
+  let lb = 0; for (const t0 of [T.enter, T.kirish + .1, T.profil + .05, T.lib + .55]) if (t >= t0 && t < t0 + .7) lb = prog(t, t0, .5);
+  set($('#loadbar'), 'width', (lb > 0 && lb < 1 ? lb * 1680 : 0).toFixed(0) + 'px');
+  /* login */
+  if (pg === 'pgLogin') {
+    const id = typed(t, T.idType, '305241102345'), pw = typed(t, T.pwType, '•••••••••');
+    const fId = $('#fId'), fPw = $('#fPw');
+    fId.textContent = id || 'Talaba ID'; set(fId, 'color', id ? '#222' : '#999'); set(fId, 'borderColor', t >= T.idClick && t < T.pwClick ? '#3c8dbc' : '#d2d6de');
+    fPw.textContent = pw || 'Parol'; set(fPw, 'color', pw ? '#222' : '#999'); set(fPw, 'borderColor', t >= T.pwClick && t < T.kirish ? '#3c8dbc' : '#d2d6de'); set(fPw, 'letterSpacing', pw ? '.2em' : '0');
+    set($('#bKirish'), 'filter', t >= T.kirish && t < T.kirish + .25 ? 'brightness(.85)' : 'none');
+    const oneHi = t >= T.oneid && t < T.dash; set($('#bOneid'), 'boxShadow', oneHi ? `0 0 0 ${(4 + 3 * Math.sin((t - T.oneid) * 7)).toFixed(1)}px rgba(255,1,88,.85)` : 'none');
+  }
+  /* HEMIS dashboard / profile */
+  if (pg === 'pgHemis') {
+    renderSide(t);
+    const prof = t >= T.profLoad && t < T.dash2;
+    show(mainDash, !prof); show(mainProf, prof);
+    show(toast, t >= T.toast && t < T.tizim);
+    if (t >= T.toast) { const k = eo(prog(t, T.toast, .35)); set(toast, 'transform', `translate3d(${((1 - k) * 420).toFixed(1)}px,0,0)`); }
+    if (prof) {
+      const on = t >= T.check; const chk = $('#chk');
+      chk.innerHTML = on ? '<svg viewBox="0 0 20 20" width="18" height="18"><path d="M4 10.5l4 4 8-9" fill="none" stroke="#3c8dbc" stroke-width="2.6"/></svg>' : '';
+      ['np1', 'np2'].forEach((id, i) => { const e = $('#' + id); set(e, 'background', on ? '#fff' : '#eee');
+        const v = typed(t, i ? T.p2Type : T.p1Type, '••••••••••'); e.textContent = v || (i ? 'Parol tasdigʻi' : 'Yangi parol'); set(e, 'color', v ? '#222' : '#999'); set(e, 'letterSpacing', v ? '.2em' : '0');
+        set(e, 'borderColor', (t >= (i ? T.p2Click : T.p1Click) && t < (i ? T.save : T.p2Click)) ? '#3c8dbc' : '#d2d6de'); });
+      set($('#saveBtn'), 'filter', t >= T.save && t < T.save + .25 ? 'brightness(.85)' : 'none');
+    }
+    // tile pulse ring on the O'quv reja tour
+    let tk = null, tt0 = 0; if (t >= OQUV_HL[0][0] && t < T.talaba) for (const [t0, , key] of OQUV_HL) if (t >= t0) { tk = key; tt0 = t0; }
+    show(ringT, !!tk);
+    if (tk) { const [, , , ix, row] = TILES[tk]; const k = eo(prog(t, tt0, .3)); const r = lerp(70, 48, k);
+      set(ringT, 'left', (TILE_X(ix) - r) + 'px'); set(ringT, 'top', (TILE_Y[row] - r) + 'px'); set(ringT, 'width', 2 * r + 'px'); set(ringT, 'height', 2 * r + 'px'); set(ringT, 'opacity', k.toFixed(3));
+      for (const [key, el] of Object.entries(TILE_EL)) set(el, 'transform', key === tk ? `scale(${(1 + .1 * Math.sin(Math.PI * prog(t, tt0, .35))).toFixed(3)})` : 'none'); }
+  }
+  /* callouts (world space) */
+  const CO = [['url', 21.7, T.enter], ['id', 27.2, T.pwClick], ['pw', 30.7, T.kirish], ['oneid', T.oneid + .1, T.dash], ['check', 44.0, 45.9], ['twice', 46.0, 48.1]];
+  for (const [k, a, b] of CO) { const e = callouts[k]; const on = t >= a && t < b; show(e, on); if (on) appear(e, t, a, .3, 14); }
+  /* cursor */
+  const cu = curAt(t), curOn = t >= 20.4 && t < T.end107;
+  set(cursorEl, 'display', curOn ? 'block' : 'none');
+  let press = 1; for (const tc of CLICKS) if (t >= tc - .05 && t < tc + .15) press = .82;
+  set(cursorEl, 'transform', `translate3d(${cu.x.toFixed(1)}px,${cu.y.toFixed(1)}px,0) scale(${(press / Math.max(.8, camAt(t).s * .55)).toFixed(3)})`);
+  let ri = 0; for (const tc of CLICKS) { if (t >= tc && t < tc + .5 && ri < RIP.length) { const r = RIP[ri++], k = eo(prog(t, tc, .5)), rr = lerp(6, 34, k); const p = curAtFixed(tc);
+      show(r, true); set(r, 'left', (p.x - rr) + 'px'); set(r, 'top', (p.y - rr) + 'px'); set(r, 'width', 2 * rr + 'px'); set(r, 'height', 2 * rr + 'px'); set(r, 'opacity', (1 - k).toFixed(3)); } }
+  for (; ri < RIP.length; ri++) show(RIP[ri], false);
+  /* step bar */
+  const sbOn = t >= 20.2 && t < T.end107; show(stepbar, sbOn); set(stepbar, 'display', sbOn ? 'flex' : 'none');
+  if (sbOn) { set(stepbar, 'opacity', Math.min(1, prog(t, 20.2, .3)).toFixed(3)); let cur = 0; STEPS.forEach(([, t0], i) => { if (t >= t0) cur = i; });
+    STEP_EL.forEach((e, i) => { e.className = 'step' + (i === cur ? ' on' : i < cur ? ' done' : ''); }); }
+  /* screen cards */
+  const okOn = t >= T.ok && t < T.lock - .05; show($('#Lok'), okOn); if (okOn) appear($('#ok'), t, T.ok, .35, 0, 'pop');
+  const lockOn = t >= T.lock && t < T.dash2 - .1; show($('#Llock'), lockOn); if (lockOn) { appear($('#lock'), t, T.lock, .4, 0, 'pop'); set($('#Llock'), 'background', `rgba(0,20,50,${(.55 * eo(prog(t, T.lock, .3))).toFixed(3)})`); }
+  const m107 = t >= T.end107 && t < T.outro; show($('#L107'), m107);
+  if (m107) { const k = eo(prog(t, T.end107, .45)); set($('#L107'), 'clipPath', `inset(0 0 0 ${((1 - k) * 100).toFixed(2)}%)`);
+    appear($('#m1'), t, 82.1, .3, 0, 'pop'); appear($('#m2'), t, 82.85, .45, 50); appear($('#m3'), t, 86.9, .45, 70); }
+  const out = t >= T.outro; show($('#Lout'), out);
+  if (out) { appear($('#o1'), t, T.outro + .05, .4, 0, 'pop'); $('#o2').querySelectorAll('.ochip').forEach((e, i) => appear(e, t, 89.6 + i * .18, .3, 30));
+    appear($('#o3'), t, 90.25, .45, 40); appear($('#o4'), t, 92.9, .5, 40); set($('#Lout'), 'opacity', (1 - prog(t, DUR - .6, .6)).toFixed(3)); }
+  /* captions */
+  const capOn = t >= 10.0 && t < T.end107 && !(t >= T.lock && t < T.dash2);
+  let ci = -1; if (capOn) ci = CHUNKS.findIndex(([a, b]) => t >= a && t < b);
+  const cap = $('#cap'); const txt = ci >= 0 ? CHUNKS[ci][2] : '';
+  if (cap.__t !== txt) { cap.__t = txt; cap.innerHTML = txt ? `<span>${txt}</span>` : ''; }
+  /* flash on big transitions */
+  let f = 0; for (const t0 of [T.end107, T.outro]) if (t >= t0 && t < t0 + .2) f = 1 - prog(t, t0, .2);
+  set($('#flash'), 'opacity', (f * .6).toFixed(3));
+}
+function curAtFixed(tc) { return curAt(tc); }
+
+/* SFX event list for tools/mix.py */
+function events() {
+  const ev = [];
+  const typeEv = ([a, b], n, kind) => { for (let i = 0; i < n; i++) ev.push({ t: a + (b - a) * (i + .5) / n, type: kind }); };
+  CLICKS.forEach(t => ev.push({ t, type: 'click' }));
+  typeEv(T.urlType, 15, 'key'); typeEv(T.idType, 12, 'key'); typeEv(T.pwType, 9, 'key'); typeEv(T.p1Type, 10, 'key'); typeEv(T.p2Type, 10, 'key');
+  ev.push({ t: T.enter, type: 'enter' });
+  [T.browserIn, T.dash, T.profLoad, T.dash2, T.lib + .55].forEach(t => ev.push({ t, type: 'whoosh' }));
+  [T.toast].forEach(t => ev.push({ t, type: 'alert' }));
+  [T.ok].forEach(t => ev.push({ t, type: 'success' }));
+  [T.lock, T.end107 + .1].forEach(t => ev.push({ t, type: 'alert' }));
+  [T.end107, T.outro].forEach(t => ev.push({ t, type: 'swish' }));
+  OQUV_HL.forEach(([t]) => ev.push({ t, type: 'tick' })); TAL_HL.forEach(([t]) => ev.push({ t, type: 'tick' }));
+  CARDS.forEach(([, , , t]) => ev.push({ t, type: 'pop' })); [0.1, 0.35, 1.3, 6.3, 7.4, 7.9, 8.4, 17.35, 18.67, 89.17, 92.9].forEach(t => ev.push({ t, type: 'pop' }));
+  [...'HEMIS'].forEach((_, i) => ev.push({ t: 4.45 + i * .07, type: 'tick' }));
+  for (let i = 0; i < 5; i++) ev.push({ t: 89.6 + i * .18, type: 'tick' });
+  ev.push({ t: 86.9, type: 'hit' }); ev.push({ t: 0.1, type: 'hit' }); ev.push({ t: 4.45, type: 'hit' });
+  [21.7, 27.2, 30.7, T.oneid + .1, 44.0, 46.0].forEach(t => ev.push({ t, type: 'pop' }));
+  return ev.sort((a, b) => a.t - b.t);
+}
+
+async function seek(t) { render(t); await new Promise(r => requestAnimationFrame(() => r())); }
+function fit() { const s = Math.min(innerWidth / W, innerHeight / H); $('#stage').style.transform = `translate(-50%,-50%) scale(${s})`; }
+addEventListener('resize', fit); fit();
+let playing = false, t0 = 0, c0 = 0; const au = new Audio('../build/mix.wav');
+function loop() { if (playing) { const t = t0 + (performance.now() / 1000 - c0); if (t >= DUR) { playing = false; au.pause(); } render(Math.min(t, DUR)); } requestAnimationFrame(loop); }
+addEventListener('keydown', e => { if (e.key === ' ') { playing = !playing; if (playing) { c0 = performance.now() / 1000; au.currentTime = t0; au.play().catch(() => {}); } else { t0 += performance.now() / 1000 - c0; au.pause(); } } });
+window.R = { seek, DUR, FPS, events };
+const params = new URLSearchParams(location.search);
+(document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { render(params.has('t') ? +params.get('t') : 0); if (!params.has('render')) requestAnimationFrame(loop); });
+})();
+</script>
+</body>
+</html>
