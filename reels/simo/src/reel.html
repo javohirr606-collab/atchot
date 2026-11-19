@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMO 1-kun reel</title>
+<style>
+/* 1080×1920 reel. Brand: #FF0158, #002E60, white; Inter. */
+:root { --navy:#002E60; --red:#FF0158; --font:"AIFU Sans","Helvetica Neue",Helvetica,Arial,sans-serif; }
+@font-face { font-family:"AIFU Sans"; font-weight:400; font-display:block; src:url(assets/fonts/inter-latin-400-normal.woff2) format("woff2"); unicode-range:U+0000-00FF,U+02BB-02BC,U+2000-206F,U+2212; }
+@font-face { font-family:"AIFU Sans"; font-weight:400; font-display:block; src:url(assets/fonts/inter-latin-ext-400-normal.woff2) format("woff2"); unicode-range:U+0100-02BA,U+02BD-02FF; }
+@font-face { font-family:"AIFU Sans"; font-weight:500; font-display:block; src:url(assets/fonts/inter-latin-500-normal.woff2) format("woff2"); unicode-range:U+0000-00FF,U+02BB-02BC,U+2000-206F,U+2212; }
+@font-face { font-family:"AIFU Sans"; font-weight:500; font-display:block; src:url(assets/fonts/inter-latin-ext-500-normal.woff2) format("woff2"); unicode-range:U+0100-02BA,U+02BD-02FF; }
+@font-face { font-family:"AIFU Sans"; font-weight:700; font-display:block; src:url(assets/fonts/inter-latin-700-normal.woff2) format("woff2"); unicode-range:U+0000-00FF,U+02BB-02BC,U+2000-206F,U+2212; }
+@font-face { font-family:"AIFU Sans"; font-weight:700; font-display:block; src:url(assets/fonts/inter-latin-ext-700-normal.woff2) format("woff2"); unicode-range:U+0100-02BA,U+02BD-02FF; }
+
+html,body { margin:0; height:100%; background:#000; overflow:hidden; }
+#stage { position:absolute; left:50%; top:50%; width:1080px; height:1920px; overflow:hidden; background:#000;
+  transform-origin:50% 50%; font-family:var(--font); color:#fff; -webkit-font-smoothing:antialiased; }
+#stage * { box-sizing:border-box; }
+.abs { position:absolute; }
+#media { position:absolute; inset:0; overflow:hidden; }
+#media img { position:absolute; left:0; top:0; width:1080px; height:1920px; transform-origin:50% 50%; }
+#dark { position:absolute; inset:0; background:#00142e; opacity:0; }
+#grad { position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.42) 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 52%, rgba(0,10,30,.62) 100%); }
+#vig { position:absolute; inset:0; background:radial-gradient(ellipse 80% 60% at 50% 48%, rgba(0,0,0,0) 60%, rgba(0,0,0,.35) 100%); }
+
+#tab { position:absolute; left:64px; top:0; width:112px; height:128px; background:#fff; z-index:40; }
+#tab img { position:absolute; left:16px; top:26px; width:80px; }
+
+/* captions */
+#sub { position:absolute; left:70px; right:70px; top:1150px; height:300px; display:flex; align-items:center; justify-content:center; text-align:center; }
+#subIn { font-size:68px; font-weight:700; line-height:1.16; letter-spacing:-.015em; text-shadow:0 4px 22px rgba(0,0,0,.75), 0 0 3px rgba(0,0,0,.5); transform-origin:50% 50%; }
+.w { display:inline-block; border-radius:14px; padding:0 8px; margin:0 -4px; }
+.w.todo { opacity:.42; }
+.w.now { background:var(--red); text-shadow:none; }
+.w.hi:not(.now) { color:#FF3D7F; }
+
+/* hook */
+#hook { position:absolute; left:40px; right:40px; top:560px; text-align:center; font-size:100px; font-weight:700; line-height:1.02; letter-spacing:-.035em; text-transform:uppercase; text-shadow:0 6px 34px rgba(0,0,0,.6); }
+#hook .hw { display:inline-block; margin:0 14px; transform-origin:50% 80%; }
+#hook .hw.hi { color:var(--red); }
+
+/* title */
+#title { position:absolute; inset:0; display:none; }
+#simo { position:absolute; left:0; right:0; top:610px; text-align:center; font-size:330px; font-weight:700; letter-spacing:-.04em; line-height:1; }
+#simo span { display:inline-block; }
+#tbar { position:absolute; left:50%; top:960px; height:16px; width:640px; margin-left:-320px; background:var(--red); transform-origin:0 50%; }
+#tsub { position:absolute; left:0; right:0; top:1010px; text-align:center; font-size:50px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
+#tchip { position:absolute; left:50%; top:1100px; transform-origin:50% 50%; }
+.chip { display:inline-flex; align-items:center; gap:18px; height:96px; padding:0 34px; background:var(--red); font-size:56px; font-weight:700; letter-spacing:.02em; white-space:nowrap; text-transform:uppercase; }
+
+/* lower third */
+#lt { position:absolute; left:64px; top:250px; max-width:952px; }
+#ltName { display:inline-block; background:#fff; color:var(--navy); font-size:44px; font-weight:700; letter-spacing:-.01em; line-height:1.15; padding:16px 28px; }
+#ltRole { display:inline-block; margin-top:0; background:var(--navy); color:#fff; font-size:34px; font-weight:500; line-height:1.2; padding:12px 28px; }
+#ltBar { position:absolute; left:-18px; top:0; width:10px; height:100%; background:var(--red); }
+
+/* city chip */
+#city { position:absolute; left:64px; top:470px; }
+#city .chip { height:118px; font-size:76px; letter-spacing:.01em; }
+#city svg { width:58px; height:58px; }
+
+/* counter */
+#counter { position:absolute; left:0; right:0; top:560px; text-align:center; display:none; }
+#cNum { font-size:330px; font-weight:700; letter-spacing:-.05em; line-height:1; color:#fff; text-shadow:0 8px 50px rgba(0,0,0,.5); }
+#cNum b { color:var(--red); font-weight:700; }
+#cL1 { font-size:76px; font-weight:700; letter-spacing:-.02em; margin-top:6px; }
+#cL2 { display:inline-block; margin-top:22px; }
+
+/* stats */
+#stats { position:absolute; left:64px; top:470px; display:none; }
+.stat { display:flex; align-items:baseline; gap:22px; height:200px; padding:0 40px; margin-bottom:22px; font-weight:700; white-space:nowrap; transform-origin:0 50%; }
+.stat .n { font-size:180px; letter-spacing:-.05em; line-height:1; }
+.stat .u { font-size:70px; letter-spacing:.01em; text-transform:uppercase; }
+#st1 { background:var(--red); } #st2 { background:#fff; color:var(--navy); }
+
+/* end card */
+#end { position:absolute; inset:0; background:var(--navy); display:none; overflow:hidden; }
+#endGrid { position:absolute; inset:-40px; background:repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 2px,transparent 2px 90px),repeating-linear-gradient(0deg,rgba(255,255,255,.05) 0 2px,transparent 2px 90px); }
+.glyph { position:absolute; font-weight:700; color:rgba(255,255,255,.07); }
+#endLogo { position:absolute; left:50%; top:470px; width:330px; height:330px; margin-left:-165px; border-radius:50%; background:#fff; box-shadow:0 20px 70px rgba(0,0,0,.35); }
+#endLogo img { position:absolute; left:50%; top:50%; width:230px; transform:translate(-50%,-50%); }
+#endT1 { position:absolute; left:0; right:0; top:870px; text-align:center; font-size:96px; font-weight:700; letter-spacing:-.03em; }
+#endT2 { position:absolute; left:0; right:0; top:990px; text-align:center; font-size:44px; font-weight:500; color:rgba(255,255,255,.8); }
+#endChip { position:absolute; left:50%; top:1100px; transform-origin:50% 50%; }
+#endPh { position:absolute; left:0; right:0; top:1260px; text-align:center; font-size:64px; font-weight:700; letter-spacing:.02em; }
+#endUni { position:absolute; left:0; right:0; top:1350px; text-align:center; font-size:36px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.7); }
+#flash { position:absolute; inset:0; background:#fff; opacity:0; z-index:50; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="media"><img id="im" alt=""></div>
+  <div id="dark"></div>
+  <div id="vig"></div>
+  <div id="grad"></div>
+
+  <div id="hook"></div>
+
+  <div id="title">
+    <div id="simo"><span>S</span><span>I</span><span>M</span><span>O</span></div>
+    <div id="tbar"></div>
+    <div id="tsub">Xalqaro matematika olimpiadasi</div>
+    <div id="tchip"><div class="chip">1-kun</div></div>
+  </div>
+
+  <div id="lt"><div id="ltBar"></div><div id="ltName"></div><br><div id="ltRole"></div></div>
+  <div id="city"><div class="chip"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.6A2.6 2.6 0 1 1 12 6.4a2.6 2.6 0 0 1 0 5.2z" fill="#fff"/></svg><span id="cityT"></span></div></div>
+
+  <div id="counter"><div id="cNum"><b>0</b></div><div id="cL1">nafar talaba</div><div id="cL2" class="chip">roʻyxatdan oʻtdi</div></div>
+  <div id="stats"><div class="stat" id="st1"><span class="n">4,5</span><span class="u">soat</span></div><div class="stat" id="st2"><span class="n">5</span><span class="u">ta masala</span></div></div>
+
+  <div id="sub"><div id="subIn"></div></div>
+
+  <div id="end">
+    <div id="endGrid"></div>
+    <div id="glyphs"></div>
+    <div id="endLogo"><img src="assets/logo.png" alt=""></div>
+    <div id="endT1">SIMO · 1-kun</div>
+    <div id="endT2">Xalqaro matematika olimpiadasi</div>
+    <div id="endChip"><div class="chip">Davomi bor</div></div>
+    <div id="endPh">78 555 21 21</div>
+    <div id="endUni">Aniq va ijtimoiy fanlar universiteti</div>
+  </div>
+
+  <div id="tab"><img src="assets/logo.png" alt=""></div>
+  <div id="flash"></div>
+</div>
+<script src="edit.js"></script>
+<script src="common.js"></script>
+<script>
+(() => {
+'use strict';
+const { $, prog, easeOut, easeIn, easeInOut, back, lerp, set, env } = H;
+const W = 1080, Hh = 1920, FPS = H.FPS;
+const E = window.EDIT, R = E.reel, DUR = R.DUR, DROP = R.DROP, END = 45.30;
+const CH = E.CHUNKS;
+const im = $('#im');
+
+/* ───── footage ───── */
+const SECTION = new Set([DROP, 4.45, 16.10, 20.65, 25.45, 26.90, 29.22, 36.25]);
+function media(t) {
+  if (t >= END + .3) { set(im, 'visibility', 'hidden'); return; }
+  set(im, 'visibility', 'visible');
+  let src, z, t0;
+  const br = R.broll.find(b => t >= b[0] && t < b[1]);
+  if (br) { t0 = br[0]; src = br[2] + (t - br[0]); z = lerp(br[3], br[4], easeInOut(prog(t, br[0], br[1] - br[0]))); }
+  else {
+    let it = null; for (const s of R.speech) if (s.video !== false && t >= s.t) it = s;
+    if (!it) it = R.speech[1];
+    t0 = it.t; src = it.a + (t - it.t); const d = it.b - it.a;
+    z = lerp(1.0, 1.045, easeInOut(prog(t, it.t, d)));
+  }
+  let blur = 0;
+  if (SECTION.has(t0) && t - t0 < .22) { const e = easeOut(prog(t, t0, .22)); z *= lerp(1.16, 1, e); blur = (1 - e) * 12; }
+  else if (t - t0 < .2 && t0 > 0) z *= lerp(1.05, 1, easeOut(prog(t, t0, .2)));
+  H.setSrc(im, H.frame(src));
+  set(im, 'transform', `scale(${z.toFixed(4)})`);
+  set(im, 'filter', blur > .3 ? `blur(${blur.toFixed(1)}px)` : 'none');
+  // darken under big graphics
+  let dk = 0;
+  if (t < DROP) dk = .28;
+  if (t >= DROP && t < 4.45) dk = .5;
+  dk = Math.max(dk, .45 * env(t, 18.10, 20.75, .3, .25));
+  dk = Math.max(dk, .32 * env(t, 22.50, 25.30, .3, .2));
+  set($('#dark'), 'opacity', dk.toFixed(3));
+}
+
+/* ───── hook: the organiser's question, word by word ───── */
+const hookIt = R.speech.find(s => s.style === 'hook');
+const hookWords = CH.filter(c => c.s >= hookIt.a && c.s <= hookIt.b).flatMap(c => c.words);
+$('#hook').innerHTML = hookWords.map((w, i) => `<span class="hw${w.hi ? ' hi' : ''}" id="hw${i}">${w.w}</span>${i < 2 ? '<br>' : ' '}`).join('');
+function hook(t) {
+  const on = t < DROP + .05; set($('#hook'), 'display', on ? 'block' : 'none'); if (!on) return;
+  hookWords.forEach((w, i) => {
+    const el = $('#hw' + i), ts = hookIt.t + (w.s - hookIt.a) - .04, k = prog(t, ts, .22);
+    set(el, 'opacity', t < ts ? '0' : Math.min(1, k * 2.5).toFixed(3));
+    set(el, 'transform', `scale(${(t < ts ? .6 : lerp(.6, 1, back(k))).toFixed(4)})`);
+  });
+  const out = prog(t, DROP - .1, .14); set($('#hook'), 'transform', `scale(${lerp(1, 1.25, easeIn(out)).toFixed(3)})`);
+  if (out > 0) set($('#hook'), 'opacity', (1 - out).toFixed(3)); else set($('#hook'), 'opacity', '1');
+}
+
+/* ───── title ───── */
+function title(t) {
+  const on = t >= DROP && t < 4.47; set($('#title'), 'display', on ? 'block' : 'none'); if (!on) return;
+  [...$('#simo').children].forEach((el, i) => {
+    const ts = DROP + i * .06, k = prog(t, ts, .3), e = back(k);
+    set(el, 'opacity', t < ts ? '0' : Math.min(1, k * 3).toFixed(3));
+    set(el, 'transform', `translate3d(0,${((1 - e) * -160).toFixed(1)}px,0) scale(${lerp(1.4, 1, easeOut(k)).toFixed(3)})`);
+  });
+  set($('#tbar'), 'transform', `scaleX(${easeOut(prog(t, DROP + .25, .35)).toFixed(3)})`);
+  { const k = prog(t, DROP + .4, .35); set($('#tsub'), 'opacity', k.toFixed(3)); set($('#tsub'), 'transform', `translate3d(0,${((1 - easeOut(k)) * 40).toFixed(1)}px,0)`); }
+  { const k = prog(t, DROP + .7, .3); set($('#tchip'), 'opacity', (t < DROP + .7 ? 0 : 1).toString()); set($('#tchip'), 'transform', `translateX(-50%) scale(${(t < DROP + .7 ? .4 : lerp(.4, 1, back(k))).toFixed(3)})`); }
+  const out = prog(t, 4.32, .15); set($('#title'), 'opacity', (1 - out).toFixed(3)); set($('#title'), 'transform', `scale(${lerp(1, 1.2, easeIn(out)).toFixed(3)})`);
+}
+
+/* ───── lower thirds, city chips, counter, stats ───── */
+function lower(t) {
+  const L = R.lower.find(l => t >= l.t0 && t <= l.t1);
+  set($('#lt'), 'display', L ? 'block' : 'none'); if (!L) return;
+  H.html($('#ltName'), L.name); set($('#ltRole'), 'display', L.role ? 'inline-block' : 'none'); if (L.role) H.html($('#ltRole'), L.role);
+  const k = env(t, L.t0, L.t1, .35, .22), kn = easeOut(prog(t, L.t0, .35)), kr = easeOut(prog(t, L.t0 + .12, .35));
+  set($('#lt'), 'opacity', k.toFixed(3));
+  set($('#ltName'), 'transform', `translate3d(${((1 - kn) * -90).toFixed(1)}px,0,0)`);
+  set($('#ltRole'), 'transform', `translate3d(${((1 - kr) * -90).toFixed(1)}px,0,0)`);
+  set($('#ltBar'), 'transform', `scaleY(${kn.toFixed(3)})`);
+}
+function city(t) {
+  const C = R.cities.find(c => t >= c[0] - .02 && t < c[1]);
+  set($('#city'), 'display', C ? 'block' : 'none'); if (!C) return;
+  H.html($('#cityT'), C[2]);
+  const k = prog(t, C[0], .28), out = prog(t, C[1] - .14, .14);
+  set($('#city'), 'transform', `translate3d(${((1 - easeOut(k)) * -700 - easeIn(out) * 900).toFixed(1)}px,0,0)`);
+}
+const C540 = 16.10 + (21.28 - 19.20) - .08;
+function counter(t) {
+  const on = t >= C540 && t < 20.85; set($('#counter'), 'display', on ? 'block' : 'none'); if (!on) return;
+  const k = easeOut(prog(t, C540, .55)); H.html($('#cNum'), `<b>${Math.round(540 * k)}</b>`);
+  const a = env(t, C540, 20.85, .12, .2); set($('#counter'), 'opacity', a.toFixed(3));
+  set($('#cNum'), 'transform', `scale(${lerp(.7, 1, back(prog(t, C540, .4))).toFixed(3)})`);
+  inUp($('#cL1'), t, C540 + .45, .3, 40); inUp($('#cL2'), t, C540 + .8, .3, 40);
+}
+function inUp(el, t, t0, d, dist) { const k = prog(t, t0, d), e = easeOut(k); set(el, 'opacity', (t < t0 ? 0 : Math.min(1, k * 1.8)).toFixed(3)); set(el, 'transform', `translate3d(0,${((1 - e) * dist).toFixed(1)}px,0)`); }
+const T45 = R.speech.find(s => s.id === 't45'), S1 = T45.t + (232.26 - T45.a) - .05, S2 = T45.t + (233.26 - T45.a) - .05;
+function stats(t) {
+  const on = t >= S1 - .02 && t < 25.42; set($('#stats'), 'display', on ? 'block' : 'none'); if (!on) return;
+  for (const [id, ts] of [['#st1', S1], ['#st2', S2]]) {
+    const k = prog(t, ts, .3), out = prog(t, 25.25, .16);
+    set($(id), 'opacity', t < ts ? '0' : '1');
+    set($(id), 'transform', `translate3d(${((1 - easeOut(k)) * -800 - easeIn(out) * 1100).toFixed(1)}px,0,0)`);
+  }
+}
+
+/* ───── captions ───── */
+let lastChunk = null, chunkT = 0;
+function captions(t) {
+  const sa = H.speechAt(R.speech, t);
+  const res = sa && sa.it.style !== 'hook' ? H.chunkAt(CH, sa.it, sa.src) : null;
+  set($('#sub'), 'display', res ? 'flex' : 'none'); if (!res) { lastChunk = null; return; }
+  H.html($('#subIn'), H.wordsHTML(res.words, sa.src));
+  const ts = sa.it.t + (res.s0 - sa.it.a) - .08, k = prog(t, ts, .16);
+  set($('#subIn'), 'transform', `scale(${lerp(.86, 1, back(k)).toFixed(3)})`);
+  set($('#subIn'), 'opacity', Math.min(1, k * 3).toFixed(3));
+  // final quote sits a little lower and larger over the B-roll
+  set($('#subIn'), 'fontSize', sa.it.id === 'sav' ? '74px' : '68px');
+}
+
+/* ───── end card ───── */
+const GL = ['∑', 'π', '∫', '√', '∞', 'Δ', 'x²', 'f(x)', '≠', 'n!', 'θ', 'e'];
+$('#glyphs').innerHTML = GL.map((g, i) => `<div class="glyph" id="g${i}" style="left:${(i * 173) % 960 + 20}px;top:${(i * 389) % 1700 + 60}px;font-size:${90 + (i * 37) % 110}px">${g}</div>`).join('');
+function endCard(t) {
+  const on = t >= END; set($('#end'), 'display', on ? 'block' : 'none'); set($('#tab'), 'display', on ? 'none' : 'block'); if (!on) return;
+  const k = easeOut(prog(t, END, .4)); set($('#end'), 'transform', `translate3d(0,${((1 - k) * 1920).toFixed(1)}px,0)`);
+  GL.forEach((g, i) => set($('#g' + i), 'transform', `translate3d(0,${(-(t - END) * (10 + i * 3)).toFixed(1)}px,0)`));
+  { const kk = prog(t, END + .3, .45); set($('#endLogo'), 'opacity', (t < END + .3 ? 0 : 1).toString()); set($('#endLogo'), 'transform', `scale(${(t < END + .3 ? .3 : lerp(.3, 1, back(kk))).toFixed(3)}) rotate(${((1 - easeOut(kk)) * -40).toFixed(1)}deg)`); }
+  inUp($('#endT1'), t, END + .55, .35, 50); inUp($('#endT2'), t, END + .7, .35, 40);
+  { const kk = prog(t, END + 1.0, .3); set($('#endChip'), 'opacity', (t < END + 1.0 ? 0 : 1).toString()); set($('#endChip'), 'transform', `translateX(-50%) scale(${(t < END + 1.0 ? .4 : lerp(.4, 1, back(kk))).toFixed(3)})`); }
+  inUp($('#endPh'), t, END + 1.3, .35, 40); inUp($('#endUni'), t, END + 1.45, .35, 30);
+  const fo = prog(t, DUR - .5, .5); set($('#end'), 'filter', fo > 0 ? `brightness(${(1 - fo).toFixed(3)})` : 'none');
+}
+
+function flash(t) {
+  let f = 0;
+  for (const [t0, a] of [[DROP, .9], [16.10, .35], [25.45, .4], [R.EG_BAND, .3]]) if (t >= t0 && t < t0 + .25) f = Math.max(f, a * (1 - easeOut(prog(t, t0, .25))));
+  set($('#flash'), 'opacity', f.toFixed(3));
+}
+
+function render(t) { media(t); hook(t); title(t); lower(t); city(t); counter(t); stats(t); captions(t); endCard(t); flash(t); }
+async function seek(t) { H.pending.length = 0; render(t); await Promise.all(H.pending.splice(0)); }
+function fit() { const s = Math.min(innerWidth / W, innerHeight / Hh); $('#stage').style.transform = `translate(-50%,-50%) scale(${s})`; }
+addEventListener('resize', fit); fit();
+let playing = false, t0 = 0, c0 = 0; const au = new Audio('../build/mix_reel.wav');
+function loop() { if (playing) { const t = t0 + (performance.now() / 1000 - c0); if (t >= DUR) { playing = false; au.pause(); } render(Math.min(t, DUR)); } requestAnimationFrame(loop); }
+addEventListener('keydown', e => { if (e.key === ' ') { playing = !playing; if (playing) { c0 = performance.now() / 1000; au.currentTime = t0; au.play().catch(() => {}); } else { t0 += performance.now() / 1000 - c0; au.pause(); } } });
+window.R = { seek, DUR, FPS, W, H: Hh };
+const params = new URLSearchParams(location.search);
+(document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { if (params.has('t')) { t0 = +params.get('t'); seek(t0); } else render(0); if (!params.has('render')) requestAnimationFrame(loop); });
+})();
+</script>
+</body>
+</html>
